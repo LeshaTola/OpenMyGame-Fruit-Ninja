@@ -1,38 +1,27 @@
+using General;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Block
 {
 	public class Spawner : MonoBehaviour
 	{
-		[SerializeField] private List<Region> regions = new();
-		[SerializeField] private List<BlockMovement> blockTemplates = new();
+		[SerializeField] private List<Region.Region> regions;
+		[SerializeField] private List<BlockMovement> blockTemplates;
 		[SerializeField] private float cooldown;
+
+		public IReadOnlyCollection<Region.Region> Regions { get => regions; }
 
 		private void Start()
 		{
 			StartCoroutine(SpawnCoroutine());
 		}
 
-		private void OnDrawGizmos()
-		{
-			Gizmos.color = Color.red;
-
-			foreach (Region region in regions)
-			{
-				if (region == null)
-				{
-					continue;
-				}
-
-				RegionDrawer.DrawRegion(region);
-			}
-		}
-
 		public void Spawn()
 		{
-			Region region = regions[Random.Range(0, regions.Count)];
+			Region.Region region = GetRegion();
 			Vector2 spawnPosition = GetSpawnPosition(region);
 
 			var block = Instantiate
@@ -41,14 +30,41 @@ namespace Block
 			float randomAngle = Random.Range(region.MinAngle, region.MaxAngle);
 			Vector2 pushDirection = Quaternion.Euler(0, 0, randomAngle) * Vector2.up;
 
-			float speed = Random.Range(region.MinSpeed, region.MaxSpeed);
+			Vector2 speed =
+				new Vector2(
+					Random.Range(region.MinHorizontalSpeed, region.MaxHorizontalSpeed),
+					Random.Range(region.MinVerticalSpeed, region.MaxVerticalSpeed)
+					);
 
 			block.Push(pushDirection * speed);
 		}
 
-		private Vector2 GetSpawnPosition(Region region)
+		private Region.Region GetRegion()
 		{
-			region.GetRegionBounds(out Vector2 startPosition, out Vector2 endPosition);
+			int totalWeight = 0;
+			foreach (var region in regions)
+			{
+				totalWeight += region.Priority;
+			}
+
+			int value = Random.Range(1, totalWeight + 1);
+			int current = 0;
+
+			foreach (var region in regions)
+			{
+				current += region.Priority;
+				if (current >= value)
+				{
+					return region;
+				}
+			}
+
+			return regions.Last();
+		}
+
+		private Vector2 GetSpawnPosition(Region.Region region)
+		{
+			ScreenCoordinateConverter.Instance.GetRegionBounds(region, out Vector2 startPosition, out Vector2 endPosition);
 			return Vector2.Lerp(startPosition, endPosition, Random.value);
 		}
 

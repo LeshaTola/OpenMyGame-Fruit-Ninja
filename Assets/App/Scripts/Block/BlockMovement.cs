@@ -2,19 +2,18 @@ using UnityEngine;
 
 namespace Block
 {
+	[RequireComponent(typeof(Block))]
 	public class BlockMovement : MonoBehaviour
 	{
 		private const float GRAVITY = -9.8f;
+
+		[SerializeField] private Block block;
 
 		private Vector2 velocity;
 
 		private void Update()
 		{
-			if (transform.position.y < -Camera.main.orthographicSize)
-			{
-				Destroy(gameObject);
-			}
-
+			ValidateBoundaries();
 			CalculateVelocity();
 			Move();
 		}
@@ -37,6 +36,14 @@ namespace Block
 		private void Move()
 		{
 			transform.position = Vector3.Lerp(transform.position, transform.position + (Vector3)velocity, Time.deltaTime);
+		}
+
+		private void ValidateBoundaries()
+		{
+			if (transform.position.y + block.Radius < -Camera.main.orthographicSize)
+			{
+				Destroy(gameObject);
+			}
 		}
 	}
 }

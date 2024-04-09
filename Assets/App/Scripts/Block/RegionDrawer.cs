@@ -1,12 +1,29 @@
+using General;
 using UnityEngine;
 
 namespace Block
 {
-	public class RegionDrawer
+	public class RegionDrawer : MonoBehaviour
 	{
-		public static void DrawRegion(Region region)
+		[SerializeField] Spawner spawner;
+
+		private void OnDrawGizmos()
 		{
-			region.GetRegionBounds(out Vector2 startPosition, out Vector2 endPosition);
+			foreach (Region.Region region in spawner.Regions)
+			{
+				if (region == null)
+				{
+					continue;
+				}
+				DrawRegion(region);
+			}
+		}
+
+		public void DrawRegion(Region.Region region)
+		{
+			Gizmos.color = region.Color;
+
+			ScreenCoordinateConverter.Instance.GetRegionBounds(region, out Vector2 startPosition, out Vector2 endPosition);
 			Gizmos.DrawLine(startPosition, endPosition);
 
 			var middlePosition = (startPosition + endPosition) / 2;
