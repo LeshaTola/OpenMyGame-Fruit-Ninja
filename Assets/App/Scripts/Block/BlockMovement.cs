@@ -10,6 +10,11 @@ namespace Block
 
 		private void Update()
 		{
+			if (transform.position.y < -Camera.main.orthographicSize)
+			{
+				Destroy(gameObject);
+			}
+
 			CalculateVelocity();
 			Move();
 		}

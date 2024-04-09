@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af8373e9fc3ce234a99430aab536be19, type: 3}
-  m_Name: LeftRegion
+  m_Name: Right
   m_EditorClassIdentifier: 
-  <Position>k__BackingField: 0
+  <Position>k__BackingField: 2
   <Start>k__BackingField: -0.49
-  <End>k__BackingField: 0.52
-  <MinAngle>k__BackingField: 43.9
-  <MaxAngle>k__BackingField: -44.99
+  <End>k__BackingField: -0.3
+  <MinAngle>k__BackingField: 32
+  <MaxAngle>k__BackingField: 90
   <MinSpeed>k__BackingField: 5
   <MaxSpeed>k__BackingField: 10

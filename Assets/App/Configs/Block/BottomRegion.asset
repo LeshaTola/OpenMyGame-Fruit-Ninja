@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af8373e9fc3ce234a99430aab536be19, type: 3}
   m_Name: BottomRegion
   m_EditorClassIdentifier: 
-  StartPosition: {x: -5, y: -6}
-  EndPosition: {x: 5.5, y: -6}
-  MinAngle: 45
-  MaxAngle: -45
-  MinSpeed: 0
-  MaxSpeed: 0
+  <Position>k__BackingField: 1
+  <Start>k__BackingField: -0.56
+  <End>k__BackingField: 0
+  <MinAngle>k__BackingField: -45
+  <MaxAngle>k__BackingField: -135
+  <MinSpeed>k__BackingField: 5
+  <MaxSpeed>k__BackingField: 10

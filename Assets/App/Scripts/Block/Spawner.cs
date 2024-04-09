@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,20 +6,19 @@ namespace Block
 {
 	public class Spawner : MonoBehaviour
 	{
-		[SerializeField] private List<Region> regions = new List<Region>();
+		[SerializeField] private List<Region> regions = new();
+		[SerializeField] private List<BlockMovement> blockTemplates = new();
+		[SerializeField] private float cooldown;
 
-
-		private Rect cameraRect;
-
-		private void Awake()
+		private void Start()
 		{
-			cameraRect = Camera.main.rect;
+			StartCoroutine(SpawnCoroutine());
 		}
-
-
 
 		private void OnDrawGizmos()
 		{
+			Gizmos.color = Color.red;
+
 			foreach (Region region in regions)
 			{
 				if (region == null)
@@ -26,16 +26,39 @@ namespace Block
 					continue;
 				}
 
-				Gizmos.color = Color.red;
+				RegionDrawer.DrawRegion(region);
+			}
+		}
 
-				Gizmos.DrawLine(region.StartPosition, region.EndPosition);
-				var middlePosition = (region.StartPosition + region.EndPosition) / 2;
+		public void Spawn()
+		{
+			Region region = regions[Random.Range(0, regions.Count)];
+			Vector2 spawnPosition = GetSpawnPosition(region);
 
-				Vector2 minDirection = Quaternion.Euler(0, 0, region.MinAngle) * Vector3.up;
-				Gizmos.DrawRay(middlePosition, minDirection);
+			var block = Instantiate
+				(blockTemplates[Random.Range(0, blockTemplates.Count)], spawnPosition, Quaternion.identity);
 
-				Vector2 maxDirection = Quaternion.Euler(0, 0, region.MaxAngle) * Vector3.up;
-				Gizmos.DrawRay(middlePosition, maxDirection);
+			float randomAngle = Random.Range(region.MinAngle, region.MaxAngle);
+			Vector2 pushDirection = Quaternion.Euler(0, 0, randomAngle) * Vector2.up;
+
+			float speed = Random.Range(region.MinSpeed, region.MaxSpeed);
+
+			block.Push(pushDirection * speed);
+		}
+
+		private Vector2 GetSpawnPosition(Region region)
+		{
+			region.GetRegionBounds(out Vector2 startPosition, out Vector2 endPosition);
+			return Vector2.Lerp(startPosition, endPosition, Random.value);
+		}
+
+		private IEnumerator SpawnCoroutine()
+		{
+			var time = new WaitForSeconds(cooldown);
+			while (true)
+			{
+				yield return time;
+				Spawn();
 			}
 		}
 	}
