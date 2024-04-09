@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af8373e9fc3ce234a99430aab536be19, type: 3}
   m_Name: Right
   m_EditorClassIdentifier: 
+  <Color>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+  <Priority>k__BackingField: 1
   <Position>k__BackingField: 2
-  <Start>k__BackingField: -0.49
-  <End>k__BackingField: -0.3
-  <MinAngle>k__BackingField: 32
+  <Start>k__BackingField: 0.35
+  <End>k__BackingField: 0.34
+  <MinAngle>k__BackingField: 40
   <MaxAngle>k__BackingField: 90
-  <MinSpeed>k__BackingField: 5
-  <MaxSpeed>k__BackingField: 10
+  <MinVerticalSpeed>k__BackingField: 0
+  <MaxVerticalSpeed>k__BackingField: 0
+  <MinHorizontalSpeed>k__BackingField: 10
+  <MaxHorizontalSpeed>k__BackingField: 10
