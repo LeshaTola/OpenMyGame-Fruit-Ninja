@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: BottomRegion
   m_EditorClassIdentifier: 
   <Color>k__BackingField: {r: 0.9468057, g: 1, b: 0, a: 1}
-  <Priority>k__BackingField: 2
+  <Priority>k__BackingField: 3
   <Position>k__BackingField: 0
   <Start>k__BackingField: -0.5
   <End>k__BackingField: 0.5
-  <MinAngle>k__BackingField: -30.12
-  <MaxAngle>k__BackingField: 37.37
-  <MinVerticalSpeed>k__BackingField: 14
-  <MaxVerticalSpeed>k__BackingField: 14
-  <MinHorizontalSpeed>k__BackingField: 10
-  <MaxHorizontalSpeed>k__BackingField: 15
+  <MinAngle>k__BackingField: -30
+  <MaxAngle>k__BackingField: 30
+  <MinVerticalSpeed>k__BackingField: 10
+  <MaxVerticalSpeed>k__BackingField: 13
+  <MinHorizontalSpeed>k__BackingField: 7
+  <MaxHorizontalSpeed>k__BackingField: 13

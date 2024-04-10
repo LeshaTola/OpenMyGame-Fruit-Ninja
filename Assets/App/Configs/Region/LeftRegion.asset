@@ -15,11 +15,11 @@ MonoBehaviour:
   <Color>k__BackingField: {r: 0, g: 0.10942783, b: 0.754717, a: 1}
   <Priority>k__BackingField: 1
   <Position>k__BackingField: 1
-  <Start>k__BackingField: -0.49
-  <End>k__BackingField: 0.52
+  <Start>k__BackingField: -1
+  <End>k__BackingField: 0
   <MinAngle>k__BackingField: -45
-  <MaxAngle>k__BackingField: -135
-  <MinVerticalSpeed>k__BackingField: 0
-  <MaxVerticalSpeed>k__BackingField: 0
-  <MinHorizontalSpeed>k__BackingField: 0
-  <MaxHorizontalSpeed>k__BackingField: 0
+  <MaxAngle>k__BackingField: -45
+  <MinVerticalSpeed>k__BackingField: 10
+  <MaxVerticalSpeed>k__BackingField: 13
+  <MinHorizontalSpeed>k__BackingField: 7
+  <MaxHorizontalSpeed>k__BackingField: 13

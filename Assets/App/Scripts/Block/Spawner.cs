@@ -9,7 +9,7 @@ namespace Block
 	public class Spawner : MonoBehaviour
 	{
 		[SerializeField] private List<Region.Region> regions;
-		[SerializeField] private List<BlockMovement> blockTemplates;
+		[SerializeField] private List<Block> blockTemplates;
 		[SerializeField] private float cooldown;
 
 		public IReadOnlyCollection<Region.Region> Regions { get => regions; }
@@ -36,7 +36,7 @@ namespace Block
 					Random.Range(region.MinVerticalSpeed, region.MaxVerticalSpeed)
 					);
 
-			block.Push(pushDirection * speed);
+			block.Movement.Push(pushDirection * speed);
 		}
 
 		private Region.Region GetRegion()

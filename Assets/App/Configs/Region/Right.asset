@@ -16,10 +16,10 @@ MonoBehaviour:
   <Priority>k__BackingField: 1
   <Position>k__BackingField: 2
   <Start>k__BackingField: 0.35
-  <End>k__BackingField: 0.34
+  <End>k__BackingField: -0.33
   <MinAngle>k__BackingField: 40
-  <MaxAngle>k__BackingField: 90
-  <MinVerticalSpeed>k__BackingField: 0
-  <MaxVerticalSpeed>k__BackingField: 0
+  <MaxAngle>k__BackingField: 40
+  <MinVerticalSpeed>k__BackingField: 4
+  <MaxVerticalSpeed>k__BackingField: 9
   <MinHorizontalSpeed>k__BackingField: 10
-  <MaxHorizontalSpeed>k__BackingField: 10
+  <MaxHorizontalSpeed>k__BackingField: 20

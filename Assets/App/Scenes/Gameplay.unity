@@ -333,6 +333,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1630109068}
   - component: {fileID: 1630109067}
+  - component: {fileID: 1630109069}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -357,7 +358,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8879ffc468e51f34aa90772a54a0d96d, type: 2}
   - {fileID: 11400000, guid: fcfad775fbf215e4b80f57b3181dfa01, type: 2}
   blockTemplates:
-  - {fileID: 4242869482916096184, guid: 16fc7796b6aa6ec40948c1df3c56d7dc, type: 3}
+  - {fileID: 1783027533659197464, guid: 16fc7796b6aa6ec40948c1df3c56d7dc, type: 3}
   cooldown: 1
 --- !u!4 &1630109068
 Transform:
@@ -374,3 +375,16 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1630109069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1630109066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a94e82656ea786439e15adfd83760f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawner: {fileID: 1630109067}
