@@ -1,7 +1,7 @@
 using General;
 using UnityEngine;
 
-namespace Block
+namespace Spawn
 {
 	public class RegionDrawer : MonoBehaviour
 	{

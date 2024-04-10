@@ -358,8 +358,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8879ffc468e51f34aa90772a54a0d96d, type: 2}
   - {fileID: 11400000, guid: fcfad775fbf215e4b80f57b3181dfa01, type: 2}
   blockTemplates:
-  - {fileID: 1783027533659197464, guid: 16fc7796b6aa6ec40948c1df3c56d7dc, type: 3}
-  cooldown: 1
+  - {fileID: 250711552434558823, guid: 015961dd9e210994fa8e5c956319a9cc, type: 3}
+  - {fileID: 250711552434558823, guid: ccc324d744912e646814852f5e31d950, type: 3}
+  - {fileID: 250711552434558823, guid: 69b33937fd0de66409ba7949e9152375, type: 3}
+  - {fileID: 250711552434558823, guid: aac3ab44a7a171542a90f47a6cc6a2bc, type: 3}
+  - {fileID: 250711552434558823, guid: a31627f3735d7d349bce7d24d2a7455a, type: 3}
+  - {fileID: 250711552434558823, guid: dd135a89687890741929d93e94ba0a2e, type: 3}
+  - {fileID: 250711552434558823, guid: c15674588092b484cacad0a9a0ef9a97, type: 3}
+  - {fileID: 250711552434558823, guid: e03321b36031db44c87d5fda278d02b0, type: 3}
+  config: {fileID: 11400000, guid: 747fb1bcc3575d84992a2953f47057a8, type: 2}
 --- !u!4 &1630109068
 Transform:
   m_ObjectHideFlags: 0
