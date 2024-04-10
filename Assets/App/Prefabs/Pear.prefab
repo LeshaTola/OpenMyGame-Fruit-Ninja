@@ -79,5 +79,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pear
       objectReference: {fileID: 0}
+    - target: {fileID: 5981792769426837853, guid: 16fc7796b6aa6ec40948c1df3c56d7dc, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a6170dc8d8947bc4ea84b175fecf18a0, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16fc7796b6aa6ec40948c1df3c56d7dc, type: 3}
