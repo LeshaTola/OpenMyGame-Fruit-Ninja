@@ -7,15 +7,16 @@ namespace Block
 	{
 		[SerializeField] AnimationConfig config;
 
+		private Quaternion startRotation;
+		private Vector3 startScale;
+
 		private Vector3 scaleSpeed;
 		private float rotationSpeed;
 
 		private void Awake()
 		{
-			scaleSpeed = Vector3.one * Random.Range(config.MinScaleSpeed, config.MaxScaleSpeed) * GetScaleSign(config.ScaleMode);
-			rotationSpeed = Random.Range(config.MinSpinSpeed, config.MaxSpinSpeed);
-
-			StartRotation();
+			startRotation = transform.rotation;
+			startScale = transform.localScale;
 		}
 
 		private void Update()
@@ -23,9 +24,17 @@ namespace Block
 			Scale();
 		}
 
-		private void OnDestroy()
+		public void Restart()
 		{
+
+			transform.rotation = startRotation;
+			transform.localScale = startScale;
+
+			scaleSpeed = Vector3.one * Random.Range(config.MinScaleSpeed, config.MaxScaleSpeed) * GetScaleSign(config.ScaleMode);
+			rotationSpeed = Random.Range(config.MinSpinSpeed, config.MaxSpinSpeed);
+
 			transform.DOKill();
+			StartRotation();
 		}
 
 		private void Scale()
