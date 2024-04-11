@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Utility;
 
 namespace Spawn
 {
@@ -16,6 +17,30 @@ namespace Spawn
 		private IProgressor progressor;
 
 		public IReadOnlyCollection<Region.Region> Regions { get => regions; }
+		public ObjectPool<Block.Block> BlocksPool { get; private set; }
+
+		private void Awake()
+		{
+			BlocksPool = new(
+				() =>
+				{
+					var newBlock = Instantiate(blockTemplates[Random.Range(0, blockTemplates.Count)]);
+					newBlock.OnDestroy += () => BlocksPool.Release(newBlock);
+					return newBlock;
+				},
+				(block) =>
+				{
+					block.Movement.Reset();
+					block.BlockAnimation.Restart();
+					block.gameObject.SetActive(true);
+				},
+				(block) =>
+				{
+					block.gameObject.SetActive(false);
+				},
+				10
+				);
+		}
 
 		private void Start()
 		{
@@ -33,10 +58,9 @@ namespace Spawn
 			{
 				yield return fruitTimer;
 
-				Vector2 spawnPosition = GetSpawnPosition(region);
+				var block = BlocksPool.Get();
 
-				var block = Instantiate
-					(blockTemplates[Random.Range(0, blockTemplates.Count)], spawnPosition, Quaternion.identity);
+				block.transform.position = GetSpawnPosition(region);
 
 				float randomAngle = Random.Range(region.MinAngle, region.MaxAngle);
 				Vector2 pushDirection = Quaternion.Euler(0, 0, randomAngle) * Vector2.up;

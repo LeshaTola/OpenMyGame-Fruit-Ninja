@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Block
+namespace Physics
 {
 	public interface IMovement
 	{
@@ -8,7 +8,6 @@ namespace Block
 
 		public void CalculateVelocity();
 		public void Move();
-		public void ValidateBoundaries();
 
 		public void Push(float x = 0f, float y = 0f)
 		{
@@ -16,6 +15,8 @@ namespace Block
 		}
 
 		public void Push(Vector2 value);
+
+		public void Reset();
 
 	}
 }

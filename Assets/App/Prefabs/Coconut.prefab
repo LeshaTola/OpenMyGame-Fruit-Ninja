@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: radius
       value: 0.85
       objectReference: {fileID: 0}
+    - target: {fileID: 2247173354225925301, guid: 16fc7796b6aa6ec40948c1df3c56d7dc, type: 3}
+      propertyPath: radius
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 4242869482864010768, guid: 16fc7796b6aa6ec40948c1df3c56d7dc, type: 3}
       propertyPath: m_LocalScale.x
       value: 1

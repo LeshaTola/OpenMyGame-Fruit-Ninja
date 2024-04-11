@@ -157,6 +157,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4242869482916096185}
   - component: {fileID: 1783027533659197464}
+  - component: {fileID: 8467555739498858024}
+  - component: {fileID: 2247173354225925301}
   m_Layer: 0
   m_Name: Block
   m_TagString: Untagged
@@ -191,6 +193,33 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6573dfbbdf0094242b78039c1e74e14a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockAnimation: {fileID: 4937870672134203338}
+  movement: {fileID: 8467555739498858024}
+  circleCollider: {fileID: 2247173354225925301}
+--- !u!114 &8467555739498858024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4242869482916096190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1df0a9f8e00efdd4d96e51ff19625f0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2247173354225925301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4242869482916096190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94eda448caaa9b349bdbd0b353d508e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 0.5

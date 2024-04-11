@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: radius
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2247173354225925301, guid: 16fc7796b6aa6ec40948c1df3c56d7dc, type: 3}
+      propertyPath: radius
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4242869482864010768, guid: 16fc7796b6aa6ec40948c1df3c56d7dc, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -22,6 +26,14 @@ PrefabInstance:
     - target: {fileID: 4242869482864010768, guid: 16fc7796b6aa6ec40948c1df3c56d7dc, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4242869482864010768, guid: 16fc7796b6aa6ec40948c1df3c56d7dc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.164
+      objectReference: {fileID: 0}
+    - target: {fileID: 4242869482864010768, guid: 16fc7796b6aa6ec40948c1df3c56d7dc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.082
       objectReference: {fileID: 0}
     - target: {fileID: 4242869482864010768, guid: 16fc7796b6aa6ec40948c1df3c56d7dc, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -78,6 +90,14 @@ PrefabInstance:
     - target: {fileID: 4242869482916096190, guid: 16fc7796b6aa6ec40948c1df3c56d7dc, type: 3}
       propertyPath: m_Name
       value: Pear
+      objectReference: {fileID: 0}
+    - target: {fileID: 5399527037671794171, guid: 16fc7796b6aa6ec40948c1df3c56d7dc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.164
+      objectReference: {fileID: 0}
+    - target: {fileID: 5399527037671794171, guid: 16fc7796b6aa6ec40948c1df3c56d7dc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.082
       objectReference: {fileID: 0}
     - target: {fileID: 5981792769426837853, guid: 16fc7796b6aa6ec40948c1df3c56d7dc, type: 3}
       propertyPath: m_Sprite

@@ -1,33 +1,39 @@
+using Physics;
+using System;
 using UnityEngine;
 
 namespace Block
 {
-
 	public class Block : MonoBehaviour
 	{
-		[SerializeField] private float radius;
+		public event Action OnDestroy;
 
-		private BlockMovement movement;
+		[SerializeField] private BlockAnimation blockAnimation;
+		[SerializeField] private BlockMovement movement;
+		[SerializeField] private Physics.Collider circleCollider;
 
-		public float Radius { get => radius; }
-		public BlockMovement Movement { get => movement; }
-
-		private void Awake()
-		{
-			movement = new(this);
-		}
+		public IMovement Movement { get => movement; }
+		public BlockAnimation BlockAnimation { get => blockAnimation; }
+		public Physics.Collider Collider { get => circleCollider; }
 
 		private void Update()
 		{
-			movement.ValidateBoundaries();
+			ValidateBoundaries();
 			movement.CalculateVelocity();
 			movement.Move();
 		}
 
-		private void OnDrawGizmos()
+		private void ValidateBoundaries()
 		{
-			Gizmos.color = Color.green;
-			Gizmos.DrawWireSphere(transform.position, radius);
+			if (transform.position.y + circleCollider.Radius < -Camera.main.orthographicSize)
+			{
+				DestroyYourself();
+			}
+		}
+
+		public void DestroyYourself()
+		{
+			OnDestroy?.Invoke();
 		}
 	}
 }
