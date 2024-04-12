@@ -2,13 +2,19 @@ using UnityEngine;
 
 namespace Physics
 {
-	public class BlockMovement : MonoBehaviour, IMovement
+	public class Movement : MonoBehaviour, IMovement
 	{
 		private const float GRAVITY = -9.8f;
 
 		private Vector2 velocity;
 
 		public Vector2 Velocity { get => velocity; }
+
+		private void Update()
+		{
+			CalculateVelocity();
+			Move();
+		}
 
 		public void Push(Vector2 value)
 		{

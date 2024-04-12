@@ -8,19 +8,19 @@ namespace Block
 	{
 		public event Action OnDestroy;
 
+		[SerializeField] private BlockConfig config;
 		[SerializeField] private BlockAnimation blockAnimation;
-		[SerializeField] private BlockMovement movement;
+		[SerializeField] private Movement movement;
 		[SerializeField] private Physics.Collider circleCollider;
 
-		public IMovement Movement { get => movement; }
+		public Movement Movement { get => movement; }
 		public BlockAnimation BlockAnimation { get => blockAnimation; }
 		public Physics.Collider Collider { get => circleCollider; }
+		public BlockConfig Config { get => config; }
 
 		private void Update()
 		{
 			ValidateBoundaries();
-			movement.CalculateVelocity();
-			movement.Move();
 		}
 
 		private void ValidateBoundaries()
