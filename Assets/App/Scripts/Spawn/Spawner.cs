@@ -42,9 +42,9 @@ namespace Spawn
 				);
 		}
 
-		private void Start()
+		public void Init(IProgressor progressor)
 		{
-			progressor = new SimpleProgressor();
+			this.progressor = progressor;
 			progressor.Init(config, this);
 			StartCoroutine(SpawnCoroutine());
 		}

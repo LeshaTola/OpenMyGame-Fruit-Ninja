@@ -16,9 +16,9 @@ namespace Knife
 
 		private IPlayerInput playerInput;
 
-		private void Awake()
+		public void Init(IPlayerInput playerInput)
 		{
-			playerInput = new MousePlayerInput();
+			this.playerInput = playerInput;
 		}
 
 		private void Update()
