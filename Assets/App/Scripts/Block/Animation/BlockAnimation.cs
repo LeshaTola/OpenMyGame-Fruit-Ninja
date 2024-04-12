@@ -24,6 +24,11 @@ namespace Block
 			Scale();
 		}
 
+		private void OnDestroy()
+		{
+			transform.DOKill();
+		}
+
 		public void Restart()
 		{
 

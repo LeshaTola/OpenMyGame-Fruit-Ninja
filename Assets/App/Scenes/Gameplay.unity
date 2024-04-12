@@ -155,6 +155,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawner: {fileID: 1630109067}
   minSpeed: 0.1
+  halfCount: 2
+  halfTemplate: {fileID: 6763551148658748047, guid: 9e3dd9f2b7446de4783ec372b26d279b, type: 3}
+  effectTemplate: {fileID: 5987942902521407310, guid: c0a78e4b4b7e7f749a5116ec0b381f21, type: 3}
 --- !u!4 &169325682
 Transform:
   m_ObjectHideFlags: 0

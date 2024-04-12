@@ -6,8 +6,14 @@ namespace Block
 	{
 		[SerializeField] private Vector3 sunPosition;
 		[SerializeField] private float aspect;
+		[SerializeField] private SpriteRenderer objectVisual;
 		[SerializeField] private SpriteRenderer shadowVisual;
 		[SerializeField] private BlockAnimation blockVisual;
+
+		private void Start()
+		{
+			shadowVisual.sprite = objectVisual.sprite;
+		}
 
 		private void Update()
 		{

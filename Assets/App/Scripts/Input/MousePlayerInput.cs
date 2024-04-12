@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using static Input.IPlayerInput;
 
 namespace Input
 {
@@ -33,7 +32,7 @@ namespace Input
 				return mouseDelta;
 
 			}
-			return null;
+			return default;
 		}
 	}
 }

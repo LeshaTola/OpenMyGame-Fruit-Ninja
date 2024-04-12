@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sunPosition: {x: -10, y: 10, z: 0}
   aspect: 0.2
+  objectVisual: {fileID: 4242869482864010771}
   shadowVisual: {fileID: 5981792769426837853}
   blockVisual: {fileID: 4937870672134203338}
 --- !u!1 &4242869482864010769
@@ -195,6 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6573dfbbdf0094242b78039c1e74e14a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  config: {fileID: 0}
   blockAnimation: {fileID: 4937870672134203338}
   movement: {fileID: 8467555739498858024}
   circleCollider: {fileID: 2247173354225925301}

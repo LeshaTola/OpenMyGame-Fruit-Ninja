@@ -16,7 +16,7 @@ namespace Block
 		Both
 	}
 
-	[CreateAssetMenu(fileName = "BlockAnimationConfig", menuName = "Configs/BlockAnimation")]
+	[CreateAssetMenu(fileName = "BlockAnimationConfig", menuName = "Configs/Block/Animation")]
 	public class AnimationConfig : ScriptableObject
 	{
 		[Header("Spin")]
