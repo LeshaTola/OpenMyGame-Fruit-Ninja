@@ -1,4 +1,5 @@
-﻿using General;
+﻿using Block;
+using General;
 using Spawn.Progressor;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,7 +12,8 @@ namespace Spawn
 	public class Spawner : MonoBehaviour
 	{
 		[SerializeField] private List<Region.Region> regions;
-		[SerializeField] private List<Block.Block> blockTemplates;
+		[SerializeField] private List<BlockConfig> blockConfigs;
+		[SerializeField] private Block.Block blockTemplate;
 		[SerializeField] private SpawnConfig config;
 
 		private IProgressor progressor;
@@ -21,25 +23,7 @@ namespace Spawn
 
 		private void Awake()
 		{
-			BlocksPool = new(
-				() =>
-				{
-					var newBlock = Instantiate(blockTemplates[Random.Range(0, blockTemplates.Count)]);
-					newBlock.OnDestroy += () => BlocksPool.Release(newBlock);
-					return newBlock;
-				},
-				(block) =>
-				{
-					block.Movement.Reset();
-					block.BlockAnimation.Restart();
-					block.gameObject.SetActive(true);
-				},
-				(block) =>
-				{
-					block.gameObject.SetActive(false);
-				},
-				10
-				);
+			SetupPool();
 		}
 
 		public void Init(IProgressor progressor)
@@ -49,7 +33,7 @@ namespace Spawn
 			StartCoroutine(SpawnCoroutine());
 		}
 
-		public IEnumerator Spawn()
+		public IEnumerator SpawnPack()
 		{
 			Region.Region region = GetRegion();
 
@@ -59,7 +43,6 @@ namespace Spawn
 				yield return fruitTimer;
 
 				var block = BlocksPool.Get();
-
 				block.transform.position = GetSpawnPosition(region);
 
 				float randomAngle = Random.Range(region.MinAngle, region.MaxAngle);
@@ -104,12 +87,36 @@ namespace Spawn
 			return Vector2.Lerp(startPosition, endPosition, Random.value);
 		}
 
+		private void SetupPool()
+		{
+			BlocksPool = new(
+				() =>
+				{
+					var newBlock = Instantiate(blockTemplate);
+					newBlock.Init(blockConfigs[Random.Range(0, blockConfigs.Count)]);
+					newBlock.OnDestroy += () => BlocksPool.Release(newBlock);
+					return newBlock;
+				},
+				(block) =>
+				{
+					block.Movement.Reset();
+					block.BlockAnimation.Restart();
+					block.gameObject.SetActive(true);
+				},
+				(block) =>
+				{
+					block.gameObject.SetActive(false);
+				},
+				10
+				);
+		}
+
 		private IEnumerator SpawnCoroutine()
 		{
 			while (true)
 			{
 				yield return new WaitForSeconds(progressor.PackCooldown);
-				yield return Spawn();
+				yield return SpawnPack();
 			}
 		}
 	}

@@ -8,16 +8,17 @@ namespace Block
 	{
 		[SerializeField] private Sprite blockSprite;
 		[SerializeField] private Sprite sliceEffect;
-
+		[SerializeField] private float radius;
+		[SerializeField] private List<Sprite> halfSprites;
 		public Sprite BlockSprite { get => blockSprite; }
 		public Sprite SliceEffect { get => sliceEffect; }
-
-		public List<Sprite> HalfSprites { get; private set; }
+		public float Radius { get => radius; set => radius = value; }
+		public List<Sprite> HalfSprites { get => halfSprites; }
 
 		private void OnValidate()
 		{
 			int halfCount = 2;
-			HalfSprites = new List<Sprite>(2);
+			halfSprites = new List<Sprite>(halfCount);
 
 			for (int i = 0; i < halfCount; i++)
 			{

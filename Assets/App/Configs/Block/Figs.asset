@@ -14,3 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockSprite: {fileID: 21300000, guid: 8320dbae38628c648a41c6f29c1c7727, type: 3}
   sliceEffect: {fileID: -1596519864, guid: d77cc852af0fdce4e8bef9915a633dfb, type: 3}
+  radius: 0.8
+  halfSprites:
+  - {fileID: 0}
+  - {fileID: 0}
