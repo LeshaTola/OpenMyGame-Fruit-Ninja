@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Right
   m_EditorClassIdentifier: 
   color: {r: 1, g: 1, b: 1, a: 1}
-  priority: 0
+  priority: 1
   start: {x: 0, y: 3}
-  end: {x: 0, y: 0}
+  end: {x: 0, y: -1}
   xOffset: 1
-  yOffset: 0
+  yOffset: -0.28
   minAngle: 45
   maxAngle: 45
   minVerticalSpeed: 7
-  maxVerticalSpeed: 14
-  minHorizontalSpeed: 10
-  maxHorizontalSpeed: 15
+  maxVerticalSpeed: 10
+  minHorizontalSpeed: 7
+  maxHorizontalSpeed: 10

@@ -22,5 +22,5 @@ MonoBehaviour:
   maxAngle: -50
   minVerticalSpeed: 7
   maxVerticalSpeed: 15
-  minHorizontalSpeed: 10
-  maxHorizontalSpeed: 17
+  minHorizontalSpeed: 7
+  maxHorizontalSpeed: 10

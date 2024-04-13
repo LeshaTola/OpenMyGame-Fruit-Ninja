@@ -37,5 +37,37 @@ namespace Blocks
 		public float MinScaleSpeed { get => minScaleSpeed; }
 		public float MaxScaleSpeed { get => maxScaleSpeed; }
 		public ScaleMode ScaleMode { get => scaleMode; }
+
+		public static int GetRotationSign(RotationDirection direction)
+		{
+			switch (direction)
+			{
+				case RotationDirection.Clockwise:
+					return 1;
+				case RotationDirection.Counterclockwise:
+					return -1;
+				case RotationDirection.Both:
+					return Random.Range(0, 2) == 0 ? 1 : -1;
+				default:
+					Debug.LogError("Unsupported rotation direction: " + direction);
+					return 0;
+			}
+		}
+
+		public static int GetScaleSign(ScaleMode mode)
+		{
+			switch (mode)
+			{
+				case ScaleMode.Increase:
+					return 1;
+				case ScaleMode.Decrease:
+					return -1;
+				case ScaleMode.Both:
+					return Random.Range(0, 2) == 0 ? 1 : -1;
+				default:
+					Debug.LogError("Unsupported scale mode: " + mode);
+					return 0;
+			}
+		}
 	}
 }

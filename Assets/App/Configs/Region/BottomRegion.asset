@@ -20,7 +20,7 @@ MonoBehaviour:
   yOffset: -1
   minAngle: -30
   maxAngle: 30
-  minVerticalSpeed: 7
+  minVerticalSpeed: 10
   maxVerticalSpeed: 14
   minHorizontalSpeed: 7
   maxHorizontalSpeed: 14
