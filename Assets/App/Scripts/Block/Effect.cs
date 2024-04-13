@@ -1,7 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 
-namespace Block
+namespace Blocks
 {
 	public class Effect : MonoBehaviour
 	{

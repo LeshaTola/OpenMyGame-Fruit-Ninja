@@ -1,4 +1,4 @@
-﻿using Block;
+﻿using Blocks;
 using Input;
 using Spawn;
 using System.Collections.Generic;
@@ -36,7 +36,7 @@ namespace Knife
 			}
 
 			transform.position = delta.currPos;
-			List<Block.Block> slicedBlocks = GetSlicedBlocks(delta);
+			List<Block> slicedBlocks = GetSlicedBlocks(delta);
 			foreach (var block in slicedBlocks)
 			{
 				ProcessHalves(deltaVector, block);
@@ -46,7 +46,7 @@ namespace Knife
 			}
 		}
 
-		private void ProcessHalves(Vector2 deltaVector, Block.Block block)
+		private void ProcessHalves(Vector2 deltaVector, Block block)
 		{
 			float speed = 10f;
 
@@ -60,16 +60,16 @@ namespace Knife
 			}
 		}
 
-		private void ProcessEffect(Block.Block block)
+		private void ProcessEffect(Block block)
 		{
 			var effect = Instantiate(effectTemplate, block.transform.position, Quaternion.identity);
 			effect.Init(block.Config.SliceEffect);
 			effect.PlayAnimation();
 		}
 
-		private List<Block.Block> GetSlicedBlocks(Delta delta)
+		private List<Block> GetSlicedBlocks(Delta delta)
 		{
-			List<Block.Block> slicedBlocks = new List<Block.Block>();
+			List<Block> slicedBlocks = new List<Block>();
 			foreach (var block in spawner.BlocksPool.Active)
 			{
 				float distance = MinimumDistance(delta.prevPos, delta.currPos, block.transform.position);

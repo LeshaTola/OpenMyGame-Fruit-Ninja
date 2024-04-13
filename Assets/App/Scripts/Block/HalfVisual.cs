@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Block
+namespace Blocks
 {
 	public class HalfVisual : MonoBehaviour
 	{

@@ -1,7 +1,7 @@
 ﻿using Physics;
 using UnityEngine;
 
-namespace Block
+namespace Blocks
 {
 	public class Half : MonoBehaviour
 	{

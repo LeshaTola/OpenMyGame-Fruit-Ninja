@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Block
+namespace Blocks
 {
 	[CreateAssetMenu(fileName = "BlockConfig", menuName = "Configs/Block/Block")]
 	public class BlockConfig : ScriptableObject

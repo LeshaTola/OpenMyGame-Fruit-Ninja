@@ -1,4 +1,4 @@
-﻿using Block;
+﻿using Blocks;
 using Regions;
 using Spawn.Progressor;
 using System.Collections;
@@ -13,14 +13,14 @@ namespace Spawn
 	{
 		[SerializeField] private List<Region> regions;
 		[SerializeField] private List<BlockConfig> blockConfigs;
-		[SerializeField] private Block.Block blockTemplate;
+		[SerializeField] private Block blockTemplate;
 		[SerializeField] private SpawnConfig config;
 		[SerializeField] private Camera mainCamera;
 
 		private IProgressor progressor;
 
 		public IReadOnlyCollection<Region> Regions { get => regions; }
-		public ObjectPool<Block.Block> BlocksPool { get; private set; }
+		public ObjectPool<Block> BlocksPool { get; private set; }
 
 		private void Awake()
 		{

@@ -2,7 +2,7 @@ using Physics;
 using System;
 using UnityEngine;
 
-namespace Block
+namespace Blocks
 {
 	public class Block : MonoBehaviour
 	{
