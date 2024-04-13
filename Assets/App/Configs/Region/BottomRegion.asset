@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af8373e9fc3ce234a99430aab536be19, type: 3}
   m_Name: BottomRegion
   m_EditorClassIdentifier: 
+  color: {r: 0.97573745, g: 1, b: 0, a: 1}
+  priority: 0
   start: {x: -6, y: 0}
   end: {x: 6, y: 0}
   xOffset: 0
   yOffset: -1
-  <Color>k__BackingField: {r: 0.9468057, g: 1, b: 0, a: 1}
-  <Priority>k__BackingField: 3
-  <MinAngle>k__BackingField: -30
-  <MaxAngle>k__BackingField: 30
-  <MinVerticalSpeed>k__BackingField: 10
-  <MaxVerticalSpeed>k__BackingField: 13
-  <MinHorizontalSpeed>k__BackingField: 7
-  <MaxHorizontalSpeed>k__BackingField: 13
+  minAngle: -30
+  maxAngle: 30
+  minVerticalSpeed: 7
+  maxVerticalSpeed: 14
+  minHorizontalSpeed: 7
+  maxHorizontalSpeed: 14
