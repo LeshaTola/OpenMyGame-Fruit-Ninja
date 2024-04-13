@@ -530,6 +530,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 257a4f96ee8bea54cbf3ce707a24d3d3, type: 2}
   blockTemplate: {fileID: 1783027533659197464, guid: 16fc7796b6aa6ec40948c1df3c56d7dc, type: 3}
   config: {fileID: 11400000, guid: 747fb1bcc3575d84992a2953f47057a8, type: 2}
+  mainCamera: {fileID: 519420031}
 --- !u!4 &1630109068
 Transform:
   m_ObjectHideFlags: 0
@@ -558,6 +559,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawner: {fileID: 1630109067}
+  mainCamera: {fileID: 519420031}
 --- !u!1 &1844849267
 GameObject:
   m_ObjectHideFlags: 0

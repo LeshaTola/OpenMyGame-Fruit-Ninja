@@ -1,15 +1,16 @@
-using General;
+using Regions;
 using UnityEngine;
 
 namespace Spawn
 {
 	public class RegionDrawer : MonoBehaviour
 	{
-		[SerializeField] Spawner spawner;
+		[SerializeField] private Spawner spawner;
+		[SerializeField] private Camera mainCamera;
 
 		private void OnDrawGizmos()
 		{
-			foreach (Region.Region region in spawner.Regions)
+			foreach (Region region in spawner.Regions)
 			{
 				if (region == null)
 				{
@@ -19,14 +20,16 @@ namespace Spawn
 			}
 		}
 
-		public void DrawRegion(Region.Region region)
+		public void DrawRegion(Region region)
 		{
 			Gizmos.color = region.Color;
 
-			ScreenCoordinateConverter.Instance.GetRegionBounds(region, out Vector2 startPosition, out Vector2 endPosition);
-			Gizmos.DrawLine(startPosition, endPosition);
+			var start = Region.ToWorldPosition(mainCamera, region, region.Start);
+			var end = Region.ToWorldPosition(mainCamera, region, region.End);
 
-			var middlePosition = (startPosition + endPosition) / 2;
+			Gizmos.DrawLine(start, end);
+
+			var middlePosition = (start + end) / 2;
 			Vector2 minDirection = Quaternion.Euler(0, 0, region.MinAngle) * Vector3.up;
 			Gizmos.DrawRay(middlePosition, minDirection);
 

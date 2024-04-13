@@ -1,5 +1,5 @@
 ﻿using Block;
-using General;
+using Regions;
 using Spawn.Progressor;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,14 +11,15 @@ namespace Spawn
 {
 	public class Spawner : MonoBehaviour
 	{
-		[SerializeField] private List<Region.Region> regions;
+		[SerializeField] private List<Region> regions;
 		[SerializeField] private List<BlockConfig> blockConfigs;
 		[SerializeField] private Block.Block blockTemplate;
 		[SerializeField] private SpawnConfig config;
+		[SerializeField] private Camera mainCamera;
 
 		private IProgressor progressor;
 
-		public IReadOnlyCollection<Region.Region> Regions { get => regions; }
+		public IReadOnlyCollection<Region> Regions { get => regions; }
 		public ObjectPool<Block.Block> BlocksPool { get; private set; }
 
 		private void Awake()
@@ -35,7 +36,7 @@ namespace Spawn
 
 		public IEnumerator SpawnPack()
 		{
-			Region.Region region = GetRegion();
+			Region region = GetRegion();
 
 			var fruitTimer = new WaitForSeconds(progressor.FruitCooldown);
 			for (int i = 0; i < progressor.FruitCount; i++)
@@ -58,7 +59,7 @@ namespace Spawn
 			}
 		}
 
-		private Region.Region GetRegion()
+		private Region GetRegion()
 		{
 			int totalWeight = 0;
 			foreach (var region in regions)
@@ -81,10 +82,11 @@ namespace Spawn
 			return regions.Last();
 		}
 
-		private Vector2 GetSpawnPosition(Region.Region region)
+		private Vector2 GetSpawnPosition(Region region)
 		{
-			ScreenCoordinateConverter.Instance.GetRegionBounds(region, out Vector2 startPosition, out Vector2 endPosition);
-			return Vector2.Lerp(startPosition, endPosition, Random.value);
+			var start = Region.ToWorldPosition(mainCamera, region, region.Start);
+			var end = Region.ToWorldPosition(mainCamera, region, region.End);
+			return Vector2.Lerp(start, end, Random.value);
 		}
 
 		private void SetupPool()
