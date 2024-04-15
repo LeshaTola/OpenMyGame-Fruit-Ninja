@@ -5,10 +5,16 @@ namespace Input
 	public class MousePlayerInput : IPlayerInput
 	{
 		private Vector3 prevMousePosition;
+		private Camera mainCamera;
+
+		public MousePlayerInput(Camera mainCamera)
+		{
+			this.mainCamera = mainCamera;
+		}
 
 		public Delta GetInputDelta()
 		{
-			Vector3 worldMousePosition = Camera.main.ScreenToWorldPoint(UnityEngine.Input.mousePosition);
+			Vector3 worldMousePosition = mainCamera.ScreenToWorldPoint(UnityEngine.Input.mousePosition);
 
 			if (UnityEngine.Input.GetMouseButtonDown(0))
 			{

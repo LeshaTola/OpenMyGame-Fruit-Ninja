@@ -8,7 +8,7 @@ namespace Blocks
 		[SerializeField] private float aspect;
 		[SerializeField] private SpriteRenderer objectVisual;
 		[SerializeField] private SpriteRenderer shadowVisual;
-		[SerializeField] private BlockAnimation blockVisual;
+		[SerializeField] private Animation blockAnimation;
 
 		private void Start()
 		{
@@ -22,11 +22,11 @@ namespace Blocks
 
 		private void MoveShadow()
 		{
-			shadowVisual.transform.rotation = blockVisual.transform.rotation;
-			shadowVisual.transform.localScale = blockVisual.transform.localScale;
+			shadowVisual.transform.rotation = blockAnimation.transform.rotation;
+			//shadowVisual.transform.localScale = blockAnimation.transform.localScale;
 
 			Vector3 shadowDirection = transform.position - sunPosition;
-			transform.localPosition = shadowDirection.normalized * aspect * blockVisual.transform.localScale.x;
+			transform.localPosition = shadowDirection.normalized * aspect * blockAnimation.transform.localScale.x;
 		}
 	}
 }

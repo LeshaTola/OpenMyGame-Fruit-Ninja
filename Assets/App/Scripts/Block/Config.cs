@@ -4,18 +4,18 @@ using UnityEngine;
 namespace Blocks
 {
 	[CreateAssetMenu(fileName = "BlockConfig", menuName = "Configs/Block/Block")]
-	public class BlockConfig : ScriptableObject
+	public class Config : ScriptableObject
 	{
 		[SerializeField] private Sprite blockSprite;
 		[SerializeField] private Sprite sliceEffect;
 		[SerializeField] private float radius;
-		[SerializeField] private List<Sprite> halfSprites;
+		private List<Sprite> halfSprites;
 		public Sprite BlockSprite { get => blockSprite; }
 		public Sprite SliceEffect { get => sliceEffect; }
 		public float Radius { get => radius; set => radius = value; }
 		public List<Sprite> HalfSprites { get => halfSprites; }
 
-		private void OnValidate()
+		public void GenerateHalves()
 		{
 			int halfCount = 2;
 			halfSprites = new List<Sprite>(halfCount);

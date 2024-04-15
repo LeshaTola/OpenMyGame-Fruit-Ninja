@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LeftRegion
   m_EditorClassIdentifier: 
   color: {r: 0, g: 0.07107735, b: 1, a: 1}
-  priority: 0
+  priority: 1
   start: {x: 0, y: -3}
   end: {x: 0, y: 0}
   xOffset: -1

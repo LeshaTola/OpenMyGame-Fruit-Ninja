@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cccd3c8d68a6144f885e5f7cde96e82, type: 3}
+  m_Script: {fileID: 11500000, guid: 730454cc429524d4cbc82783e1c510b3, type: 3}
   m_Name: Pomegranate
   m_EditorClassIdentifier: 
   blockSprite: {fileID: 21300000, guid: 8fa8df3341a75dc4eba4ec55f8c77d7a, type: 3}

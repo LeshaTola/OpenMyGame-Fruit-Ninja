@@ -12,7 +12,7 @@ namespace Spawn
 	public class Spawner : MonoBehaviour
 	{
 		[SerializeField] private List<Region> regions;
-		[SerializeField] private List<BlockConfig> blockConfigs;
+		[SerializeField] private List<Config> blockConfigs;
 		[SerializeField] private Block blockTemplate;
 		[SerializeField] private SpawnConfig config;
 		[SerializeField] private Camera mainCamera;
@@ -91,25 +91,24 @@ namespace Spawn
 
 		private void SetupPool()
 		{
+			int preloadCount = 10;
 			BlocksPool = new(
 				() =>
 				{
 					var newBlock = Instantiate(blockTemplate);
-					newBlock.Init(blockConfigs[Random.Range(0, blockConfigs.Count)]);
-					newBlock.OnDestroy += () => BlocksPool.Release(newBlock);
+					newBlock.Init(blockConfigs[Random.Range(0, blockConfigs.Count)], () => BlocksPool.Release(newBlock), mainCamera);
 					return newBlock;
 				},
 				(block) =>
 				{
-					block.Movement.Reset();
-					block.BlockAnimation.Restart();
+					block.ResetBlock();
 					block.gameObject.SetActive(true);
 				},
 				(block) =>
 				{
 					block.gameObject.SetActive(false);
 				},
-				10
+				preloadCount
 				);
 		}
 

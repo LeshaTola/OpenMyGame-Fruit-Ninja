@@ -4,14 +4,15 @@ using Spawn;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Knife
+namespace Slicing
 {
 	public class Knife : MonoBehaviour
 	{
 		[SerializeField] private Spawner spawner;
 		[SerializeField] private float minSpeed;
+		[SerializeField] private float explosionForce;
 
-		[SerializeField] private Half halfTemplate;
+		[SerializeField] private Block blockTemplate;
 		[SerializeField] private Effect effectTemplate;
 
 		private IPlayerInput playerInput;
@@ -48,15 +49,21 @@ namespace Knife
 
 		private void ProcessHalves(Vector2 deltaVector, Block block)
 		{
-			float speed = 10f;
-
 			for (int i = 0; i < block.Config.HalfSprites.Count; i++)
 			{
-				var half = Instantiate(halfTemplate, block.transform.position, Quaternion.identity);
-				half.Visual.Init(block.Config.HalfSprites[i]);
+				var newBlock = Instantiate(blockTemplate, block.transform.position, Quaternion.identity);
+
+				newBlock.transform.localScale = block.transform.localScale;
+				newBlock.Init(
+					block.Config.HalfSprites[i],
+					block.Collider.Radius,
+					() => Destroy(newBlock.gameObject),
+					block.MainCamera
+				);
+				newBlock.ResetBlock();
 
 				Vector2 halfDirection = Vector2.Perpendicular(deltaVector).normalized * (i % 2 == 0 ? 1 : -1);
-				half.Movement.Push(halfDirection * speed);
+				newBlock.Movement.Push(halfDirection * explosionForce);
 			}
 		}
 

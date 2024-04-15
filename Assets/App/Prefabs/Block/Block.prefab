@@ -49,7 +49,7 @@ MonoBehaviour:
   aspect: 0.2
   objectVisual: {fileID: 4242869482864010771}
   shadowVisual: {fileID: 5981792769426837853}
-  blockVisual: {fileID: 4937870672134203338}
+  blockAnimation: {fileID: 3364303442477162108}
 --- !u!1 &4242869482864010769
 GameObject:
   m_ObjectHideFlags: 0
@@ -61,7 +61,6 @@ GameObject:
   - component: {fileID: 4242869482864010768}
   - component: {fileID: 4242869482864010771}
   - component: {fileID: 7117943903059975070}
-  - component: {fileID: 4937870672134203338}
   m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
@@ -149,19 +148,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 4242869482864010771}
---- !u!114 &4937870672134203338
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4242869482864010769}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35d0f73e67a886a4fa7b0e0a99c830a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  config: {fileID: 11400000, guid: 6b1a55b1ded467c48b66021c884d07a7, type: 2}
 --- !u!1 &4242869482916096190
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,7 +159,8 @@ GameObject:
   - component: {fileID: 4242869482916096185}
   - component: {fileID: 1783027533659197464}
   - component: {fileID: 8467555739498858024}
-  - component: {fileID: 2247173354225925301}
+  - component: {fileID: 8932067951995267852}
+  - component: {fileID: 3364303442477162108}
   m_Layer: 0
   m_Name: Block
   m_TagString: Untagged
@@ -212,9 +199,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   config: {fileID: 0}
   visual: {fileID: 7117943903059975070}
-  blockAnimation: {fileID: 4937870672134203338}
   movement: {fileID: 8467555739498858024}
-  circleCollider: {fileID: 2247173354225925301}
+  myCollider: {fileID: 8932067951995267852}
+  blockAnimation: {fileID: 3364303442477162108}
 --- !u!114 &8467555739498858024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,7 +214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1df0a9f8e00efdd4d96e51ff19625f0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2247173354225925301
+--- !u!114 &8932067951995267852
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -236,10 +223,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 4242869482916096190}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94eda448caaa9b349bdbd0b353d508e3, type: 3}
+  m_Script: {fileID: 11500000, guid: 85d7697d89652fa498dc9a4920af5fc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 0.5
+--- !u!114 &3364303442477162108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4242869482916096190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db5c778bfa94253409ec385c0039d4a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  config: {fileID: 11400000, guid: 6b1a55b1ded467c48b66021c884d07a7, type: 2}
 --- !u!1 &9052011553783617904
 GameObject:
   m_ObjectHideFlags: 0

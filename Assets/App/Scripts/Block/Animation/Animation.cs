@@ -2,7 +2,7 @@
 
 namespace Blocks
 {
-	public class BlockAnimation : MonoBehaviour
+	public class Animation : MonoBehaviour
 	{
 		[SerializeField] AnimationConfig config;
 
@@ -12,21 +12,20 @@ namespace Blocks
 		private Vector3 scaleSpeed;
 		private float rotationSpeed;
 
-		private void Awake()
+		public void Init(Quaternion startRotation, Vector3 startScale)
 		{
-			startRotation = transform.rotation;
-			startScale = transform.localScale;
+			this.startRotation = startRotation;
+			this.startScale = startScale;
 		}
 
 		private void Update()
 		{
 			Scale();
-			transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime);
+			Rotate();
 		}
 
 		public void Restart()
 		{
-
 			transform.rotation = startRotation;
 			transform.localScale = startScale;
 
@@ -37,6 +36,11 @@ namespace Blocks
 		private void Scale()
 		{
 			transform.localScale = Vector3.Lerp(transform.localScale, transform.localScale + scaleSpeed, Time.deltaTime);
+		}
+
+		private void Rotate()
+		{
+			transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime);
 		}
 	}
 }
