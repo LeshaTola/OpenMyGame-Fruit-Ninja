@@ -15,6 +15,6 @@ MonoBehaviour:
   minSpinSpeed: 90
   maxSpinSpeed: 360
   rotationDirection: 2
-  minScaleSpeed: 0.1
-  maxScaleSpeed: 0.2
+  minScaleSpeed: 0.05
+  maxScaleSpeed: 0.15
   scaleMode: 2

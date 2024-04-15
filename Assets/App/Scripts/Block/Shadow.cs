@@ -23,7 +23,7 @@ namespace Blocks
 		private void MoveShadow()
 		{
 			shadowVisual.transform.rotation = blockAnimation.transform.rotation;
-			//shadowVisual.transform.localScale = blockAnimation.transform.localScale;
+			shadowVisual.transform.localScale = blockAnimation.transform.localScale;
 
 			Vector3 shadowDirection = transform.position - sunPosition;
 			transform.localPosition = shadowDirection.normalized * aspect * blockAnimation.transform.localScale.x;

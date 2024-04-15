@@ -10,7 +10,6 @@ namespace Blocks
 		[SerializeField] private Visual visual;
 		[SerializeField] private Movement movement;
 		[SerializeField] private MyCollider myCollider;
-		[SerializeField] private Animation blockAnimation;
 
 
 		private Action destroyAction;
@@ -21,7 +20,6 @@ namespace Blocks
 		public Movement Movement { get => movement; }
 		public MyCollider Collider { get => myCollider; }
 		public Camera MainCamera { get => mainCamera; }
-		public Animation BlockAnimation { get => blockAnimation; }
 
 		public void Init(Config config, Action destroyAction, Camera mainCamera)
 		{
@@ -35,7 +33,6 @@ namespace Blocks
 			this.mainCamera = mainCamera;
 
 			visual.Init(sprite);
-			blockAnimation.Init(transform.rotation, transform.localScale);
 
 			myCollider.Radius = radius;
 		}
@@ -47,7 +44,7 @@ namespace Blocks
 
 		public void ResetBlock()
 		{
-			blockAnimation.Restart();
+			visual.RestartAnimation();
 			movement.Reset();
 		}
 
