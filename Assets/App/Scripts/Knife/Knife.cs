@@ -42,6 +42,7 @@ namespace Slicing
 			{
 				ProcessHalves(deltaVector, block);
 				ProcessEffect(block);
+				ProcessParticles(block);
 
 				block.DestroyYourself();
 			}
@@ -74,12 +75,20 @@ namespace Slicing
 			effect.PlayAnimation();
 		}
 
+		private static void ProcessParticles(Block block)
+		{
+			ParticleSystem particles = Instantiate(block.Config.JuiceParticle, block.transform.position, Quaternion.identity);
+			ParticleSystem.MainModule particlesMain = particles.main;
+			particlesMain.startColor = block.Config.JuiceColor;
+			particles.Play();
+		}
+
 		private List<Block> GetSlicedBlocks(Delta delta)
 		{
 			List<Block> slicedBlocks = new List<Block>();
 			foreach (var block in spawner.BlocksPool.Active)
 			{
-				float distance = MinimumDistance(delta.prevPos, delta.currPos, block.transform.position);
+				float distance = GetMinimumDistance(delta.prevPos, delta.currPos, block.transform.position);
 				if (distance <= block.Collider.Radius)
 				{
 					slicedBlocks.Add(block);
@@ -93,7 +102,7 @@ namespace Slicing
 			return deltaVector.magnitude >= minSpeed;
 		}
 
-		public float MinimumDistance(Vector2 start, Vector2 end, Vector2 target)
+		private float GetMinimumDistance(Vector2 start, Vector2 end, Vector2 target)
 		{
 			float length = (end - start).sqrMagnitude;
 			if (length == 0.0f)

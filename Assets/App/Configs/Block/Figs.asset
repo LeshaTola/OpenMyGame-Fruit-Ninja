@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockSprite: {fileID: 21300000, guid: 8320dbae38628c648a41c6f29c1c7727, type: 3}
   sliceEffect: {fileID: -1596519864, guid: d77cc852af0fdce4e8bef9915a633dfb, type: 3}
+  juiceParticle: {fileID: 2386057452795080795, guid: d06e5f67d9e4c4349a28dcd84477b849, type: 3}
+  juiceColor: {r: 0.4960537, g: 0, b: 1, a: 1}
   radius: 0.8
-  halfSprites:
-  - {fileID: 0}
-  - {fileID: 0}
