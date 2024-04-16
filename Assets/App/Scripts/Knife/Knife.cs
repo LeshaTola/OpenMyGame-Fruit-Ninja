@@ -1,13 +1,16 @@
 ﻿using Blocks;
 using Input;
 using Spawn;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Slicing
 {
-	public class Knife : MonoBehaviour
+	public class Knife : MonoBehaviour//TODO: rename to slicer
 	{
+		public Action<Block> OnBlockSliced;
+
 		[SerializeField] private Spawner spawner;
 		[SerializeField] private float minSpeed;
 		[SerializeField] private float explosionForce;
@@ -40,6 +43,8 @@ namespace Slicing
 			List<Block> slicedBlocks = GetSlicedBlocks(delta);
 			foreach (var block in slicedBlocks)
 			{
+				OnBlockSliced?.Invoke(block);
+
 				ProcessHalves(deltaVector, block);
 				ProcessEffect(block);
 				ProcessParticles(block);

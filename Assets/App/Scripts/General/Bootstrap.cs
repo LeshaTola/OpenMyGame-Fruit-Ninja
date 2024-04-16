@@ -1,4 +1,5 @@
-﻿using Input;
+﻿using Health;
+using Input;
 using Slicing;
 using Spawn;
 using Spawn.Progressor;
@@ -11,6 +12,8 @@ namespace General
 		[SerializeField] private Camera mainCamera;
 		[SerializeField] private Knife knife;
 		[SerializeField] private Spawner spawner;
+		[SerializeField] private HealthController healthController;
+		[SerializeField] private HealthUI healthUI;
 
 		private void Awake()
 		{
@@ -18,6 +21,9 @@ namespace General
 
 			knife.Init(playerInput);
 			spawner.Init(new SimpleProgressor());
+
+			healthUI.Init();
+			healthController.Init();
 		}
 	}
 }

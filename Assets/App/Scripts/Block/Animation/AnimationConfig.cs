@@ -2,14 +2,14 @@
 
 namespace Blocks
 {
-	public enum RotationDirection
+	public enum RotationDirection //TODO: Change by polymorphism
 	{
 		Clockwise,
 		Counterclockwise,
 		Both
 	}
 
-	public enum ScaleMode
+	public enum ScaleMode //TODO: Change by polymorphism
 	{
 		Increase,
 		Decrease,
@@ -26,7 +26,7 @@ namespace Blocks
 
 		[Header("Scale")]
 
-		[SerializeField] private float minScaleSpeed;
+		[SerializeField] private float minScaleSpeed;//TODO: Create MaxMin struct
 		[SerializeField] private float maxScaleSpeed;
 		[SerializeField] private ScaleMode scaleMode;
 
