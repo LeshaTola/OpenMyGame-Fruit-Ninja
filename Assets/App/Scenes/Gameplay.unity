@@ -1828,7 +1828,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 519420031}
   poolsContainer: {fileID: 1134370537}
-  knife: {fileID: 169325681}
+  slicer: {fileID: 169325681}
   spawner: {fileID: 1630109067}
   healthController: {fileID: 25185309}
   healthUI: {fileID: 695072272}

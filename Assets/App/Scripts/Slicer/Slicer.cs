@@ -2,7 +2,6 @@
 using General;
 using Input;
 using Spawn;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,8 +9,6 @@ namespace Slicing
 {
 	public class Slicer : MonoBehaviour
 	{
-		public Action<Block> OnBlockSliced;
-
 		[SerializeField] private Spawner spawner;
 		[SerializeField] private float minSpeed;
 		[SerializeField] private float explosionForce;
@@ -46,49 +43,8 @@ namespace Slicing
 			List<Block> slicedBlocks = GetSlicedBlocks(delta);
 			foreach (var block in slicedBlocks)
 			{
-				OnBlockSliced?.Invoke(block);
-
-				ProcessHalves(deltaVector, block);
-				ProcessEffect(block);
-				ProcessParticles(block);
-
-				block.DestroyYourself();
+				block.Slice(deltaVector);
 			}
-		}
-
-		private void ProcessHalves(Vector2 deltaVector, Block block)
-		{
-			for (int i = 0; i < block.Config.HalfSprites.Count; i++)
-			{
-				var half = poolsContainer.Halves.Get();
-
-				half.transform.position = block.transform.position;
-				half.transform.rotation = Quaternion.identity;
-				half.transform.localScale = block.transform.localScale;
-
-				half.ResetBlock(
-					block.Config.HalfSprites[i],
-					block.Collider.Radius
-				);
-
-				Vector2 halfDirection = Vector2.Perpendicular(deltaVector).normalized * (i % 2 == 0 ? 1 : -1);
-				half.Movement.Push(halfDirection * explosionForce);
-			}
-		}
-
-		private void ProcessEffect(Block block)
-		{
-			var effect = Instantiate(effectTemplate, block.transform.position, Quaternion.identity);
-			effect.Init(block.Config.SliceEffect);
-			effect.PlayAnimation();
-		}
-
-		private static void ProcessParticles(Block block)
-		{
-			ParticleSystem particles = Instantiate(block.Config.JuiceParticle, block.transform.position, Quaternion.identity);
-			ParticleSystem.MainModule particlesMain = particles.main;
-			particlesMain.startColor = block.Config.JuiceColor;
-			particles.Play();
 		}
 
 		private List<Block> GetSlicedBlocks(Delta delta)

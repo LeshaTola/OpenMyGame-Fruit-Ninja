@@ -23,6 +23,13 @@ namespace General
 		public void Init()
 		{
 			SetupFruitsPool();
+			SetupHalvesPool();
+			SetupEffectsPool();
+			SetupParticlesPool();
+		}
+
+		private void SetupHalvesPool()
+		{
 			int preloadCount = 10;
 			Halves = new(
 				() =>
@@ -50,7 +57,7 @@ namespace General
 				() =>
 				{
 					var newBlock = Instantiate(blockTemplate);
-					newBlock.Init(blockConfigs[Random.Range(0, blockConfigs.Count)], () => Fruits.Release(newBlock));
+					newBlock.Init(blockConfigs[Random.Range(0, blockConfigs.Count)], () => Fruits.Release(newBlock), this);
 					return newBlock;
 				},
 				(block) =>
@@ -66,5 +73,47 @@ namespace General
 				);
 		}
 
+		private void SetupEffectsPool()
+		{
+			int preloadCount = 10;
+			Effects = new(
+				() =>
+				{
+					return Instantiate(effectTemplate);
+				},
+				(block) =>
+				{
+					block.gameObject.SetActive(true);
+				},
+				(block) =>
+				{
+					block.gameObject.SetActive(false);
+				},
+				preloadCount
+				);
+		}
+
+		private void SetupParticlesPool()
+		{
+			int preloadCount = 10;
+			Particles = new(
+				() =>
+				{
+					var particle = Instantiate(particleTemplate);
+					var particleMain = particle.main;
+					//particleMain.stopAction() => Particles.Release(particle);
+					return particle;
+				},
+				(block) =>
+				{
+					block.gameObject.SetActive(true);
+				},
+				(block) =>
+				{
+					block.gameObject.SetActive(false);
+				},
+				preloadCount
+				);
+		}
 	}
 }

@@ -13,7 +13,7 @@ namespace General
 
 		[SerializeField] private ObjectPoolsContainer poolsContainer;
 
-		[SerializeField] private Slicer knife;
+		[SerializeField] private Slicer slicer;
 		[SerializeField] private Spawner spawner;
 
 		[SerializeField] private HealthController healthController;
@@ -25,7 +25,7 @@ namespace General
 			IPlayerInput playerInput = new MousePlayerInput(mainCamera);
 			poolsContainer.Init();
 
-			knife.Init(playerInput);
+			slicer.Init(playerInput);
 			spawner.Init(new SimpleProgressor());
 
 			healthUI.Init();
