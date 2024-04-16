@@ -10,7 +10,7 @@ namespace General
 	public class Bootstrap : MonoBehaviour
 	{
 		[SerializeField] private Camera mainCamera;
-		[SerializeField] private Knife knife;
+		[SerializeField] private Slicer knife;
 		[SerializeField] private Spawner spawner;
 		[SerializeField] private HealthController healthController;
 		[SerializeField] private HealthUI healthUI;

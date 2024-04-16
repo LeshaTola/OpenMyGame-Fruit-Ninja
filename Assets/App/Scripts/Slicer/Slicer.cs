@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Slicing
 {
-	public class Knife : MonoBehaviour//TODO: rename to slicer
+	public class Slicer : MonoBehaviour
 	{
 		public Action<Block> OnBlockSliced;
 
