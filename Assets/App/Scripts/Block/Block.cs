@@ -11,35 +11,37 @@ namespace Blocks
 		[SerializeField] private Movement movement;
 		[SerializeField] private MyCollider myCollider;
 
-
 		private Action destroyAction;
-		private Camera mainCamera;
 
 		public Config Config { get => config; }
 		public Visual Visual { get => visual; }
 		public Movement Movement { get => movement; }
 		public MyCollider Collider { get => myCollider; }
-		public Camera MainCamera { get => mainCamera; }
 
-		public void Init(Config config, Action destroyAction, Camera mainCamera)
+		public void Init(Config config, Action destroyAction)
 		{
 			this.config = config;
-			Init(config.BlockSprite, config.Radius, destroyAction, mainCamera);
+			Init(config.BlockSprite, config.Radius, destroyAction);
 		}
 
-		public void Init(Sprite sprite, float radius, Action destroyAction, Camera mainCamera)
+		public void Init(Sprite sprite, float radius, Action destroyAction)
 		{
 			this.destroyAction = destroyAction;
-			this.mainCamera = mainCamera;
 
 			visual.Init(sprite);
-
 			myCollider.Radius = radius;
 		}
 
-		private void Update()
+		public void ResetBlock(Config config)
 		{
-			ValidateBoundaries();
+			ResetBlock();
+			Init(config, destroyAction);
+		}
+
+		public void ResetBlock(Sprite sprite, float radius)
+		{
+			ResetBlock();
+			Init(sprite, radius, destroyAction);
 		}
 
 		public void ResetBlock()
@@ -51,14 +53,6 @@ namespace Blocks
 		public void DestroyYourself()
 		{
 			destroyAction();
-		}
-
-		private void ValidateBoundaries()
-		{
-			if (transform.position.y + myCollider.Radius < -mainCamera.orthographicSize)
-			{
-				DestroyYourself();
-			}
 		}
 	}
 }

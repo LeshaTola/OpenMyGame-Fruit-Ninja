@@ -1,3 +1,4 @@
+using Blocks;
 using System;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ namespace Health
 
 		[SerializeField] private int maxHealth;
 		[SerializeField] private int defaultHealth;
+		[SerializeField] private DeathLine deathLine;
 
 		private int currentHealth = 0;
 
@@ -18,6 +20,12 @@ namespace Health
 		public void Init()
 		{
 			AddHealth(defaultHealth);
+			deathLine.OnBlockDestroy += OnBlockDestroy;
+		}
+
+		private void OnDestroy()
+		{
+			deathLine.OnBlockDestroy -= OnBlockDestroy;
 		}
 
 		public void AddHealth(int health)
@@ -44,12 +52,19 @@ namespace Health
 				return;
 			}
 			currentHealth -= health;
-			OnHealthChanged?.Invoke(currentHealth);
 
 			if (currentHealth <= 0)
 			{
+				currentHealth = 0;
 				OnDeath?.Invoke();
 			}
+			OnHealthChanged?.Invoke(currentHealth);
+
+		}
+
+		private void OnBlockDestroy()
+		{
+			ReduceHealth(1);
 		}
 	}
 }

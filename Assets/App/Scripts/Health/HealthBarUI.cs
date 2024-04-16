@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace Health
 {
-	public class HealthUI : MonoBehaviour
+	public class HealthBarUI : MonoBehaviour
 	{
 		[SerializeField] private HealthController controller;
-		[SerializeField] private GameObject template;
+		[SerializeField] private HealthIconUI healthIconsTemplate;
 		[SerializeField] private Transform container;
 
-		private List<GameObject> healthIcons;
+		private List<HealthIconUI> healthIcons;
 
 		public void Init()
 		{
@@ -24,10 +24,14 @@ namespace Health
 
 		private void UpdateUI(int health)
 		{
-			HideChilds();
+			for (int i = health; i < controller.MaxHealth; i++)
+			{
+				healthIcons[i].Hide();
+			}
+
 			for (int i = 0; i < health; i++)
 			{
-				healthIcons[i].SetActive(true);
+				healthIcons[i].Show();
 			}
 		}
 
@@ -36,23 +40,16 @@ namespace Health
 			UpdateUI(health);
 		}
 
-		private void HideChilds()
-		{
-			foreach (var icon in healthIcons)
-			{
-				icon.SetActive(false);
-			}
-		}
-
 		private void CreateUI()
 		{
 			healthIcons = new();
 			for (int i = 0; i < controller.MaxHealth; i++)
 			{
-				var healthIcon = Instantiate(template, container);
+				var healthIcon = Instantiate(healthIconsTemplate, container);
+				healthIcon.Init();
 				healthIcons.Add(healthIcon);
 			}
-			HideChilds();
+			healthIcons.Reverse();
 		}
 	}
 }

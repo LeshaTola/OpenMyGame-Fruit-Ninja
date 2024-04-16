@@ -1,4 +1,5 @@
 ﻿using Blocks;
+using General;
 using Input;
 using Spawn;
 using System;
@@ -14,6 +15,8 @@ namespace Slicing
 		[SerializeField] private Spawner spawner;
 		[SerializeField] private float minSpeed;
 		[SerializeField] private float explosionForce;
+
+		[SerializeField] private ObjectPoolsContainer poolsContainer;
 
 		[SerializeField] private Block blockTemplate;
 		[SerializeField] private Effect effectTemplate;
@@ -57,19 +60,19 @@ namespace Slicing
 		{
 			for (int i = 0; i < block.Config.HalfSprites.Count; i++)
 			{
-				var newBlock = Instantiate(blockTemplate, block.transform.position, Quaternion.identity);
+				var half = poolsContainer.Halves.Get();
 
-				newBlock.transform.localScale = block.transform.localScale;
-				newBlock.Init(
+				half.transform.position = block.transform.position;
+				half.transform.rotation = Quaternion.identity;
+				half.transform.localScale = block.transform.localScale;
+
+				half.ResetBlock(
 					block.Config.HalfSprites[i],
-					block.Collider.Radius,
-					() => Destroy(newBlock.gameObject),
-					block.MainCamera
+					block.Collider.Radius
 				);
-				newBlock.ResetBlock();
 
 				Vector2 halfDirection = Vector2.Perpendicular(deltaVector).normalized * (i % 2 == 0 ? 1 : -1);
-				newBlock.Movement.Push(halfDirection * explosionForce);
+				half.Movement.Push(halfDirection * explosionForce);
 			}
 		}
 
@@ -91,7 +94,7 @@ namespace Slicing
 		private List<Block> GetSlicedBlocks(Delta delta)
 		{
 			List<Block> slicedBlocks = new List<Block>();
-			foreach (var block in spawner.BlocksPool.Active)
+			foreach (var block in poolsContainer.Fruits.Active)
 			{
 				float distance = GetMinimumDistance(delta.prevPos, delta.currPos, block.transform.position);
 				if (distance <= block.Collider.Radius)

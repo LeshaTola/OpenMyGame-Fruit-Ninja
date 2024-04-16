@@ -1,31 +1,23 @@
-﻿using Blocks;
+﻿using General;
 using Regions;
 using Spawn.Progressor;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using Utility;
 
 namespace Spawn
 {
 	public class Spawner : MonoBehaviour
 	{
 		[SerializeField] private List<Region> regions;
-		[SerializeField] private List<Config> blockConfigs;
-		[SerializeField] private Block blockTemplate;
 		[SerializeField] private SpawnConfig config;
 		[SerializeField] private Camera mainCamera;
+		[SerializeField] private ObjectPoolsContainer poolsContainer;
 
 		private IProgressor progressor;
 
 		public IReadOnlyCollection<Region> Regions { get => regions; }
-		public ObjectPool<Block> BlocksPool { get; private set; }
-
-		private void Awake()
-		{
-			SetupPool();
-		}
 
 		public void Init(IProgressor progressor)
 		{
@@ -43,7 +35,7 @@ namespace Spawn
 			{
 				yield return fruitTimer;
 
-				var block = BlocksPool.Get();
+				var block = poolsContainer.Fruits.Get();
 				block.transform.position = GetSpawnPosition(region);
 
 				float randomAngle = Random.Range(region.MinAngle, region.MaxAngle);
@@ -87,29 +79,6 @@ namespace Spawn
 			var start = Region.ToWorldPosition(mainCamera, region, region.Start);
 			var end = Region.ToWorldPosition(mainCamera, region, region.End);
 			return Vector2.Lerp(start, end, Random.value);
-		}
-
-		private void SetupPool()
-		{
-			int preloadCount = 10;
-			BlocksPool = new(
-				() =>
-				{
-					var newBlock = Instantiate(blockTemplate);
-					newBlock.Init(blockConfigs[Random.Range(0, blockConfigs.Count)], () => BlocksPool.Release(newBlock), mainCamera);
-					return newBlock;
-				},
-				(block) =>
-				{
-					block.ResetBlock();
-					block.gameObject.SetActive(true);
-				},
-				(block) =>
-				{
-					block.gameObject.SetActive(false);
-				},
-				preloadCount
-				);
 		}
 
 		private IEnumerator SpawnCoroutine()
