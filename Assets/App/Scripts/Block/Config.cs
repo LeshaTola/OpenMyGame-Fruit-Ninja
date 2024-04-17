@@ -11,6 +11,7 @@ namespace Blocks
 		[SerializeField] private ParticleSystem juiceParticle;
 		[SerializeField] private Color juiceColor;
 		[SerializeField] private float radius;
+		[SerializeField] private int score;
 
 		private List<Sprite> halfSprites;
 
@@ -19,6 +20,7 @@ namespace Blocks
 		public ParticleSystem JuiceParticle { get => juiceParticle; }
 		public Color JuiceColor { get => juiceColor; }
 		public float Radius { get => radius; }
+		public int Score { get => score; }
 
 		public List<Sprite> HalfSprites { get => halfSprites; }
 

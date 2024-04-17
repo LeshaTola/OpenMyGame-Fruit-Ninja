@@ -6,13 +6,12 @@ namespace Blocks
 	{
 		[SerializeField] private Vector3 sunPosition;
 		[SerializeField] private float aspect;
-		[SerializeField] private SpriteRenderer objectVisual;
 		[SerializeField] private SpriteRenderer shadowVisual;
 		[SerializeField] private Animation blockAnimation;
 
-		private void Start()
+		public void Init(Sprite objectSprite)
 		{
-			shadowVisual.sprite = objectVisual.sprite;
+			shadowVisual.sprite = objectSprite;
 		}
 
 		private void Update()

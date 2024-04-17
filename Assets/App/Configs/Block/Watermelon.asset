@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Watermelon
   m_EditorClassIdentifier: 
   blockSprite: {fileID: 21300000, guid: bb5fc2d868ff49643aa3aa8201386e71, type: 3}
-  sliceEffect: {fileID: -1630707832, guid: d77cc852af0fdce4e8bef9915a633dfb, type: 3}
+  sliceEffect: {fileID: 1229830201, guid: d77cc852af0fdce4e8bef9915a633dfb, type: 3}
   juiceParticle: {fileID: 2386057452795080795, guid: d06e5f67d9e4c4349a28dcd84477b849, type: 3}
   juiceColor: {r: 0.8509804, g: 0, b: 0.08235294, a: 1}
   radius: 1.2
+  score: 50

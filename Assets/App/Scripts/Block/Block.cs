@@ -1,45 +1,52 @@
+using Blocks.Logic;
 using Physics;
 using System;
 using UnityEngine;
 
 namespace Blocks
 {
-	public class Block : MonoBehaviour
+	public class Block : MonoBehaviour, IBlock
 	{
 		[SerializeField] private Config config;
 		[SerializeField] private Visual visual;
 		[SerializeField] private Movement movement;
 		[SerializeField] private MyCollider myCollider;
 
-
 		private Action destroyAction;
-		private Camera mainCamera;
+		private IBlock blockLogic;
 
 		public Config Config { get => config; }
 		public Visual Visual { get => visual; }
 		public Movement Movement { get => movement; }
 		public MyCollider Collider { get => myCollider; }
-		public Camera MainCamera { get => mainCamera; }
 
-		public void Init(Config config, Action destroyAction, Camera mainCamera)
+		public void Init(Config config, Action destroyAction, IBlock blockLogic)
 		{
 			this.config = config;
-			Init(config.BlockSprite, config.Radius, destroyAction, mainCamera);
+			this.destroyAction = destroyAction;
+
+			Init(config.BlockSprite, config.Radius, destroyAction, blockLogic);
 		}
 
-		public void Init(Sprite sprite, float radius, Action destroyAction, Camera mainCamera)
+		public void Init(Sprite sprite, float radius, Action destroyAction, IBlock blockLogic)
 		{
 			this.destroyAction = destroyAction;
-			this.mainCamera = mainCamera;
+			this.blockLogic = blockLogic;
 
 			visual.Init(sprite);
-
 			myCollider.Radius = radius;
 		}
 
-		private void Update()
+		public void ResetBlock(Config config)
 		{
-			ValidateBoundaries();
+			ResetBlock();
+			Init(config, destroyAction, blockLogic);
+		}
+
+		public void ResetBlock(Sprite sprite, float radius)
+		{
+			ResetBlock();
+			Init(sprite, radius, destroyAction, blockLogic);
 		}
 
 		public void ResetBlock()
@@ -53,12 +60,9 @@ namespace Blocks
 			destroyAction();
 		}
 
-		private void ValidateBoundaries()
+		public void Slice(Vector2 delta)
 		{
-			if (transform.position.y + myCollider.Radius < -mainCamera.orthographicSize)
-			{
-				DestroyYourself();
-			}
+			blockLogic.Slice(delta);
 		}
 	}
 }

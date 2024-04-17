@@ -1,4 +1,5 @@
 ﻿using Blocks;
+using General;
 using Input;
 using Spawn;
 using System.Collections.Generic;
@@ -6,11 +7,13 @@ using UnityEngine;
 
 namespace Slicing
 {
-	public class Knife : MonoBehaviour
+	public class Slicer : MonoBehaviour
 	{
 		[SerializeField] private Spawner spawner;
 		[SerializeField] private float minSpeed;
 		[SerializeField] private float explosionForce;
+
+		[SerializeField] private ObjectPoolsContainer poolsContainer;
 
 		[SerializeField] private Block blockTemplate;
 		[SerializeField] private Effect effectTemplate;
@@ -40,53 +43,14 @@ namespace Slicing
 			List<Block> slicedBlocks = GetSlicedBlocks(delta);
 			foreach (var block in slicedBlocks)
 			{
-				ProcessHalves(deltaVector, block);
-				ProcessEffect(block);
-				ProcessParticles(block);
-
-				block.DestroyYourself();
+				block.Slice(deltaVector);
 			}
-		}
-
-		private void ProcessHalves(Vector2 deltaVector, Block block)
-		{
-			for (int i = 0; i < block.Config.HalfSprites.Count; i++)
-			{
-				var newBlock = Instantiate(blockTemplate, block.transform.position, Quaternion.identity);
-
-				newBlock.transform.localScale = block.transform.localScale;
-				newBlock.Init(
-					block.Config.HalfSprites[i],
-					block.Collider.Radius,
-					() => Destroy(newBlock.gameObject),
-					block.MainCamera
-				);
-				newBlock.ResetBlock();
-
-				Vector2 halfDirection = Vector2.Perpendicular(deltaVector).normalized * (i % 2 == 0 ? 1 : -1);
-				newBlock.Movement.Push(halfDirection * explosionForce);
-			}
-		}
-
-		private void ProcessEffect(Block block)
-		{
-			var effect = Instantiate(effectTemplate, block.transform.position, Quaternion.identity);
-			effect.Init(block.Config.SliceEffect);
-			effect.PlayAnimation();
-		}
-
-		private static void ProcessParticles(Block block)
-		{
-			ParticleSystem particles = Instantiate(block.Config.JuiceParticle, block.transform.position, Quaternion.identity);
-			ParticleSystem.MainModule particlesMain = particles.main;
-			particlesMain.startColor = block.Config.JuiceColor;
-			particles.Play();
 		}
 
 		private List<Block> GetSlicedBlocks(Delta delta)
 		{
 			List<Block> slicedBlocks = new List<Block>();
-			foreach (var block in spawner.BlocksPool.Active)
+			foreach (var block in poolsContainer.Fruits.Active)
 			{
 				float distance = GetMinimumDistance(delta.prevPos, delta.currPos, block.transform.position);
 				if (distance <= block.Collider.Radius)

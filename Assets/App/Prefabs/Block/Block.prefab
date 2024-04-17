@@ -47,7 +47,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sunPosition: {x: -10, y: 10, z: 0}
   aspect: 0.2
-  objectVisual: {fileID: 4242869482864010771}
   shadowVisual: {fileID: 5981792769426837853}
   blockAnimation: {fileID: 7972577633882904775}
 --- !u!1 &4242869482864010769
@@ -151,6 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 4242869482864010771}
   blockAnimation: {fileID: 7972577633882904775}
+  shadow: {fileID: 3484635650306451680}
 --- !u!114 &7972577633882904775
 MonoBehaviour:
   m_ObjectHideFlags: 0

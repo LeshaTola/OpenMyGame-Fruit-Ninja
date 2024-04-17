@@ -17,3 +17,4 @@ MonoBehaviour:
   juiceParticle: {fileID: 2386057452795080795, guid: d06e5f67d9e4c4349a28dcd84477b849, type: 3}
   juiceColor: {r: 1, g: 0.8520418, b: 0, a: 1}
   radius: 1
+  score: 50
