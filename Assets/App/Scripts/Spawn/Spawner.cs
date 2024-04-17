@@ -25,7 +25,6 @@ namespace Spawn
 			this.blockFactory = blockFactory;
 
 			progressor.Init(config, this);
-			StartCoroutine(SpawnCoroutine());
 		}
 
 		public IEnumerator SpawnPack()
@@ -83,7 +82,7 @@ namespace Spawn
 			return Vector2.Lerp(start, end, Random.value);
 		}
 
-		private IEnumerator SpawnCoroutine()
+		public IEnumerator SpawnCoroutine()
 		{
 			while (true)
 			{

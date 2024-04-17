@@ -1,10 +1,11 @@
 using Blocks;
+using General;
 using System;
 using UnityEngine;
 
 namespace Health
 {
-	public class HealthController : MonoBehaviour
+	public class HealthController : MonoBehaviour, IResettable
 	{
 		public event Action<int> OnHealthChanged;
 		public event Action OnDeath;
@@ -19,7 +20,6 @@ namespace Health
 
 		public void Init()
 		{
-			AddHealth(defaultHealth);
 			deathLine.OnBlockDestroy += OnBlockDestroy;
 		}
 
@@ -59,12 +59,16 @@ namespace Health
 				OnDeath?.Invoke();
 			}
 			OnHealthChanged?.Invoke(currentHealth);
-
 		}
 
 		private void OnBlockDestroy()
 		{
 			ReduceHealth(1);
+		}
+
+		public void ResetComponent()
+		{
+			AddHealth(defaultHealth);
 		}
 	}
 }
