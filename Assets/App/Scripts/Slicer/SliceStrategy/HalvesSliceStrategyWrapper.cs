@@ -7,10 +7,19 @@ namespace Slicing.SliceStrategy
 	public class HalvesSliceStrategyWrapper : BaseSliceStrategyWrapper
 	{
 		private ObjectPool<Block> halvesPool;
+		private float explosionForce;
 
-		public HalvesSliceStrategyWrapper(ISliceStrategy sliceStrategy, Block block, ObjectPool<Block> halvesPool) : base(sliceStrategy, block)
+		public HalvesSliceStrategyWrapper
+			(
+				ISliceStrategy sliceStrategy,
+				Block block,
+				ObjectPool<Block> halvesPool,
+				float explosionForce
+			) : base(sliceStrategy, block)
 		{
 			this.halvesPool = halvesPool;
+			this.explosionForce = explosionForce;
+			this.explosionForce = explosionForce;
 		}
 
 		public override void Slice(Vector2 delta)
@@ -29,7 +38,6 @@ namespace Slicing.SliceStrategy
 					block.Config.HalfSprites[i],
 					block.Collider.Radius
 				);
-				float explosionForce = 10;
 				Vector2 halfDirection = Vector2.Perpendicular(delta).normalized * (i % 2 == 0 ? 1 : -1);
 				half.Movement.Push(halfDirection * explosionForce);
 			}

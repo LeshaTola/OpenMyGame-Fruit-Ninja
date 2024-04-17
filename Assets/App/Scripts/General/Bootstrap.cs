@@ -1,5 +1,6 @@
 ﻿using Health;
 using Input;
+using Score;
 using Slicing;
 using Spawn;
 using Spawn.Progressor;
@@ -19,6 +20,7 @@ namespace General
 		[SerializeField] private HealthController healthController;
 		[SerializeField] private HealthBarUI healthUI;
 		[SerializeField] private LooseUI looseUI;
+		[SerializeField] private ScoreUI scoreUI;
 
 		private void Awake()
 		{
@@ -28,6 +30,7 @@ namespace General
 			slicer.Init(playerInput);
 			spawner.Init(new SimpleProgressor());
 
+			scoreUI.Init();
 			healthUI.Init();
 			looseUI.Init();
 			healthController.Init();

@@ -1,4 +1,5 @@
 using Blocks;
+using Score;
 using System.Collections.Generic;
 using UnityEngine;
 using Utility;
@@ -7,10 +8,12 @@ namespace General
 {
 	public class ObjectPoolsContainer : MonoBehaviour
 	{
+		[SerializeField] private ScoreController scoreController;
 		[SerializeField] private Block blockTemplate;
 		[SerializeField] private List<Config> blockConfigs;
 
 		[SerializeField] private Effect effectTemplate;
+		[SerializeField] private SliceScoreUI sliceUITemplate;
 		[SerializeField] private ParticleSystem particleTemplate;
 
 		public ObjectPool<Block> Fruits { get; private set; }
@@ -18,6 +21,7 @@ namespace General
 		public ObjectPool<Block> Halves { get; private set; }
 
 		public ObjectPool<Effect> Effects { get; private set; }
+		public ObjectPool<SliceScoreUI> SliceUI { get; private set; }
 		public ObjectPool<ParticleSystem> Particles { get; private set; }
 
 		public void Init()
@@ -26,6 +30,29 @@ namespace General
 			SetupHalvesPool();
 			SetupEffectsPool();
 			SetupParticlesPool();
+			SetupSliceTextPool();
+		}
+
+		private void SetupSliceTextPool()
+		{
+			int preloadCount = 10;
+			SliceUI = new(
+				() =>
+				{
+					var sliceUI = Instantiate(sliceUITemplate);
+					return sliceUI;
+				},
+				(UI) =>
+				{
+					UI.Movement.Reset();
+					UI.gameObject.SetActive(true);
+				},
+				(UI) =>
+				{
+					UI.gameObject.SetActive(false);
+				},
+				preloadCount
+				);
 		}
 
 		private void SetupHalvesPool()
@@ -57,7 +84,7 @@ namespace General
 				() =>
 				{
 					var newBlock = Instantiate(blockTemplate);
-					newBlock.Init(blockConfigs[Random.Range(0, blockConfigs.Count)], () => Fruits.Release(newBlock), this);
+					newBlock.Init(blockConfigs[Random.Range(0, blockConfigs.Count)], () => Fruits.Release(newBlock), this, scoreController);
 					return newBlock;
 				},
 				(block) =>
