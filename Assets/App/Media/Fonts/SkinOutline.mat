@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: StalinistOne-Regular SDF Play
+  m_Name: SkinOutline
   m_Shader: {fileID: 4800000, guid: 68e6db2ebdc24f95958faec2be5558d6, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -83,8 +83,8 @@ Material:
     - _StencilOp: 0
     - _StencilReadMask: 255
     - _StencilWriteMask: 255
-    - _TextureHeight: 512
-    - _TextureWidth: 512
+    - _TextureHeight: 1024
+    - _TextureWidth: 1024
     - _UnderlayDilate: 1
     - _UnderlayOffsetX: 1
     - _UnderlayOffsetY: -0.2
