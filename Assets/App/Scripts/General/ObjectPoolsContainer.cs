@@ -1,6 +1,4 @@
 using Blocks;
-using Score;
-using System.Collections.Generic;
 using UnityEngine;
 using Utility;
 
@@ -8,13 +6,19 @@ namespace General
 {
 	public class ObjectPoolsContainer : MonoBehaviour
 	{
-		[SerializeField] private ScoreController scoreController;
+		[Header("Templates")]
 		[SerializeField] private Block blockTemplate;
-		[SerializeField] private List<Config> blockConfigs;
-
 		[SerializeField] private Effect effectTemplate;
 		[SerializeField] private SliceScoreUI sliceUITemplate;
 		[SerializeField] private ParticleSystem particleTemplate;
+
+		[Header("Containers")]
+		[SerializeField] private Transform blockContainer;
+		[SerializeField] private Transform halvesContainer;
+		[SerializeField] private Transform effectsContainer;
+		[SerializeField] private Transform particlesContainer;
+		[SerializeField] private Transform sliceUIContainer;
+
 
 		public ObjectPool<Block> Fruits { get; private set; }
 		public ObjectPool<Block> Bonuses { get; private set; }
@@ -39,7 +43,7 @@ namespace General
 			SliceUI = new(
 				() =>
 				{
-					var sliceUI = Instantiate(sliceUITemplate);
+					var sliceUI = Instantiate(sliceUITemplate, sliceUIContainer);
 					return sliceUI;
 				},
 				(UI) =>
@@ -61,8 +65,8 @@ namespace General
 			Halves = new(
 				() =>
 				{
-					var newBlock = Instantiate(blockTemplate);
-					newBlock.Init(null, 0f, () => Halves.Release(newBlock));
+					var newBlock = Instantiate(blockTemplate, halvesContainer);
+					newBlock.Init(null, 0f, () => Halves.Release(newBlock), null);
 					return newBlock;
 				},
 				(block) =>
@@ -83,13 +87,12 @@ namespace General
 			Fruits = new(
 				() =>
 				{
-					var newBlock = Instantiate(blockTemplate);
-					newBlock.Init(blockConfigs[Random.Range(0, blockConfigs.Count)], () => Fruits.Release(newBlock), this, scoreController);
+					var newBlock = Instantiate(blockTemplate, blockContainer);
+					newBlock.Init(null, 0f, () => Fruits.Release(newBlock), null);
 					return newBlock;
 				},
 				(block) =>
 				{
-					block.ResetBlock(blockConfigs[Random.Range(0, blockConfigs.Count)]);
 					block.gameObject.SetActive(true);
 				},
 				(block) =>
@@ -106,7 +109,7 @@ namespace General
 			Effects = new(
 				() =>
 				{
-					return Instantiate(effectTemplate);
+					return Instantiate(effectTemplate, effectsContainer);
 				},
 				(block) =>
 				{
@@ -126,7 +129,7 @@ namespace General
 			Particles = new(
 				() =>
 				{
-					var particle = Instantiate(particleTemplate);
+					var particle = Instantiate(particleTemplate, particlesContainer);
 					var particleMain = particle.main;
 					//particleMain.stopAction() => Particles.Release(particle);
 					return particle;

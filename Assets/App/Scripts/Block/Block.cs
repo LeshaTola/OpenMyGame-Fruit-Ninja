@@ -1,7 +1,5 @@
-using General;
+using Blocks.Logic;
 using Physics;
-using Score;
-using Slicing.SliceStrategy;
 using System;
 using UnityEngine;
 
@@ -15,34 +13,25 @@ namespace Blocks
 		[SerializeField] private MyCollider myCollider;
 
 		private Action destroyAction;
-		private ISliceStrategy sliceStrategy;
-		private ObjectPoolsContainer objectPools;
-		private ScoreController scoreController;
+		private IBlock blockLogic;
 
 		public Config Config { get => config; }
 		public Visual Visual { get => visual; }
 		public Movement Movement { get => movement; }
 		public MyCollider Collider { get => myCollider; }
 
-		public void Init(Config config, Action destroyAction, ObjectPoolsContainer objectPools, ScoreController scoreController)
+		public void Init(Config config, Action destroyAction, IBlock blockLogic)
 		{
 			this.config = config;
-			this.objectPools = objectPools;
-			this.scoreController = scoreController;
+			this.destroyAction = destroyAction;
 
-			var halvesStrategy = new HalvesSliceStrategyWrapper(new NoSliceStrategy(), this, objectPools.Halves, 10);
-			var effectStrategy = new EffectSliceStrategyWrapper(halvesStrategy, this, objectPools.Effects);
-			var particleStrategy = new ParticleSliceStrategyWrapper(effectStrategy, this, objectPools.Particles);
-			var ScoreUIStrategy = new ScoreSliceStrategyWrapper(particleStrategy, this, objectPools.SliceUI, scoreController, 7);
-			var destroyStrategy = new DestroySliceStrategyWrapper(ScoreUIStrategy, this);
-			sliceStrategy = destroyStrategy;
-
-			Init(config.BlockSprite, config.Radius, destroyAction);
+			Init(config.BlockSprite, config.Radius, destroyAction, blockLogic);
 		}
 
-		public void Init(Sprite sprite, float radius, Action destroyAction)
+		public void Init(Sprite sprite, float radius, Action destroyAction, IBlock blockLogic)
 		{
 			this.destroyAction = destroyAction;
+			this.blockLogic = blockLogic;
 
 			visual.Init(sprite);
 			myCollider.Radius = radius;
@@ -51,13 +40,13 @@ namespace Blocks
 		public void ResetBlock(Config config)
 		{
 			ResetBlock();
-			Init(config, destroyAction, objectPools, scoreController);
+			Init(config, destroyAction, blockLogic);
 		}
 
 		public void ResetBlock(Sprite sprite, float radius)
 		{
 			ResetBlock();
-			Init(sprite, radius, destroyAction);
+			Init(sprite, radius, destroyAction, blockLogic);
 		}
 
 		public void ResetBlock()
@@ -73,7 +62,7 @@ namespace Blocks
 
 		public void Slice(Vector2 delta)
 		{
-			sliceStrategy.Slice(delta);
+			blockLogic.Slice(delta);
 		}
 	}
 }

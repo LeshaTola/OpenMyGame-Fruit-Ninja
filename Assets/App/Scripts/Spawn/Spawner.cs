@@ -1,4 +1,4 @@
-﻿using General;
+﻿using Blocks.Factory;
 using Regions;
 using Spawn.Progressor;
 using System.Collections;
@@ -13,15 +13,17 @@ namespace Spawn
 		[SerializeField] private List<Region> regions;
 		[SerializeField] private SpawnConfig config;
 		[SerializeField] private Camera mainCamera;
-		[SerializeField] private ObjectPoolsContainer poolsContainer;
 
+		private IBlockFactory blockFactory;
 		private IProgressor progressor;
 
 		public IReadOnlyCollection<Region> Regions { get => regions; }
 
-		public void Init(IProgressor progressor)
+		public void Init(IProgressor progressor, IBlockFactory blockFactory)
 		{
 			this.progressor = progressor;
+			this.blockFactory = blockFactory;
+
 			progressor.Init(config, this);
 			StartCoroutine(SpawnCoroutine());
 		}
@@ -35,7 +37,7 @@ namespace Spawn
 			{
 				yield return fruitTimer;
 
-				var block = poolsContainer.Fruits.Get();
+				var block = blockFactory.GetFruit();
 				block.transform.position = GetSpawnPosition(region);
 
 				float randomAngle = Random.Range(region.MinAngle, region.MaxAngle);

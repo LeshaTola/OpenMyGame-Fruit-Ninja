@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Blocks
+namespace Blocks.Logic
 {
 	public interface IBlock
 	{
