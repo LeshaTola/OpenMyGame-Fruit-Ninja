@@ -73,3 +73,5 @@ crashlytics-build.properties
 
 .vsconfig
 /Assets/Saves/
+/Assets/Saves/Save.txt
+/Assets/Saves/Save.txt.meta
