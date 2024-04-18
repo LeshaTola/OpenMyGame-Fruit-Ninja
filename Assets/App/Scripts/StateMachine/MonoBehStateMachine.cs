@@ -6,6 +6,7 @@ using Spawn;
 using StateMachine.States;
 using System.Collections.Generic;
 using TNRD;
+using UI;
 using UnityEngine;
 
 namespace StateMachine
@@ -18,21 +19,23 @@ namespace StateMachine
 		[SerializeField] private ObjectPoolsContainer poolsContainer;
 		[SerializeField] private Spawner spawner;
 		[SerializeField] private LooseUI looseUI;
+		[SerializeField] private PauseUI pauseUI;
 		[SerializeField] private List<SerializableInterface<IResettable>> resettables;
 
-		private StateMachine stateMachine;
+		private StateMachine core;
 
-		public StateMachine StateMachine { get => stateMachine; }
+		public StateMachine Core { get => core; }
 
 		public void Init()
 		{
-			stateMachine = new StateMachine();
+			core = new StateMachine();
 
-			stateMachine.AddState(new ResetState(stateMachine, resettables));
-			stateMachine.AddState(new GameState(stateMachine, healthController, spawner));
-			stateMachine.AddState(new LooseState(stateMachine, looseUI, scoreController, poolsContainer, slicer));
+			core.AddState(new ResetState(core, resettables));
+			core.AddState(new GameState(core, healthController, spawner));
+			core.AddState(new LooseState(core, looseUI, scoreController, poolsContainer, slicer));
+			core.AddState(new PauseState(core, pauseUI, slicer));
 
-			stateMachine.SetState<ResetState>();
+			core.SetState<ResetState>();
 		}
 	}
 }

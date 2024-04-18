@@ -1,4 +1,3 @@
-using DG.Tweening;
 using Score;
 using StateMachine;
 using StateMachine.States;
@@ -6,65 +5,56 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LooseUI : MonoBehaviour
+namespace UI
 {
-	[SerializeField] private ScoreController scoreController;
-	[SerializeField] private MonoBehStateMachine stateMachine;
 
-	[SerializeField] private Button restartButton;
-	[SerializeField] private Button menuButton;
-
-	[SerializeField] private TextMeshProUGUI scoreText;
-	[SerializeField] private TextMeshProUGUI bestScoreText;
-
-	[Header("Animation")]
-	[SerializeField] private Image background;
-	[SerializeField] private RectTransform content;
-	[SerializeField] private float animationTime;
-
-	[SerializeField] private Vector3 ShowScale;
-	[SerializeField] private Vector3 HideScale;
-
-	public void Init()
+	public class LooseUI : MonoBehaviour
 	{
-		restartButton.onClick.AddListener(() => stateMachine.StateMachine.SetState<ResetState>());
-		menuButton.onClick.AddListener(() => stateMachine.StateMachine.SetState<ResetState>());
+		[SerializeField] private ScoreController scoreController;
+		[SerializeField] private MonoBehStateMachine stateMachine;
+		[SerializeField] private PanelAnimation panelAnimation;
 
-		scoreController.OnScoreChanged += OnScoreChanged;
-		scoreController.OnBestScoreChanged += OnBestScoreChanged;
+		[SerializeField] private Button restartButton;
+		[SerializeField] private Button menuButton;
 
-		Hide();
-	}
+		[SerializeField] private TextMeshProUGUI scoreText;
+		[SerializeField] private TextMeshProUGUI bestScoreText;
 
-	private void OnDestroy()
-	{
-		scoreController.OnScoreChanged -= OnScoreChanged;
-		scoreController.OnBestScoreChanged -= OnBestScoreChanged;
-	}
+		public void Init()
+		{
+			restartButton.onClick.AddListener(() => stateMachine.Core.SetState<ResetState>());
+			menuButton.onClick.AddListener(() => stateMachine.Core.SetState<ResetState>());
 
-	public void Show()
-	{
-		gameObject.SetActive(true);
-		var sequence = DOTween.Sequence();
-		sequence.Append(background.DOFade(1f, animationTime));
-		sequence.Append(content.transform.DOScale(ShowScale, animationTime));
-	}
+			scoreController.OnScoreChanged += OnScoreChanged;
+			scoreController.OnBestScoreChanged += OnBestScoreChanged;
 
-	public void Hide()
-	{
-		var sequence = DOTween.Sequence();
-		sequence.Append(content.DOScale(HideScale, animationTime));
-		sequence.Append(background.DOFade(0f, animationTime));
-		sequence.onComplete += () => gameObject.SetActive(false);
-	}
+			Hide();
+		}
 
-	private void OnBestScoreChanged(int score)
-	{
-		bestScoreText.text = score.ToString();
-	}
+		private void OnDestroy()
+		{
+			scoreController.OnScoreChanged -= OnScoreChanged;
+			scoreController.OnBestScoreChanged -= OnBestScoreChanged;
+		}
 
-	private void OnScoreChanged(int score)
-	{
-		scoreText.text = score.ToString();
+		public void Show()
+		{
+			panelAnimation.PlayShowAnimation();
+		}
+
+		public void Hide()
+		{
+			panelAnimation.PlayHideAnimation();
+		}
+
+		private void OnBestScoreChanged(int score)
+		{
+			bestScoreText.text = score.ToString();
+		}
+
+		private void OnScoreChanged(int score)
+		{
+			scoreText.text = score.ToString();
+		}
 	}
 }

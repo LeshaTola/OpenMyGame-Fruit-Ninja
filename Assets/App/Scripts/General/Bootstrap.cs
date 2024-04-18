@@ -9,6 +9,7 @@ using Spawn;
 using Spawn.Progressor;
 using StateMachine;
 using System.Collections.Generic;
+using UI;
 using UnityEngine;
 
 namespace General
@@ -29,11 +30,14 @@ namespace General
 		[Header("Health")]
 		[SerializeField] private HealthController healthController;
 		[SerializeField] private HealthBarUI healthUI;
-		[SerializeField] private LooseUI looseUI;
 
 		[Header("Score")]
 		[SerializeField] private ScoreController scoreController;
 		[SerializeField] private ScoreUI scoreUI;
+
+		[Header("UI")]
+		[SerializeField] private LooseUI looseUI;
+		[SerializeField] private PauseUI pauseUI;
 
 		private void Awake()
 		{
@@ -47,6 +51,7 @@ namespace General
 			healthUI.Init();
 
 			looseUI.Init();
+			pauseUI.Init();
 
 			healthController.Init();
 			scoreController.Init();
