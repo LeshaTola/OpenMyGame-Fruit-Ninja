@@ -1,7 +1,8 @@
-﻿using SaveLoad;
+﻿using General;
+using SaveLoad;
 using Score;
+using Slicing;
 using System.Collections;
-using UnityEngine;
 
 namespace StateMachine.States
 {
@@ -9,31 +10,38 @@ namespace StateMachine.States
 	{
 		private LooseUI looseUI;
 		private ScoreController scoreController;
+		private ObjectPoolsContainer poolsContainer;
+		private Slicer slicer;
 
-		public LooseState(StateMachine stateMachine, LooseUI looseUI, ScoreController scoreController) : base(stateMachine)
+		public LooseState(StateMachine stateMachine, LooseUI looseUI, ScoreController scoreController, ObjectPoolsContainer poolsContainer, Slicer slicer) : base(stateMachine)
 		{
 			this.looseUI = looseUI;
 			this.scoreController = scoreController;
+			this.poolsContainer = poolsContainer;
+			this.slicer = slicer;
 		}
 
 		public override void Enter()
 		{
 			base.Enter();
-			looseUI.Show();
-			SaveLoadSystem.Save(new SaveData() { BestScore = scoreController.BestScore });
-			looseUI.StartCoroutine(RestartCoroutine());
-		}
-
-		public IEnumerator RestartCoroutine()
-		{
-			yield return new WaitForSeconds(3f);
-			stateMachine.SetState<ResetState>();
+			scoreController.StartCoroutine(PreparingCoroutine());
 		}
 
 		public override void Exit()
 		{
 			base.Exit();
 			looseUI.Hide();
+		}
+
+		private IEnumerator PreparingCoroutine()
+		{
+			SaveLoadSystem.Save(new SaveData() { BestScore = scoreController.BestScore });
+			slicer.gameObject.SetActive(false);
+			while (poolsContainer.Fruits.Active.Count > 0)
+			{
+				yield return null;
+			}
+			looseUI.Show();
 		}
 	}
 }

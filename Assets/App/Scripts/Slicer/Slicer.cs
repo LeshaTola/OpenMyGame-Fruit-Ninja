@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Slicing
 {
-	public class Slicer : MonoBehaviour
+	public class Slicer : MonoBehaviour, IResettable
 	{
 		[SerializeField] private Spawner spawner;
 		[SerializeField] private float minSpeed;
@@ -75,6 +75,11 @@ namespace Slicing
 			float t = Mathf.Clamp01(Vector2.Dot(target - start, end - start) / length);
 			Vector2 projection = start + t * (end - start);
 			return Vector2.Distance(target, projection);
+		}
+
+		public void ResetComponent()
+		{
+			gameObject.SetActive(true);
 		}
 	}
 }
