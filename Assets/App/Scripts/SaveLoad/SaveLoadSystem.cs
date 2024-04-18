@@ -5,7 +5,11 @@ namespace SaveLoad
 {
 	public class SaveLoadSystem
 	{
+#if UNITY_ANDROID && !UNITY_EDITOR
+		public static readonly string SAVE_PATH = $"{Application.persistentDataPath}/Saves";
+#else
 		public static readonly string SAVE_PATH = $"{Application.dataPath}/Saves";
+#endif
 		public const string FILE_NAME = "/Save.txt";
 
 		public static void Save(SaveData saveData)
