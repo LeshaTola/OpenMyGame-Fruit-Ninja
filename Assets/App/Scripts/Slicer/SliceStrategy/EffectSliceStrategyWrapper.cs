@@ -21,7 +21,7 @@ namespace Slicing.SliceStrategy
 			effect.transform.position = block.transform.position;
 			effect.transform.rotation = Quaternion.identity;
 
-			effect.Init(block.Config.SliceEffect);
+			effect.Init(block.Config.SliceEffect, effectPool);
 			effect.PlayAnimation();
 		}
 	}

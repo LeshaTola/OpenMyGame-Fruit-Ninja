@@ -1842,7 +1842,7 @@ MonoBehaviour:
   poolsContainer: {fileID: 1134370537}
   spawner: {fileID: 1630109067}
   looseUI: {fileID: 2067820437}
-  pauseUI: {fileID: 0}
+  pauseUI: {fileID: 1746419707}
   resettables:
   - mode: 0
     unityReference: {fileID: 25185309}
@@ -2048,7 +2048,7 @@ MonoBehaviour:
   blockTemplate: {fileID: 1783027533659197464, guid: 16fc7796b6aa6ec40948c1df3c56d7dc, type: 3}
   effectTemplate: {fileID: 5987942902521407310, guid: c0a78e4b4b7e7f749a5116ec0b381f21, type: 3}
   sliceUITemplate: {fileID: 6536739183897963745, guid: 084b40be0f7167d46bda6257882f573d, type: 3}
-  particleTemplate: {fileID: 2386057452795080795, guid: d06e5f67d9e4c4349a28dcd84477b849, type: 3}
+  particleTemplate: {fileID: 1295445685542325081, guid: d06e5f67d9e4c4349a28dcd84477b849, type: 3}
   blockContainer: {fileID: 429668209}
   halvesContainer: {fileID: 505974933}
   effectsContainer: {fileID: 1537133191}

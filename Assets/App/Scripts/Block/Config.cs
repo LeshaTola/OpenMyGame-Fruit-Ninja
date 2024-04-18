@@ -24,6 +24,11 @@ namespace Blocks
 
 		public List<Sprite> HalfSprites { get => halfSprites; }
 
+		private void OnValidate()
+		{
+			GenerateHalves();
+		}
+
 		public void GenerateHalves()
 		{
 			int halfCount = 2;

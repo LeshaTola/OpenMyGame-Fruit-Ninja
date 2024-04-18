@@ -1,5 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
+using Utility;
 
 namespace Blocks
 {
@@ -11,11 +12,13 @@ namespace Blocks
 		[SerializeField] private float fadeTime;
 
 		private float targetFade = 0f;
+		private ObjectPool<Effect> objectPool;
 
-		public void Init(Sprite sprite)
+		public void Init(Sprite sprite, ObjectPool<Effect> objectPool)
 		{
 			transform.localScale = Vector3.zero;
 			spriteRenderer.sprite = sprite;
+			this.objectPool = objectPool;
 		}
 
 		public void PlayAnimation()
@@ -23,7 +26,7 @@ namespace Blocks
 			Sequence sequence = DOTween.Sequence();
 			sequence.Append(transform.DOScale(targetScale, scaleTime));
 			sequence.Append(spriteRenderer.DOFade(targetFade, fadeTime));
-			sequence.onComplete += () => Destroy(gameObject);
+			sequence.onComplete += () => objectPool.Release(this);
 		}
 	}
 }
