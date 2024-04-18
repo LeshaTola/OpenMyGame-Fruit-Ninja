@@ -25,20 +25,31 @@ namespace Slicing.SliceStrategy
 		public override void Slice(Vector2 delta)
 		{
 			base.Slice(delta);
+			var rightVector = new Vector2(Mathf.Abs(delta.x), Mathf.Abs(delta.y));
 
 			for (int i = 0; i < block.Config.HalfSprites.Count; i++)
 			{
-				var half = halvesPool.Get();
+				var directionMultiplier = i % 2 == 0 ? 1 : -1;
 
-				half.transform.position = block.transform.position;
-				half.transform.rotation = block.transform.rotation;
-				half.transform.localScale = block.transform.localScale;
+				var half = halvesPool.Get();
 
 				half.ResetBlock(
 					block.Config.HalfSprites[i],
 					block.Collider.Radius
 				);
-				Vector2 halfDirection = Vector2.Perpendicular(delta).normalized * (i % 2 == 0 ? 1 : -1);
+
+				var rotationMultiplayer = 1;
+				if (block.Visual.transform.rotation.eulerAngles.z < -90 && block.Visual.transform.rotation.eulerAngles.z > 90)
+				{
+					rotationMultiplayer = -1;
+				}
+				var halfOffset = block.Collider.Radius / 2 * directionMultiplier * rotationMultiplayer;
+				Vector2 halfPosition = new(block.transform.position.x, block.transform.position.y + halfOffset);
+				half.transform.position = halfPosition;
+				half.Visual.transform.rotation = block.Visual.transform.rotation;
+				half.Visual.transform.localScale = block.Visual.transform.localScale;
+
+				Vector2 halfDirection = Vector2.Perpendicular(rightVector).normalized * directionMultiplier;
 				half.Movement.Push(halfDirection * explosionForce);
 				half.Movement.Push(block.Movement.Velocity);
 			}
