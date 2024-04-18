@@ -31,7 +31,7 @@ namespace Slicing.SliceStrategy
 				var half = halvesPool.Get();
 
 				half.transform.position = block.transform.position;
-				half.transform.rotation = Quaternion.identity;
+				half.transform.rotation = block.transform.rotation;
 				half.transform.localScale = block.transform.localScale;
 
 				half.ResetBlock(
@@ -40,6 +40,7 @@ namespace Slicing.SliceStrategy
 				);
 				Vector2 halfDirection = Vector2.Perpendicular(delta).normalized * (i % 2 == 0 ? 1 : -1);
 				half.Movement.Push(halfDirection * explosionForce);
+				half.Movement.Push(block.Movement.Velocity);
 			}
 		}
 	}

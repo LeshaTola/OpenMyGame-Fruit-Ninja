@@ -4,6 +4,7 @@ using Health;
 using Input;
 using Score;
 using Slicing;
+using Slicing.Combo;
 using Spawn;
 using Spawn.Progressor;
 using StateMachine;
@@ -20,6 +21,7 @@ namespace General
 		[Header("Scene")]
 		[SerializeField] private Camera mainCamera;
 		[SerializeField] private ObjectPoolsContainer poolsContainer;
+		[SerializeField] private ComboController comboController;
 		[SerializeField] private MonoBehStateMachine stateMachine;
 		[SerializeField] private Slicer slicer;
 		[SerializeField] private Spawner spawner;
@@ -39,7 +41,7 @@ namespace General
 
 			poolsContainer.Init();
 			slicer.Init(playerInput);
-			spawner.Init(new SimpleProgressor(), new BaseBlockFactory(poolsContainer, scoreController, healthController, blockConfigs));
+			spawner.Init(new SimpleProgressor(), new BaseBlockFactory(poolsContainer, scoreController, healthController, comboController, blockConfigs));
 
 			scoreUI.Init();
 			healthUI.Init();
