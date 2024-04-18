@@ -4,6 +4,7 @@ using StateMachine.States;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Utility.SceneLoader;
 
 namespace UI
 {
@@ -23,7 +24,7 @@ namespace UI
 		public void Init()
 		{
 			restartButton.onClick.AddListener(() => stateMachine.Core.SetState<ResetState>());
-			menuButton.onClick.AddListener(() => stateMachine.Core.SetState<ResetState>());
+			menuButton.onClick.AddListener(() => SceneLoader.LoadScene(SceneEnum.MainMenu));
 
 			scoreController.OnScoreChanged += OnScoreChanged;
 			scoreController.OnBestScoreChanged += OnBestScoreChanged;

@@ -3,6 +3,7 @@ using StateMachine.States;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
+using Utility.SceneLoader;
 
 public class PauseUI : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class PauseUI : MonoBehaviour
 	public void Init()
 	{
 		resumeButton.onClick.AddListener(() => stateMachine.Core.SetState<GameState>());
+		menuButton.onClick.AddListener(() => SceneLoader.LoadScene(SceneEnum.MainMenu));
 	}
 
 	public void Show()

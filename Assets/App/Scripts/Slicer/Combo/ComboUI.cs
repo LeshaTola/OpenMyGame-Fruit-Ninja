@@ -46,7 +46,7 @@ public class ComboUI : MonoBehaviour
 		gameObject.SetActive(true);
 		Sequence sequence = DOTween.Sequence();
 		sequence.Append(transform.DOScale(maxScale, scaleTime));
-		sequence.Append(transform.DOScale(scaleModifier, pulsTime).SetLoops(5, LoopType.Yoyo));
+		sequence.Append(transform.DOScale(scaleModifier, pulsTime).SetLoops(pulsCount, LoopType.Yoyo));
 		sequence.onComplete += () => Hide();
 	}
 
