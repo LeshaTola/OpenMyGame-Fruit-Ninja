@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using General;
+using System.Collections;
 using UnityEngine;
 
 namespace Spawn.Progressor
@@ -19,12 +20,6 @@ namespace Spawn.Progressor
 		{
 			this.config = config;
 			this.spawner = spawner;
-
-			fruitCount = config.StartFruitCount;
-			FruitCooldown = config.StartFruitCooldown;
-			PackCooldown = config.StartPackCooldown;
-
-			spawner.StartCoroutine(ProgressCoroutine());
 		}
 
 		private IEnumerator ProgressCoroutine()
@@ -44,6 +39,16 @@ namespace Spawn.Progressor
 				if (PackCooldown > config.MinPackCooldown && PackCooldown < config.MaxPackCooldown)
 					PackCooldown += config.PackCooldownProgression;
 			}
+		}
+
+		void IResettable.ResetComponent()
+		{
+			spawner.StopAllCoroutines();
+			fruitCount = config.StartFruitCount;
+			FruitCooldown = config.StartFruitCooldown;
+			PackCooldown = config.StartPackCooldown;
+
+			spawner.StartCoroutine(ProgressCoroutine());
 		}
 	}
 }

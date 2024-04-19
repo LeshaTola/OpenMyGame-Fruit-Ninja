@@ -1,4 +1,5 @@
 ﻿using Blocks.Factory;
+using General;
 using Regions;
 using Spawn.Progressor;
 using System.Collections;
@@ -8,7 +9,7 @@ using UnityEngine;
 
 namespace Spawn
 {
-	public class Spawner : MonoBehaviour
+	public class Spawner : MonoBehaviour, IResettable
 	{
 		[SerializeField] private List<Region> regions;
 		[SerializeField] private SpawnConfig config;
@@ -89,6 +90,11 @@ namespace Spawn
 				yield return new WaitForSeconds(progressor.PackCooldown);
 				yield return SpawnPack();
 			}
+		}
+
+		void IResettable.ResetComponent()
+		{
+			progressor.ResetComponent();
 		}
 	}
 }

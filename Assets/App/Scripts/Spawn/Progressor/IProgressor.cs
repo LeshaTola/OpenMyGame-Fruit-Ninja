@@ -1,6 +1,8 @@
-﻿namespace Spawn.Progressor
+﻿using General;
+
+namespace Spawn.Progressor
 {
-	public interface IProgressor
+	public interface IProgressor : IResettable
 	{
 		public int FruitCount { get; }
 		public float FruitCooldown { get; }
