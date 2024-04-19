@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using TNRD;
 using UI;
 using UnityEngine;
+using Utility.SceneLoader;
 
 namespace StateMachine
 {
@@ -34,6 +35,7 @@ namespace StateMachine
 			core.AddState(new GameState(core, healthController, spawner));
 			core.AddState(new LooseState(core, looseUI, scoreController, poolsContainer, slicer));
 			core.AddState(new PauseState(core, pauseUI, slicer));
+			core.AddState(new LoadSceneState(core, SceneEnum.MainMenu));
 
 			core.SetState<ResetState>();
 		}

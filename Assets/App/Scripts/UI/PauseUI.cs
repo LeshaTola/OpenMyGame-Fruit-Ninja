@@ -3,20 +3,22 @@ using StateMachine.States;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
-using Utility.SceneLoader;
 
 public class PauseUI : MonoBehaviour
 {
 	[SerializeField] private PanelAnimation panelAnimation;
 	[SerializeField] private MonoBehStateMachine stateMachine;
 
+	[SerializeField] private Button pauseButton;
 	[SerializeField] private Button resumeButton;
 	[SerializeField] private Button menuButton;
 
 	public void Init()
 	{
+		pauseButton.onClick.AddListener(() => stateMachine.Core.SetState<PauseState>());
 		resumeButton.onClick.AddListener(() => stateMachine.Core.SetState<GameState>());
-		menuButton.onClick.AddListener(() => SceneLoader.LoadScene(SceneEnum.MainMenu));
+		menuButton.onClick.AddListener(() => stateMachine.Core.SetState<LoadSceneState>());
+		Hide();
 	}
 
 	public void Show()

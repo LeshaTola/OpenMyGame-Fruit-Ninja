@@ -92,7 +92,7 @@ namespace Spawn
 			}
 		}
 
-		void IResettable.ResetComponent()
+		public void ResetComponent()
 		{
 			progressor.ResetComponent();
 		}

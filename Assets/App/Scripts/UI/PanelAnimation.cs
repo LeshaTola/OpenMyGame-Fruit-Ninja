@@ -21,6 +21,7 @@ namespace UI
 			var sequence = DOTween.Sequence();
 			sequence.Append(background.DOFade(1f, animationTime));
 			sequence.Append(content.transform.DOScale(ShowScale, animationTime));
+			sequence.SetUpdate(true);
 		}
 
 		public void PlayHideAnimation()
@@ -28,6 +29,7 @@ namespace UI
 			var sequence = DOTween.Sequence();
 			sequence.Append(content.DOScale(HideScale, animationTime));
 			sequence.Append(background.DOFade(0f, animationTime));
+			sequence.SetUpdate(true);
 			sequence.onComplete += () => gameObject.SetActive(false);
 		}
 
