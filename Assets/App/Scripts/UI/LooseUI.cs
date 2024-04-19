@@ -1,5 +1,5 @@
+using Scenes.GamePlay.StateMachine;
 using Score;
-using StateMachine;
 using StateMachine.States;
 using TMPro;
 using UnityEngine;

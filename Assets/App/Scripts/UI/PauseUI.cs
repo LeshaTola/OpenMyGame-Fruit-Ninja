@@ -1,4 +1,4 @@
-using StateMachine;
+using Scenes.GamePlay.StateMachine;
 using StateMachine.States;
 using UI;
 using UnityEngine;

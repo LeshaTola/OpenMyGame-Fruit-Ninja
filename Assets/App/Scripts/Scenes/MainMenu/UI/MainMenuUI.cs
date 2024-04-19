@@ -1,14 +1,15 @@
 using General;
 using SaveLoad;
+using StateMachine.States;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Utility.SceneLoader;
 
 namespace MainMenu.UI
 {
 	public class MainMenuUI : MonoBehaviour, IInitable
 	{
+		[SerializeField] private MenuStateMachine stateMachine;
 		[SerializeField] private Button playButton;
 		[SerializeField] private Button exitButton;
 
@@ -16,7 +17,7 @@ namespace MainMenu.UI
 
 		public void Init()
 		{
-			playButton.onClick.AddListener(() => SceneLoader.LoadScene(SceneEnum.Gameplay));
+			playButton.onClick.AddListener(() => stateMachine.Core.SetState<LoadSceneState>());
 			exitButton.onClick.AddListener(() => Application.Quit());
 
 			UpdateBestScore(SaveLoadSystem.Load().BestScore);

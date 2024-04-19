@@ -2,12 +2,12 @@
 using Blocks.Factory;
 using Health;
 using Input;
+using Scenes.GamePlay.StateMachine;
 using Score;
 using Slicing;
 using Slicing.Combo;
 using Spawn;
 using Spawn.Progressor;
-using StateMachine;
 using System.Collections.Generic;
 using UI;
 using UnityEngine;

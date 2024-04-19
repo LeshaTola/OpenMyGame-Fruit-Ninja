@@ -7,10 +7,10 @@ using StateMachine.States;
 using System.Collections.Generic;
 using TNRD;
 using UI;
+using UI.SceneTransitions;
 using UnityEngine;
-using Utility.SceneLoader;
 
-namespace StateMachine
+namespace Scenes.GamePlay.StateMachine
 {
 	public class MonoBehStateMachine : MonoBehaviour
 	{
@@ -19,25 +19,29 @@ namespace StateMachine
 		[SerializeField] private Slicer slicer;
 		[SerializeField] private ObjectPoolsContainer poolsContainer;
 		[SerializeField] private Spawner spawner;
+
+		[SerializeField] private SerializableInterface<ISceneTransition> sceneTransition;
 		[SerializeField] private LooseUI looseUI;
 		[SerializeField] private PauseUI pauseUI;
+
 		[SerializeField] private List<SerializableInterface<IResettable>> resettables;
 
-		private StateMachine core;
+		private global::StateMachine.StateMachine core;
 
-		public StateMachine Core { get => core; }
+		public global::StateMachine.StateMachine Core { get => core; }
 
 		public void Init()
 		{
-			core = new StateMachine();
+			core = new();
 
+			core.AddState(new States.InitState(core, sceneTransition.Value));
 			core.AddState(new ResetState(core, resettables));
 			core.AddState(new GameState(core, healthController, spawner));
 			core.AddState(new LooseState(core, looseUI, scoreController, poolsContainer, slicer));
 			core.AddState(new PauseState(core, pauseUI, slicer));
-			core.AddState(new LoadSceneState(core, SceneEnum.MainMenu));
+			core.AddState(new LoadSceneState(core));
 
-			core.SetState<ResetState>();
+			core.SetState<States.InitState>();
 		}
 	}
 }
