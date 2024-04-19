@@ -50,7 +50,7 @@ namespace Slicing
 		private List<Block> GetSlicedBlocks(Delta delta)
 		{
 			List<Block> slicedBlocks = new List<Block>();
-			foreach (var block in poolsContainer.Fruits.Active)
+			foreach (var block in poolsContainer.Blocks.Active)
 			{
 				float distance = GetMinimumDistance(delta.prevPos, delta.currPos, block.transform.position);
 				if (distance <= block.Collider.Radius)

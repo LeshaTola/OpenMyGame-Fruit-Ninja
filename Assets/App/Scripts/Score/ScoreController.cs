@@ -15,10 +15,6 @@ namespace Score
 
 		public int BestScore { get => bestScore; }
 
-		public void Init()
-		{
-		}
-
 		public void AddScore(int score)
 		{
 			if (score <= 0)

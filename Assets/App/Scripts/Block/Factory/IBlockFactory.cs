@@ -1,9 +1,11 @@
-﻿namespace Blocks.Factory
+﻿using UnityEngine;
+
+namespace Blocks.Factory
 {
 	public interface IBlockFactory
 	{
 		public Block GetFruit();
-		public Block GetHalf();
+		public Block GetHalf(Sprite sprite, float radius);
 		public Block GetBomb();
 	}
 }

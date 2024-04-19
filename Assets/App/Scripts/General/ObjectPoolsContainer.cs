@@ -14,15 +14,12 @@ namespace General
 
 		[Header("Containers")]
 		[SerializeField] private Transform blockContainer;
-		[SerializeField] private Transform halvesContainer;
 		[SerializeField] private Transform effectsContainer;
 		[SerializeField] private Transform particlesContainer;
 		[SerializeField] private Transform sliceUIContainer;
 
-
-		public ObjectPool<Block> Fruits { get; private set; }
+		public ObjectPool<Block> Blocks { get; private set; }
 		public ObjectPool<Block> Bonuses { get; private set; }
-		public ObjectPool<Block> Halves { get; private set; }
 
 		public ObjectPool<Effect> Effects { get; private set; }
 		public ObjectPool<SliceScoreUI> SliceUI { get; private set; }
@@ -30,8 +27,7 @@ namespace General
 
 		public void Init()
 		{
-			SetupFruitsPool();
-			SetupHalvesPool();
+			SetupBlocksPool();
 			SetupEffectsPool();
 			SetupParticlesPool();
 			SetupSliceTextPool();
@@ -59,36 +55,14 @@ namespace General
 				);
 		}
 
-		private void SetupHalvesPool()
+		private void SetupBlocksPool()
 		{
 			int preloadCount = 10;
-			Halves = new(
-				() =>
-				{
-					var newBlock = Instantiate(blockTemplate, halvesContainer);
-					newBlock.Init(null, 0f, () => Halves.Release(newBlock), null);
-					return newBlock;
-				},
-				(block) =>
-				{
-					block.gameObject.SetActive(true);
-				},
-				(block) =>
-				{
-					block.gameObject.SetActive(false);
-				},
-				preloadCount
-				);
-		}
-
-		private void SetupFruitsPool()
-		{
-			int preloadCount = 10;
-			Fruits = new(
+			Blocks = new(
 				() =>
 				{
 					var newBlock = Instantiate(blockTemplate, blockContainer);
-					newBlock.Init(null, 0f, () => Fruits.Release(newBlock), null);
+					newBlock.Init(null, 0f, null);
 					return newBlock;
 				},
 				(block) =>

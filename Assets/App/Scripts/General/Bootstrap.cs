@@ -42,10 +42,10 @@ namespace General
 		private void Awake()
 		{
 			IPlayerInput playerInput = new MousePlayerInput(mainCamera);
+			IBlockFactory blockFactory = new BaseBlockFactory(poolsContainer, scoreController, healthController, comboController, blockConfigs);
 
-			poolsContainer.Init();
 			slicer.Init(playerInput);
-			spawner.Init(new SimpleProgressor(), new BaseBlockFactory(poolsContainer, scoreController, healthController, comboController, blockConfigs));
+			spawner.Init(new SimpleProgressor(), blockFactory);
 
 			scoreUI.Init();
 			healthUI.Init();
@@ -53,10 +53,8 @@ namespace General
 			looseUI.Init();
 			pauseUI.Init();
 
-			healthController.Init();
-			scoreController.Init();
-
 			stateMachine.Init();
+			poolsContainer.Init();
 		}
 	}
 }

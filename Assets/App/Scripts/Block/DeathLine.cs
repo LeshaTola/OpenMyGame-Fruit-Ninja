@@ -20,7 +20,6 @@ namespace Blocks
 		private void ValidateBoundaries()
 		{
 			ValidateBlocks();
-			ValidateHalves();
 			ValidateSliceUI();
 		}
 
@@ -44,7 +43,7 @@ namespace Blocks
 		private void ValidateBlocks()
 		{
 			List<Block> blocksToDestroy = new List<Block>();
-			foreach (var block in poolsContainer.Fruits.Active)
+			foreach (var block in poolsContainer.Blocks.Active)
 			{
 				if (block.transform.position.y + block.Collider.Radius < -mainCamera.orthographicSize)
 				{
@@ -54,25 +53,8 @@ namespace Blocks
 
 			foreach (var block in blocksToDestroy)
 			{
-				block.DestroyYourself();
+				block.Kill();
 				OnBlockDestroy?.Invoke();
-			}
-		}
-
-		private void ValidateHalves()
-		{
-			List<Block> blocksToDestroy = new List<Block>();
-			foreach (var block in poolsContainer.Halves.Active)
-			{
-				if (block.transform.position.y + block.Collider.Radius < -mainCamera.orthographicSize)
-				{
-					blocksToDestroy.Add(block);
-				}
-			}
-
-			foreach (var block in blocksToDestroy)
-			{
-				block.DestroyYourself();
 			}
 		}
 	}

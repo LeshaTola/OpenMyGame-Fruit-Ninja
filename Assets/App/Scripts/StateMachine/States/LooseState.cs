@@ -38,7 +38,7 @@ namespace StateMachine.States
 		{
 			SaveLoadSystem.Save(new SaveData() { BestScore = scoreController.BestScore });
 			slicer.gameObject.SetActive(false);
-			while (poolsContainer.Fruits.Active.Count > 0)
+			while (poolsContainer.Blocks.Active.Count > 0)
 			{
 				yield return null;
 			}
