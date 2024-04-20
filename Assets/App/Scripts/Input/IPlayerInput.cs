@@ -5,6 +5,8 @@ namespace Input
 {
 	public interface IPlayerInput
 	{
+		public event Action<Vector3> OnStartInput;
+
 		public Delta GetInputDelta();
 	}
 

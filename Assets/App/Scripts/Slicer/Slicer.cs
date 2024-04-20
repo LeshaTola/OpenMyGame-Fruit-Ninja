@@ -14,6 +14,7 @@ namespace Slicing
 		[SerializeField] private float explosionForce;
 
 		[SerializeField] private ObjectPoolsContainer poolsContainer;
+		[SerializeField] private TrailRenderer trailRenderer;
 
 		[SerializeField] private Block blockTemplate;
 		[SerializeField] private Effect effectTemplate;
@@ -23,11 +24,17 @@ namespace Slicing
 		public void Init(IPlayerInput playerInput)
 		{
 			this.playerInput = playerInput;
+			playerInput.OnStartInput += OnStartInput;
 		}
 
 		private void Update()
 		{
 			Slice();
+		}
+
+		public void ResetComponent()
+		{
+			gameObject.SetActive(true);
 		}
 
 		private void Slice()
@@ -77,9 +84,10 @@ namespace Slicing
 			return Vector2.Distance(target, projection);
 		}
 
-		public void ResetComponent()
+		private void OnStartInput(Vector3 worldMousePosition)
 		{
-			gameObject.SetActive(true);
+			transform.position = worldMousePosition;
+			trailRenderer.Clear();
 		}
 	}
 }

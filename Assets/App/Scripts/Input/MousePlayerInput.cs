@@ -1,9 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Input
 {
 	public class MousePlayerInput : IPlayerInput
 	{
+		public event Action<Vector3> OnStartInput;
+
 		private Vector3 prevMousePosition;
 		private Camera mainCamera;
 
@@ -18,6 +21,8 @@ namespace Input
 
 			if (UnityEngine.Input.GetMouseButtonDown(0))
 			{
+				OnStartInput?.Invoke(worldMousePosition);
+
 				prevMousePosition = worldMousePosition;
 				Delta mouseDelta = new Delta()
 				{

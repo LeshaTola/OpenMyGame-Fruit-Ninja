@@ -18,6 +18,8 @@ namespace Blocks
 		{
 			transform.localScale = Vector3.zero;
 			spriteRenderer.sprite = sprite;
+			spriteRenderer.DOFade(1, 0f);
+
 			this.objectPool = objectPool;
 		}
 
