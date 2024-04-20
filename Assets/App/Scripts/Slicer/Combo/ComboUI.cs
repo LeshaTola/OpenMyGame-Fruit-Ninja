@@ -7,7 +7,6 @@ public class ComboUI : MonoBehaviour
 	[SerializeField] private TextMeshProUGUI fruitCountText;
 	[SerializeField] private TextMeshProUGUI comboText;
 	[SerializeField] private RectTransform rectTransform;
-	[SerializeField] private Camera mainCamera;
 
 	[Header("Animation")]
 	[SerializeField] private float pulsTime = 0.3f;
@@ -16,6 +15,15 @@ public class ComboUI : MonoBehaviour
 	[SerializeField] private float scaleModifier = 1f;
 	[SerializeField] private Vector2 minScale = Vector2.zero;
 	[SerializeField] private Vector2 maxScale = Vector2.one;
+
+	private Camera mainCamera;
+
+
+	public void Init(Camera mainCamera)
+	{
+		this.mainCamera = mainCamera;
+
+	}
 
 	public void UpdateUI(int fruitCount, int combo)
 	{
@@ -53,6 +61,6 @@ public class ComboUI : MonoBehaviour
 	public void Hide()
 	{
 		transform.DOKill();
-		transform.DOScale(minScale, scaleTime).onComplete += () => gameObject.SetActive(false);
+		transform.DOScale(minScale, scaleTime).onComplete += () => Destroy(gameObject);
 	}
 }

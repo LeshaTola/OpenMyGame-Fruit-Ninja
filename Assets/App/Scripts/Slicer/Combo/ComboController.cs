@@ -11,6 +11,8 @@ namespace Slicing.Combo
 		[SerializeField] private ScoreController scoreController;
 		[SerializeField] private float delayComboDestroy;
 		[SerializeField] private ComboUI ComboTemplate;
+		[SerializeField] private Camera mainCamera;
+
 
 		private int combo;
 		private int score;
@@ -57,9 +59,12 @@ namespace Slicing.Combo
 			int additionalScore = score * (combo - 1);
 			scoreController.AddScore(additionalScore);
 
-			ComboTemplate.Move(lastBlockPosition);
-			ComboTemplate.UpdateUI(fruits, combo);
-			ComboTemplate.Show();
+			var comboUI = Instantiate(ComboTemplate, transform);
+			comboUI.Init(mainCamera);
+			comboUI.Move(lastBlockPosition);
+			comboUI.UpdateUI(fruits, combo);
+			comboUI.Show();
+
 			ResetCombo();
 		}
 
