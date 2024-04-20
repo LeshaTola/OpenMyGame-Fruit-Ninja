@@ -1,1 +1,1 @@
-{"BestScore":17550}
+{"BestScore":44550}

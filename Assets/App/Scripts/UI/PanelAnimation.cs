@@ -12,6 +12,7 @@ namespace UI
 		[SerializeField] private RectTransform content;
 		[SerializeField] private float animationTime = 0.5f;
 
+		[SerializeField] private float maxFade = 0.9f;
 		[SerializeField] private Vector3 ShowScale = Vector3.one;
 		[SerializeField] private Vector3 HideScale;
 
@@ -19,7 +20,7 @@ namespace UI
 		{
 			gameObject.SetActive(true);
 			var sequence = DOTween.Sequence();
-			sequence.Append(background.DOFade(1f, animationTime));
+			sequence.Append(background.DOFade(maxFade, animationTime));
 			sequence.Append(content.transform.DOScale(ShowScale, animationTime));
 			sequence.SetUpdate(true);
 		}
