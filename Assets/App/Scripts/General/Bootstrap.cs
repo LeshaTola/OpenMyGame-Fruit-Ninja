@@ -23,7 +23,7 @@ namespace General
 		[SerializeField] private Camera mainCamera;
 		[SerializeField] private ObjectPoolsContainer poolsContainer;
 		[SerializeField] private ComboController comboController;
-		[SerializeField] private MonoBehStateMachine stateMachine;
+		[SerializeField] private GamePlayStateMachine stateMachine;
 		[SerializeField] private Slicer slicer;
 		[SerializeField] private Spawner spawner;
 

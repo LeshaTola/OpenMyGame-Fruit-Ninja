@@ -12,7 +12,7 @@ using UnityEngine;
 
 namespace Scenes.GamePlay.StateMachine
 {
-	public class MonoBehStateMachine : MonoBehaviour
+	public class GamePlayStateMachine : MonoBehaviour
 	{
 		[SerializeField] private HealthController healthController;
 		[SerializeField] private ScoreController scoreController;
@@ -39,7 +39,7 @@ namespace Scenes.GamePlay.StateMachine
 			core.AddState(new GameState(core, healthController, spawner));
 			core.AddState(new LooseState(core, looseUI, scoreController, poolsContainer, slicer));
 			core.AddState(new PauseState(core, pauseUI, slicer));
-			core.AddState(new LoadSceneState(core));
+			core.AddState(new LoadSceneState(core, sceneTransition.Value));
 
 			core.SetState<States.InitState>();
 		}

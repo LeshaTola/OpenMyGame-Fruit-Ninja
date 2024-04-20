@@ -1,4 +1,5 @@
-﻿using UI.SceneTransitions;
+﻿using DG.Tweening;
+using UI.SceneTransitions;
 using Utility.SceneLoader;
 
 namespace StateMachine.States
@@ -17,6 +18,7 @@ namespace StateMachine.States
 		public override void Enter()
 		{
 			base.Enter();
+			DOTween.KillAll();
 			if (sceneTransition != null)
 			{
 				sceneTransition.PlayOn(() => SceneLoader.LoadScene(scene));

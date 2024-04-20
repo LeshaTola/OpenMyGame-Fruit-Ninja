@@ -11,7 +11,7 @@ namespace UI
 	public class LooseUI : MonoBehaviour
 	{
 		[SerializeField] private ScoreController scoreController;
-		[SerializeField] private MonoBehStateMachine stateMachine;
+		[SerializeField] private GamePlayStateMachine stateMachine;
 		[SerializeField] private PanelAnimation panelAnimation;
 
 		[SerializeField] private Button restartButton;

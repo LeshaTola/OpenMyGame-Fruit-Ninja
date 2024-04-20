@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class PauseUI : MonoBehaviour
 {
 	[SerializeField] private PanelAnimation panelAnimation;
-	[SerializeField] private MonoBehStateMachine stateMachine;
+	[SerializeField] private GamePlayStateMachine stateMachine;
 
 	[SerializeField] private Button pauseButton;
 	[SerializeField] private Button resumeButton;
