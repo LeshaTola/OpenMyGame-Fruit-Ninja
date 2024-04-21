@@ -2,7 +2,7 @@
 
 namespace Spawn
 {
-	[CreateAssetMenu(fileName = "SpawnConfig", menuName = "Configs/Spawn")]
+	[CreateAssetMenu(fileName = "SpawnConfig", menuName = "Configs/Spawn/Spawn")]
 	public class SpawnConfig : ScriptableObject
 	{
 		[Header("General")]

@@ -9,12 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 730454cc429524d4cbc82783e1c510b3, type: 3}
+  m_Script: {fileID: 11500000, guid: 164ea47da692a9044968d112467448b9, type: 3}
   m_Name: Pear
   m_EditorClassIdentifier: 
   blockSprite: {fileID: 21300000, guid: a6170dc8d8947bc4ea84b175fecf18a0, type: 3}
   sliceEffect: {fileID: -1292497027, guid: d77cc852af0fdce4e8bef9915a633dfb, type: 3}
-  juiceParticle: {fileID: 2386057452795080795, guid: d06e5f67d9e4c4349a28dcd84477b849, type: 3}
-  juiceColor: {r: 1, g: 0.8520418, b: 0, a: 1}
   radius: 1
   score: 50
+  fallReduceHealth: 1
+  sliceForce: 5
+  juiceParticle: {fileID: 2386057452795080795, guid: d06e5f67d9e4c4349a28dcd84477b849, type: 3}
+  juiceColor: {r: 1, g: 0.8392157, b: 0.09803922, a: 1}

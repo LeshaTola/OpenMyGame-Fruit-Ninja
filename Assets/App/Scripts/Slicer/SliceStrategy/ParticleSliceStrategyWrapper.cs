@@ -7,10 +7,12 @@ namespace Slicing.SliceStrategy
 	public class ParticleSliceStrategyWrapper : BaseSliceStrategyWrapper
 	{
 		private ObjectPool<JuiceParticles> particlesPool;
+		private Color particlesColor;
 
-		public ParticleSliceStrategyWrapper(ISliceStrategy sliceStrategy, Block block, ObjectPool<JuiceParticles> particlesPool) : base(sliceStrategy, block)
+		public ParticleSliceStrategyWrapper(ISliceStrategy sliceStrategy, Block block, ObjectPool<JuiceParticles> particlesPool, Color particlesColor) : base(sliceStrategy, block)
 		{
 			this.particlesPool = particlesPool;
+			this.particlesColor = particlesColor;
 		}
 
 		public override void Slice(Vector2 delta)
@@ -21,7 +23,7 @@ namespace Slicing.SliceStrategy
 			particles.transform.position = block.transform.position;
 			particles.transform.rotation = Quaternion.identity;
 
-			particles.SwapColor(block.Config.JuiceColor);
+			particles.SwapColor(particlesColor);
 			particles.Play();
 		}
 	}

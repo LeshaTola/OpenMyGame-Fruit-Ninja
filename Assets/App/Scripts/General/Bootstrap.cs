@@ -1,5 +1,4 @@
-﻿using Blocks;
-using Blocks.Factory;
+﻿using Blocks.Factory;
 using Health;
 using Input;
 using Scenes.GamePlay.StateMachine;
@@ -8,7 +7,6 @@ using Slicing;
 using Slicing.Combo;
 using Spawn;
 using Spawn.Progressor;
-using System.Collections.Generic;
 using UI;
 using UnityEngine;
 
@@ -16,9 +14,6 @@ namespace General
 {
 	public class Bootstrap : MonoBehaviour
 	{
-		[Header("Other")]
-		[SerializeField] private List<Config> blockConfigs;
-
 		[Header("Scene")]
 		[SerializeField] private Camera mainCamera;
 		[SerializeField] private ObjectPoolsContainer poolsContainer;
@@ -41,8 +36,14 @@ namespace General
 
 		private void Awake()
 		{
+			poolsContainer.Init();
+
 			IPlayerInput playerInput = new MousePlayerInput(mainCamera);
-			IBlockFactory blockFactory = new BaseBlockFactory(poolsContainer, scoreController, healthController, comboController, blockConfigs);
+			IBlockFactory blockFactory = new BaseBlockFactory(
+				poolsContainer,
+				scoreController,
+				healthController,
+				comboController);
 
 			slicer.Init(playerInput);
 			spawner.Init(new SimpleProgressor(), blockFactory);
@@ -54,7 +55,6 @@ namespace General
 			pauseUI.Init();
 
 			stateMachine.Init();
-			poolsContainer.Init();
 		}
 	}
 }

@@ -1,11 +1,11 @@
-﻿using Blocks.Kill;
+﻿using Blocks.Configs;
+using Blocks.Kill;
 using Blocks.Logic;
 using General;
 using Health;
 using Score;
 using Slicing.Combo;
 using Slicing.SliceStrategy;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Blocks.Factory
@@ -16,42 +16,52 @@ namespace Blocks.Factory
 		private ScoreController scoreController;
 		private HealthController healthController;
 		private ComboController comboController;
-		private List<Config> blockConfigs;
 
 		public BaseBlockFactory
 			(
-			ObjectPoolsContainer poolsContainer,
-			ScoreController scoreController,
-			HealthController healthController,
-			ComboController comboController,
-			List<Config> blockConfigs
+				ObjectPoolsContainer poolsContainer,
+				ScoreController scoreController,
+				HealthController healthController,
+				ComboController comboController
 			)
 		{
 			this.poolsContainer = poolsContainer;
 			this.scoreController = scoreController;
 			this.healthController = healthController;
 			this.comboController = comboController;
-			this.blockConfigs = blockConfigs;
+
 		}
 
-		public Block GetBomb()
-		{
-			throw new System.NotImplementedException();
-		}
-
-		public Block GetFruit()
+		public Block GetBomb(BombConfig config)
 		{
 			var block = poolsContainer.Blocks.Get();
-			ISliceStrategy sliceStrategy = GetFruitSliceStrategy(block);
 
+			var effectStrategy = new EffectSliceStrategyWrapper(new NoSliceStrategy(), block, poolsContainer.Effects);
+			var reduceHealthStrategy = new ReduceHealthSliceStrategyWrapper(effectStrategy, block, healthController, config.ReduceHealth);
+			var pushStrategy = new PushSliceStrategyWrapper(reduceHealthStrategy, block, poolsContainer.Blocks, config.ExplosionRadius, config.ExplosionForce);
+			var releaseStrategy = new ReleaseSliceStrategyWrapper(pushStrategy, block, poolsContainer.Blocks);
 
 			var releaseKillStrategy = new ReleaseKillStrategyWrapper(new NoKillStrategy(), block, poolsContainer.Blocks);
-			var reduceHealthStrategy = new ReduceHealthKillStrategyWrapper(releaseKillStrategy, block, healthController, 1);
+
+			IBlock bombLogic = new BaseBlock(releaseStrategy, releaseKillStrategy);
+
+			block.ResetBlock();
+			block.Init(config, bombLogic);
+			return block;
+		}
+
+		public Block GetFruit(FruitConfig config)
+		{
+			var block = poolsContainer.Blocks.Get();
+			ISliceStrategy sliceStrategy = GetFruitSliceStrategy(block, config);
+
+			var releaseKillStrategy = new ReleaseKillStrategyWrapper(new NoKillStrategy(), block, poolsContainer.Blocks);
+			var reduceHealthStrategy = new ReduceHealthKillStrategyWrapper(releaseKillStrategy, block, healthController, config.FallReduceHealth);
 
 			IBlock fruitLogic = new BaseBlock(sliceStrategy, reduceHealthStrategy);
 
 			block.ResetBlock();
-			block.Init(blockConfigs[Random.Range(0, blockConfigs.Count)], fruitLogic);
+			block.Init(config, fruitLogic);
 			return block;
 		}
 
@@ -67,15 +77,15 @@ namespace Blocks.Factory
 			return half;
 		}
 
-		private ISliceStrategy GetFruitSliceStrategy(Block block)
+		private ISliceStrategy GetFruitSliceStrategy(Block block, FruitConfig config)
 		{
-			var halvesStrategy = new HalvesSliceStrategyWrapper(new NoSliceStrategy(), block, this, 5);
+			var halvesStrategy = new HalvesSliceStrategyWrapper(new NoSliceStrategy(), block, this, config.SliceForce);
 			var effectStrategy = new EffectSliceStrategyWrapper(halvesStrategy, block, poolsContainer.Effects);
-			var particleStrategy = new ParticleSliceStrategyWrapper(effectStrategy, block, poolsContainer.Particles);
-			var scoreUIStrategy = new ScoreSliceStrategyWrapper(particleStrategy, block, poolsContainer.SliceUI, scoreController, 2);
+			var particleStrategy = new ParticleSliceStrategyWrapper(effectStrategy, block, poolsContainer.Particles, config.JuiceColor);
+			var scoreUIStrategy = new ScoreSliceStrategyWrapper(particleStrategy, block, poolsContainer.SliceUI, scoreController, config.SliceForce);
 			var comboStrategy = new ComboSliceStrategyWrapper(scoreUIStrategy, block, comboController);
-			var destroyStrategy = new ReleaseSliceStrategyWrapper(comboStrategy, block, poolsContainer.Blocks);
-			return destroyStrategy;
+			var releaseStrategy = new ReleaseSliceStrategyWrapper(comboStrategy, block, poolsContainer.Blocks);
+			return releaseStrategy;
 		}
 	}
 }

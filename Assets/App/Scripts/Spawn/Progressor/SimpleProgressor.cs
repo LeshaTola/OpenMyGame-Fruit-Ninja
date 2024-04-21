@@ -1,5 +1,4 @@
-﻿using General;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 namespace Spawn.Progressor
@@ -41,7 +40,7 @@ namespace Spawn.Progressor
 			}
 		}
 
-		void IResettable.ResetComponent()
+		public void ResetComponent()
 		{
 			spawner.StopAllCoroutines();
 			fruitCount = config.StartFruitCount;

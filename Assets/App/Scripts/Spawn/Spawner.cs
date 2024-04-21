@@ -1,6 +1,9 @@
-﻿using Blocks.Factory;
+﻿using Blocks;
+using Blocks.Configs;
+using Blocks.Factory;
 using General;
 using Regions;
+using Spawn.BlockSpawnLogic;
 using Spawn.Progressor;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,6 +14,7 @@ namespace Spawn
 {
 	public class Spawner : MonoBehaviour, IResettable
 	{
+		[SerializeField] private BlockSpawnConfig blocksSpawnConfig;
 		[SerializeField] private List<Region> regions;
 		[SerializeField] private SpawnConfig config;
 		[SerializeField] private Camera mainCamera;
@@ -20,12 +24,17 @@ namespace Spawn
 
 		public IReadOnlyCollection<Region> Regions { get => regions; }
 
+		private IBlockSpawnLogic bombSpawnLogic;
+
 		public void Init(IProgressor progressor, IBlockFactory blockFactory)
 		{
 			this.progressor = progressor;
 			this.blockFactory = blockFactory;
 
 			progressor.Init(config, this);
+
+			bombSpawnLogic = new BombSpawnLogic(progressor, blocksSpawnConfig.Bomb);
+
 		}
 
 		public IEnumerator SpawnPack()
@@ -33,11 +42,14 @@ namespace Spawn
 			Region region = GetRegion();
 
 			var fruitTimer = new WaitForSeconds(progressor.FruitCooldown);
+			List<Block> pack = new();
 			for (int i = 0; i < progressor.FruitCount; i++)
 			{
 				yield return fruitTimer;
 
-				var block = blockFactory.GetFruit();
+				var block = GetAnyBlock(pack);
+				pack.Add(block);
+
 				block.transform.position = GetSpawnPosition(region);
 
 				float randomAngle = Random.Range(region.MinAngle, region.MaxAngle);
@@ -95,6 +107,18 @@ namespace Spawn
 		public void ResetComponent()
 		{
 			progressor.ResetComponent();
+		}
+
+		private Block GetAnyBlock(List<Block> pack)
+		{
+			Block block;
+			if (bombSpawnLogic.CanSpawn(pack))
+			{
+				return blockFactory.GetBomb(blocksSpawnConfig.Bomb.Config as BombConfig);
+			}
+
+			block = blockFactory.GetFruit(blocksSpawnConfig.Fruits[Random.Range(0, blocksSpawnConfig.Fruits.Count)]);
+			return block;
 		}
 	}
 }
