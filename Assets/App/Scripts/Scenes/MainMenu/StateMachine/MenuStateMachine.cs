@@ -1,6 +1,8 @@
-﻿using General;
+﻿using Blocks;
+using General;
 using MainMenu.StateMachine.States;
 using StateMachine.States;
+using System.Collections.Generic;
 using TNRD;
 using UI.SceneTransitions;
 using UnityEngine;
@@ -11,6 +13,11 @@ namespace MainMenu.StateMachine
 {
 	public class MenuStateMachine : MonoBehaviour, IInitable
 	{
+		[Header("Global")]
+		[SerializeField] private int targetFrameRate;
+		[SerializeField] private List<Config> blockConfigs;
+
+		[Header("Local")]
 		[SerializeField] private SerializableInterface<ISceneTransition> sceneTransition;
 
 		private global::StateMachine.StateMachine core;
@@ -21,11 +28,14 @@ namespace MainMenu.StateMachine
 		{
 			core = new();
 
-			core.AddState(new InitState(core, sceneTransition.Value));
+			var localInitState = new InitState(core, sceneTransition.Value);
+
+			core.AddState(new GlobalInitState(core, localInitState, targetFrameRate, blockConfigs));
+			core.AddState(localInitState);
 			core.AddState(new MainState(core));
 			core.AddState(new LoadSceneState(core, sceneTransition.Value, SceneEnum.Gameplay));
 
-			core.SetState<InitState>();
+			core.SetState<GlobalInitState>();
 		}
 	}
 }

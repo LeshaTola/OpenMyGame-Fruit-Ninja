@@ -14,10 +14,8 @@ namespace StateMachine
 			states.Add(state.GetType(), state);
 		}
 
-		public void SetState<T>() where T : State
+		public void SetState(Type type)
 		{
-			var type = typeof(T);
-
 			if (currentState != null && currentState.GetType() == type)
 			{
 				return;
@@ -31,6 +29,12 @@ namespace StateMachine
 
 				currentState.Enter();
 			}
+		}
+
+		public void SetState<T>() where T : State
+		{
+			var type = typeof(T);
+			SetState(type);
 		}
 
 		public void Update()

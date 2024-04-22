@@ -25,11 +25,6 @@ namespace Blocks
 		public List<Sprite> HalfSprites { get => halfSprites; }
 		public float SliceForce { get => sliceForce; }
 
-		private void OnValidate()//TODO swap with global init state in stateMachine
-		{
-			GenerateHalves();
-		}
-
 		public void GenerateHalves()
 		{
 			int halfCount = 2;

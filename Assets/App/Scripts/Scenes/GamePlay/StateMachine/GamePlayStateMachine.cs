@@ -1,4 +1,5 @@
-﻿using General;
+﻿using Blocks;
+using General;
 using Health;
 using Score;
 using Slicing;
@@ -14,6 +15,11 @@ namespace Scenes.GamePlay.StateMachine
 {
 	public class GamePlayStateMachine : MonoBehaviour
 	{
+		[Header("Global")]
+		[SerializeField] private int targetFrameRate;
+		[SerializeField] private List<Config> blockConfigs;
+
+		[Header("Local")]
 		[SerializeField] private HealthController healthController;
 		[SerializeField] private ScoreController scoreController;
 		[SerializeField] private Slicer slicer;
@@ -34,14 +40,16 @@ namespace Scenes.GamePlay.StateMachine
 		{
 			core = new();
 
-			core.AddState(new States.InitState(core, sceneTransition.Value));
+			var localInitState = new States.InitState(core, sceneTransition.Value);
+			core.AddState(new GlobalInitState(core, localInitState, targetFrameRate, blockConfigs));
+			core.AddState(localInitState);
 			core.AddState(new ResetState(core, resettables));
 			core.AddState(new GameState(core, healthController, spawner));
 			core.AddState(new LooseState(core, looseUI, scoreController, poolsContainer, slicer));
 			core.AddState(new PauseState(core, pauseUI, slicer));
 			core.AddState(new LoadSceneState(core, sceneTransition.Value));
 
-			core.SetState<States.InitState>();
+			core.SetState<GlobalInitState>();
 		}
 	}
 }
