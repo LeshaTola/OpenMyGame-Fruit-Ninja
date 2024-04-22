@@ -9,14 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 164ea47da692a9044968d112467448b9, type: 3}
+  m_Script: {fileID: 11500000, guid: 730454cc429524d4cbc82783e1c510b3, type: 3}
   m_Name: Pear
   m_EditorClassIdentifier: 
   blockSprite: {fileID: 21300000, guid: a6170dc8d8947bc4ea84b175fecf18a0, type: 3}
-  sliceEffect: {fileID: -1292497027, guid: d77cc852af0fdce4e8bef9915a633dfb, type: 3}
   radius: 1
-  score: 50
-  fallReduceHealth: 1
-  sliceForce: 5
-  juiceParticle: {fileID: 2386057452795080795, guid: d06e5f67d9e4c4349a28dcd84477b849, type: 3}
-  juiceColor: {r: 1, g: 0.8392157, b: 0.09803922, a: 1}
+  sliceComponents:
+  - {fileID: 11400000, guid: 1e5415d9c858cb145b78b8d1a5b5032b, type: 2}
+  - {fileID: 11400000, guid: bc54a27f36f14b84ebd0e3af89941394, type: 2}
+  - {fileID: 11400000, guid: 42a0ad4e8ffa00949900f8aa8caf4dc0, type: 2}
+  - {fileID: 11400000, guid: 3d0eea6bce3867c44bb5a6f33360392d, type: 2}
+  - {fileID: 11400000, guid: e999461ef756fee44bed76598a7732e8, type: 2}
+  - {fileID: 11400000, guid: 323089ec55a5da042afb103167f6d0b9, type: 2}
+  - {fileID: 11400000, guid: c451cb1db5c3ce84fb1ff9c9703d2555, type: 2}
+  killComponents:
+  - {fileID: 11400000, guid: 64990ac5bef4ed146907e6c16d864e5f, type: 2}
+  - {fileID: 11400000, guid: e317b9c3c915aa840b9b1dd3b4b59e30, type: 2}

@@ -9,14 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 164ea47da692a9044968d112467448b9, type: 3}
+  m_Script: {fileID: 11500000, guid: 730454cc429524d4cbc82783e1c510b3, type: 3}
   m_Name: Coconut
   m_EditorClassIdentifier: 
   blockSprite: {fileID: 21300000, guid: 76363400ff1e4ff45bc22614499022de, type: 3}
-  sliceEffect: {fileID: 21300000, guid: 2ab0be1ea5ecb154ead28e99dd067326, type: 3}
   radius: 0.8
-  score: 50
-  fallReduceHealth: 1
-  sliceForce: 5
-  juiceParticle: {fileID: 2386057452795080795, guid: d06e5f67d9e4c4349a28dcd84477b849, type: 3}
-  juiceColor: {r: 1, g: 1, b: 1, a: 1}
+  sliceComponents:
+  - {fileID: 11400000, guid: 1e5415d9c858cb145b78b8d1a5b5032b, type: 2}
+  - {fileID: 11400000, guid: bc54a27f36f14b84ebd0e3af89941394, type: 2}
+  - {fileID: 11400000, guid: 6cff4843ce908ca48b2dd053ce9b4c2c, type: 2}
+  - {fileID: 11400000, guid: 601184a2d60dc4c4eb51ea177b9d5428, type: 2}
+  - {fileID: 11400000, guid: 285e35def236f1343a09faafc111cafd, type: 2}
+  - {fileID: 11400000, guid: 944b3130531b9c54b9803a941bd74dd0, type: 2}
+  - {fileID: 11400000, guid: a4fed0e24fb605c4a8fa616caec87444, type: 2}
+  killComponents:
+  - {fileID: 11400000, guid: 64990ac5bef4ed146907e6c16d864e5f, type: 2}
+  - {fileID: 11400000, guid: e317b9c3c915aa840b9b1dd3b4b59e30, type: 2}

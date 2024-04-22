@@ -24,4 +24,4 @@ MonoBehaviour:
   bomb:
     Config: {fileID: 11400000, guid: 35fe41ba1a56c6a4e8ab65d0eba3425d, type: 2}
     MaxCount: 0.49
-    Chance: 0.305
+    Chance: 1
