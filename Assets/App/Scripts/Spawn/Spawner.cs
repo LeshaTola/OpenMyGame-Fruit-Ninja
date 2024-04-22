@@ -1,8 +1,8 @@
-﻿using Blocks;
+﻿using Assets.App.Scripts.General;
+using Blocks;
 using Blocks.Factory;
 using General;
 using Regions;
-using Spawn.BlockSpawnLogic;
 using Spawn.Progressor;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,6 +13,7 @@ namespace Spawn
 {
 	public class Spawner : MonoBehaviour, IResettable
 	{
+		[SerializeField] private Context context;
 		[SerializeField] private BlockSpawnConfig blocksSpawnConfig;
 		[SerializeField] private List<Region> regions;
 		[SerializeField] private SpawnConfig config;
@@ -23,8 +24,6 @@ namespace Spawn
 
 		public IReadOnlyCollection<Region> Regions { get => regions; }
 
-		private IBlockSpawnLogic bombSpawnLogic;
-
 		public void Init(IProgressor progressor, IBlockFactory blockFactory)
 		{
 			this.progressor = progressor;
@@ -32,8 +31,10 @@ namespace Spawn
 
 			progressor.Init(config, this);
 
-			bombSpawnLogic = new BombSpawnLogic(progressor, blocksSpawnConfig.Bomb);
-
+			foreach (var bonus in blocksSpawnConfig.Bonuses)
+			{
+				bonus.SpawnLogic.Init(progressor, bonus.Config, context);
+			}
 		}
 
 		public IEnumerator SpawnPack()
@@ -111,9 +112,12 @@ namespace Spawn
 		private Block GetAnyBlock(List<Block> pack)
 		{
 			Block block;
-			if (bombSpawnLogic.CanSpawn(pack))
+			foreach (var bonus in blocksSpawnConfig.Bonuses)
 			{
-				return blockFactory.GetBlock(blocksSpawnConfig.Bomb.Config);
+				if (bonus.SpawnLogic.CanSpawn(pack))
+				{
+					return blockFactory.GetBlock(bonus.Config);
+				}
 			}
 
 			block = blockFactory.GetBlock(blocksSpawnConfig.Fruits[Random.Range(0, blocksSpawnConfig.Fruits.Count)]);

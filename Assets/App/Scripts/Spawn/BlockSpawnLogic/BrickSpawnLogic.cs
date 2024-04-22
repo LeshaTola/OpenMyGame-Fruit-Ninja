@@ -4,13 +4,11 @@ using UnityEngine;
 
 namespace Spawn.BlockSpawnLogic
 {
-	[CreateAssetMenu(fileName = "BombSpawnLogic", menuName = "Configs/Blocks/SpawnLogic/BombSpawnLogic")]
-	public class BombSpawnLogic : BasicSpawnLogic
+	[CreateAssetMenu(fileName = "BrickSpawnLogic", menuName = "Configs/Blocks/SpawnLogic/BrickSpawnLogic")]
+	public class BrickSpawnLogic : BasicSpawnLogic
 	{
-		[Tooltip("Percentage of the main pack")]
-		[Range(0, 1)][SerializeField] private float packPercent;
+		[SerializeField] private int maxCount;
 		[Range(0, 1)][SerializeField] private float chance;
-
 		public override bool CanSpawn(List<Block> pack)
 		{
 			if (!IsEnough(pack))
@@ -28,7 +26,6 @@ namespace Spawn.BlockSpawnLogic
 		{
 			var count = 0;
 
-			int maxCount = Mathf.RoundToInt(progressor.FruitCount * packPercent);
 			if (maxCount <= 0)
 			{
 				return true;

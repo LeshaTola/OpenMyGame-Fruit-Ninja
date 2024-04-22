@@ -20,6 +20,7 @@ namespace Slicing
 		[SerializeField] private Effect effectTemplate;
 
 		private IPlayerInput playerInput;
+		private bool isActive = false;
 
 		public void Init(IPlayerInput playerInput)
 		{
@@ -41,7 +42,7 @@ namespace Slicing
 		{
 			var delta = playerInput.GetInputDelta();
 			Vector2 deltaVector = delta.currPos - delta.prevPos;
-			if (delta.Equals(default) || !IsValid(deltaVector))
+			if (!isActive || delta.Equals(default) || !IsValid(deltaVector))
 			{
 				return;
 			}
@@ -68,6 +69,11 @@ namespace Slicing
 			return slicedBlocks;
 		}
 
+		public void StopSlicing()
+		{
+			isActive = false;
+		}
+
 		private bool IsValid(Vector2 deltaVector)
 		{
 			return deltaVector.magnitude >= minSpeed;
@@ -88,6 +94,7 @@ namespace Slicing
 		{
 			transform.position = worldMousePosition;
 			trailRenderer.Clear();
+			isActive = true;
 		}
 	}
 }

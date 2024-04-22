@@ -2531,6 +2531,7 @@ MonoBehaviour:
   healthController: {fileID: 25185309}
   scoreController: {fileID: 2071664397}
   comboController: {fileID: 2138955638}
+  slicer: {fileID: 169325681}
 --- !u!1 &1375123708
 GameObject:
   m_ObjectHideFlags: 0
@@ -3044,6 +3045,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 518b94e01e9613b4b978dda3030c2956, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  context: {fileID: 1207195825}
   blocksSpawnConfig: {fileID: 11400000, guid: 2fbd2f2e0326c1541abf537f196f1dda, type: 2}
   regions:
   - {fileID: 11400000, guid: 33b9f98427321f948b6394c7f6498a95, type: 2}
