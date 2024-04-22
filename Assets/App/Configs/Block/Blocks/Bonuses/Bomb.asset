@@ -21,3 +21,4 @@ MonoBehaviour:
   explosionRadius: 7
   explosionForce: 10
   reduceHealth: 1
+  text: "\u0411\u0423\u041C!"
