@@ -1,5 +1,4 @@
 using General;
-using Score;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,24 +20,6 @@ namespace Blocks
 		private void ValidateBoundaries()
 		{
 			ValidateBlocks();
-			ValidateSliceUI();
-		}
-
-		private void ValidateSliceUI()
-		{
-			List<SliceTextUI> UIToDestroy = new();
-			foreach (var UI in poolsContainer.SliceUI.Active)
-			{
-				if (UI.transform.position.y + UI.transform.localScale.y < -mainCamera.orthographicSize)
-				{
-					UIToDestroy.Add(UI);
-				}
-			}
-
-			foreach (var UI in UIToDestroy)
-			{
-				poolsContainer.SliceUI.Release(UI);
-			}
 		}
 
 		private void ValidateBlocks()
