@@ -39,7 +39,8 @@ namespace Blocks.Factory
 			var effectStrategy = new EffectSliceStrategyWrapper(new NoSliceStrategy(), block, poolsContainer.Effects);
 			var reduceHealthStrategy = new ReduceHealthSliceStrategyWrapper(effectStrategy, block, healthController, config.ReduceHealth);
 			var pushStrategy = new PushSliceStrategyWrapper(reduceHealthStrategy, block, poolsContainer.Blocks, config.ExplosionRadius, config.ExplosionForce);
-			var releaseStrategy = new ReleaseSliceStrategyWrapper(pushStrategy, block, poolsContainer.Blocks);
+			var textUIStrategy = new TextUISliceStrategyWrapper(pushStrategy, block, poolsContainer.SliceUI, config.Text);
+			var releaseStrategy = new ReleaseSliceStrategyWrapper(textUIStrategy, block, poolsContainer.Blocks);
 
 			var releaseKillStrategy = new ReleaseKillStrategyWrapper(new NoKillStrategy(), block, poolsContainer.Blocks);
 
@@ -82,8 +83,9 @@ namespace Blocks.Factory
 			var halvesStrategy = new HalvesSliceStrategyWrapper(new NoSliceStrategy(), block, this, config.SliceForce);
 			var effectStrategy = new EffectSliceStrategyWrapper(halvesStrategy, block, poolsContainer.Effects);
 			var particleStrategy = new ParticleSliceStrategyWrapper(effectStrategy, block, poolsContainer.Particles, config.JuiceColor);
-			var scoreUIStrategy = new ScoreSliceStrategyWrapper(particleStrategy, block, poolsContainer.SliceUI, scoreController, config.SliceForce);
-			var comboStrategy = new ComboSliceStrategyWrapper(scoreUIStrategy, block, comboController);
+			var scoreStrategy = new ScoreSliceStrategyWrapper(particleStrategy, block, scoreController);
+			var textUIStrategy = new TextUISliceStrategyWrapper(scoreStrategy, block, poolsContainer.SliceUI, config.Score.ToString());
+			var comboStrategy = new ComboSliceStrategyWrapper(textUIStrategy, block, comboController);
 			var releaseStrategy = new ReleaseSliceStrategyWrapper(comboStrategy, block, poolsContainer.Blocks);
 			return releaseStrategy;
 		}

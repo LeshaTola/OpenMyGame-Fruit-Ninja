@@ -147,9 +147,8 @@ GameObject:
   - component: {fileID: 3128081415728277582}
   - component: {fileID: 3128081415728277583}
   - component: {fileID: 6536739183897963745}
-  - component: {fileID: 3128081415728277576}
   m_Layer: 5
-  m_Name: SliceScoreText
+  m_Name: SliceText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -229,20 +228,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 3128081415728277580}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7313e4d1d05853449a1617fa0400da46, type: 3}
+  m_Script: {fileID: 11500000, guid: 80d246cb0511482468149b429d3ed00b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movement: {fileID: 3128081415728277576}
-  scoreText: {fileID: 3128081414768682126}
---- !u!114 &3128081415728277576
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3128081415728277580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1df0a9f8e00efdd4d96e51ff19625f0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  text: {fileID: 3128081414768682126}
+  scaleTime: 0.3
+  scale:
+    Min: {x: 0, y: 0}
+    Max: {x: 1, y: 1}
+  verticalOffset: 1
+  moveTime: 1

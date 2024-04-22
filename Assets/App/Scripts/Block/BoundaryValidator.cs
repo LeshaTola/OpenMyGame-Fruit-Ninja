@@ -1,11 +1,12 @@
 using General;
+using Score;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Blocks
 {
-	public class DeathLine : MonoBehaviour
+	public class BoundaryValidator : MonoBehaviour
 	{
 		[SerializeField] private Camera mainCamera;
 		[SerializeField] private ObjectPoolsContainer poolsContainer;
@@ -25,7 +26,7 @@ namespace Blocks
 
 		private void ValidateSliceUI()
 		{
-			List<SliceScoreUI> UIToDestroy = new();
+			List<SliceTextUI> UIToDestroy = new();
 			foreach (var UI in poolsContainer.SliceUI.Active)
 			{
 				if (UI.transform.position.y + UI.transform.localScale.y < -mainCamera.orthographicSize)

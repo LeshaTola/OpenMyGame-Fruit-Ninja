@@ -1,4 +1,5 @@
 using Blocks;
+using Score;
 using UnityEngine;
 using Utility;
 
@@ -9,7 +10,7 @@ namespace General
 		[Header("Templates")]
 		[SerializeField] private Block blockTemplate;
 		[SerializeField] private Effect effectTemplate;
-		[SerializeField] private SliceScoreUI sliceUITemplate;
+		[SerializeField] private SliceTextUI sliceUITemplate;
 		[SerializeField] private JuiceParticles particleTemplate;
 
 		[Header("Containers")]
@@ -22,7 +23,7 @@ namespace General
 		public ObjectPool<Block> Bonuses { get; private set; }
 
 		public ObjectPool<Effect> Effects { get; private set; }
-		public ObjectPool<SliceScoreUI> SliceUI { get; private set; }
+		public ObjectPool<SliceTextUI> SliceUI { get; private set; }
 		public ObjectPool<JuiceParticles> Particles { get; private set; }
 
 		public void Init()
@@ -40,11 +41,11 @@ namespace General
 				() =>
 				{
 					var sliceUI = Instantiate(sliceUITemplate, sliceUIContainer);
+					sliceUI.Init(() => SliceUI.Release(sliceUI));
 					return sliceUI;
 				},
 				(UI) =>
 				{
-					UI.Movement.Reset();
 					UI.gameObject.SetActive(true);
 				},
 				(UI) =>
