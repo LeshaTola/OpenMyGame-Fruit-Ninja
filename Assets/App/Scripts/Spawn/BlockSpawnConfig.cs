@@ -1,5 +1,4 @@
 ﻿using Blocks;
-using Blocks.Configs;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,13 +9,13 @@ namespace Spawn
 	public class BlockSpawnConfig : ScriptableObject
 	{
 		[Header("Fruits")]
-		[SerializeField] private List<FruitConfig> fruits;
+		[SerializeField] private List<Config> fruits;
 
 		[Header("Bomb")]
 		[SerializeField] private ConfigProperties bomb;
 
 		public ConfigProperties Bomb { get => bomb; }
-		public List<FruitConfig> Fruits { get => fruits; }
+		public List<Config> Fruits { get => fruits; }
 	}
 
 	[Serializable]

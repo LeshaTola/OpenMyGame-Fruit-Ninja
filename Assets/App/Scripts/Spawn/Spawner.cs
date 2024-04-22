@@ -1,5 +1,4 @@
 ﻿using Blocks;
-using Blocks.Configs;
 using Blocks.Factory;
 using General;
 using Regions;
@@ -114,10 +113,10 @@ namespace Spawn
 			Block block;
 			if (bombSpawnLogic.CanSpawn(pack))
 			{
-				return blockFactory.GetBomb(blocksSpawnConfig.Bomb.Config as BombConfig);
+				return blockFactory.GetBlock(blocksSpawnConfig.Bomb.Config);
 			}
 
-			block = blockFactory.GetFruit(blocksSpawnConfig.Fruits[Random.Range(0, blocksSpawnConfig.Fruits.Count)]);
+			block = blockFactory.GetBlock(blocksSpawnConfig.Fruits[Random.Range(0, blocksSpawnConfig.Fruits.Count)]);
 			return block;
 		}
 	}

@@ -1,33 +1,39 @@
-using Blocks.Logic;
+using Assets.App.Scripts.General;
 using Physics;
 using UnityEngine;
 
 namespace Blocks
 {
-	public class Block : MonoBehaviour, IBlock
+	public class Block : MonoBehaviour
 	{
 		[SerializeField] private Config config;
 		[SerializeField] private Visual visual;
 		[SerializeField] private Movement movement;
 		[SerializeField] private MyCollider myCollider;
 
-		private IBlock blockLogic;
-
 		public Config Config { get => config; }
 		public Visual Visual { get => visual; }
 		public Movement Movement { get => movement; }
 		public MyCollider Collider { get => myCollider; }
+		public Vector2 SliceDirection { get; private set; }
 
-		public void Init(Config config, IBlock blockLogic)
+		public void Init(Config config, Context context)
+		{
+			Init(config, config.BlockSprite, config.Radius, context);
+		}
+
+		public void Init(Config config, Sprite sprite, float radius, Context context)
 		{
 			this.config = config;
 
-			Init(config.BlockSprite, config.Radius, blockLogic);
-		}
-
-		public void Init(Sprite sprite, float radius, IBlock blockLogic)
-		{
-			this.blockLogic = blockLogic;
+			foreach (var component in Config.SliceComponents)
+			{
+				component.Init(context);
+			}
+			foreach (var component in Config.KillComponents)
+			{
+				component.Init(context);
+			}
 
 			visual.Init(sprite);
 			myCollider.Radius = radius;
@@ -41,12 +47,19 @@ namespace Blocks
 
 		public void Slice(Vector2 delta)
 		{
-			blockLogic.Slice(delta);
+			SliceDirection = delta;
+			foreach (var component in Config.SliceComponents)
+			{
+				component.Execute(this);
+			}
 		}
 
 		public void Kill()
 		{
-			blockLogic.Kill();
+			foreach (var component in Config.KillComponents)
+			{
+				component.Execute(this);
+			}
 		}
 	}
 }

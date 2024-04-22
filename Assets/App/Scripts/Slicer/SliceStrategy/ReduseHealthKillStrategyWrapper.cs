@@ -22,7 +22,6 @@ namespace Slicing.SliceStrategy
 		public override void Slice(Vector2 delta)
 		{
 			base.Slice(delta);
-			healthController.ReduceHealth(value);
 		}
 	}
 }

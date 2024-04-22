@@ -1,29 +1,28 @@
-﻿using System.Collections.Generic;
+﻿using Blocks.Configs.Component;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Blocks
 {
-	[CreateAssetMenu(fileName = "BlockConfig", menuName = "Configs/Block/Block")]
-	public abstract class Config : ScriptableObject
+	[CreateAssetMenu(fileName = "BlockConfig", menuName = "Configs/Blocks/Block")]
+	public class Config : ScriptableObject
 	{
 		[Header("General")]
 		[SerializeField] private Sprite blockSprite;
-		[SerializeField] private Sprite sliceEffect;
 		[SerializeField] private float radius;
-		[SerializeField] private int score;
-		[SerializeField] private int fallReduceHealth;
-		[SerializeField] private float sliceForce;
+
+		[SerializeField] private List<BasicComponent> sliceComponents = new();
+		[SerializeField] private List<BasicComponent> killComponents = new();
 
 		private List<Sprite> halfSprites;
 
 		public Sprite BlockSprite { get => blockSprite; }
-		public Sprite SliceEffect { get => sliceEffect; }
 		public float Radius { get => radius; }
-		public int Score { get => score; }
-		public int FallReduceHealth { get => fallReduceHealth; }
+
+		public List<BasicComponent> SliceComponents { get => sliceComponents; }
+		public List<BasicComponent> KillComponents { get => killComponents; }
 
 		public List<Sprite> HalfSprites { get => halfSprites; }
-		public float SliceForce { get => sliceForce; }
 
 		public void GenerateHalves()
 		{

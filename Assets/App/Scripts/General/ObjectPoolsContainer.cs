@@ -63,7 +63,7 @@ namespace General
 				() =>
 				{
 					var newBlock = Instantiate(blockTemplate, blockContainer);
-					newBlock.Init(null, 0f, null);
+					newBlock.Visual.Init(null);
 					return newBlock;
 				},
 				(block) =>
