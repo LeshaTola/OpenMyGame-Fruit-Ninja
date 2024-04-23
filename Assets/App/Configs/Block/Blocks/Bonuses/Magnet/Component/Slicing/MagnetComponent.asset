@@ -9,10 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 519e5bac81f336a4ba2b33ffe1d3c3de, type: 3}
-  m_Name: BlocksSpawnConfig
+  m_Script: {fileID: 11500000, guid: 187567d9e16ba9348b2413727b08b34c, type: 3}
+  m_Name: MagnetComponent
   m_EditorClassIdentifier: 
-  fruits:
+  area: {fileID: 7187883746020959552, guid: db07c40df656b6b42b6b407721bd7d4a, type: 3}
+  strength: 20
+  radius: 3
+  lifeTime: 5
+  whiteList:
   - {fileID: 11400000, guid: 8388eaba214a9d8419f5dfcc666b6b28, type: 2}
   - {fileID: 11400000, guid: 422e1fb85cc5bab44a213a8452bee112, type: 2}
   - {fileID: 11400000, guid: dede252390d145a41a61e441ff24c7d9, type: 2}
@@ -21,10 +25,3 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a021e3b051794df4aa86316f4219222c, type: 2}
   - {fileID: 11400000, guid: 82a650014570a8b42b09a37555f9a289, type: 2}
   - {fileID: 11400000, guid: 257a4f96ee8bea54cbf3ce707a24d3d3, type: 2}
-  bonuses:
-  - Config: {fileID: 11400000, guid: 35fe41ba1a56c6a4e8ab65d0eba3425d, type: 2}
-    SpawnLogic: {fileID: 11400000, guid: 2147116454530d84fa1fb2af8a3dd180, type: 2}
-  - Config: {fileID: 11400000, guid: a3e6ff8d20f6c2f4da76a0f4b576e56f, type: 2}
-    SpawnLogic: {fileID: 11400000, guid: 996f14446f92f39418e87940daf94394, type: 2}
-  - Config: {fileID: 11400000, guid: 6caf6ca2466f5c34abc96bdcb2a1c098, type: 2}
-    SpawnLogic: {fileID: 11400000, guid: b6817e8276678e84c999464da3814b62, type: 2}

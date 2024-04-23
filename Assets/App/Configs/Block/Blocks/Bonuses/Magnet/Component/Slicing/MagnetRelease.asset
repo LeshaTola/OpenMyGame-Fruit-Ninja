@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a63e6f5e63c48e8469d69f9942311e3f, type: 3}
-  m_Name: BombSpawnLogic
+  m_Script: {fileID: 11500000, guid: 13bcf0566f6174a4280136a9cbcb0995, type: 3}
+  m_Name: MagnetRelease
   m_EditorClassIdentifier: 
-  packPercent: 0.49
-  chance: 0.23

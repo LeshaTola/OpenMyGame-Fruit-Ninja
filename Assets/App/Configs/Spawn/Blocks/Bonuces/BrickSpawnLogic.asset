@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: BrickSpawnLogic
   m_EditorClassIdentifier: 
   maxCount: 1
-  chance: 1
+  chance: 0.1

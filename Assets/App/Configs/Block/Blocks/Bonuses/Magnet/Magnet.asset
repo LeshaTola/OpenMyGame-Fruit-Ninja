@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730454cc429524d4cbc82783e1c510b3, type: 3}
+  m_Name: Magnet
+  m_EditorClassIdentifier: 
+  blockSprite: {fileID: 21300000, guid: 6d937181ad42b6e41b608ca367740989, type: 3}
+  radius: 1
+  sliceComponents:
+  - {fileID: 11400000, guid: 3519c7e2c5cd7bd4a8250fbb837d090d, type: 2}
+  - {fileID: 11400000, guid: 07241f2cd9e8dcd47b0b01b05a4dcdbc, type: 2}
+  - {fileID: 11400000, guid: 25fbcf4e97b70e84899721103cc4b504, type: 2}
+  killComponents:
+  - {fileID: 11400000, guid: c83f9d174c7c8ee49965a931d16431a5, type: 2}
