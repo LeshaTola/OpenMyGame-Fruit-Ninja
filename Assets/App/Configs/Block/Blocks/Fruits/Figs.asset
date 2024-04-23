@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Figs
   m_EditorClassIdentifier: 
   blockSprite: {fileID: 21300000, guid: 8320dbae38628c648a41c6f29c1c7727, type: 3}
+  speed: 1
   radius: 0.8
   sliceComponents:
   - {fileID: 11400000, guid: 1e5415d9c858cb145b78b8d1a5b5032b, type: 2}

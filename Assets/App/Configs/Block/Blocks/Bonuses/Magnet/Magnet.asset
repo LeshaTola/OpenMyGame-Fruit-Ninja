@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Magnet
   m_EditorClassIdentifier: 
   blockSprite: {fileID: 21300000, guid: 6d937181ad42b6e41b608ca367740989, type: 3}
+  speed: 1
   radius: 1
   sliceComponents:
   - {fileID: 11400000, guid: 3519c7e2c5cd7bd4a8250fbb837d090d, type: 2}

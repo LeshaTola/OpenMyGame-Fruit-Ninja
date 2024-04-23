@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 730454cc429524d4cbc82783e1c510b3, type: 3}
-  m_Name: Brick
+  m_Name: BonusHealth
   m_EditorClassIdentifier: 
-  blockSprite: {fileID: 21300000, guid: 9138ec5ff0e7eb148a1c650bb32baf6c, type: 3}
-  speed: 1
-  radius: 0.8
+  blockSprite: {fileID: 21300000, guid: 3651b557e5d28e64fa9a68afeddbf8fe, type: 3}
+  speed: 1.5
+  radius: 1
   sliceComponents:
-  - {fileID: 11400000, guid: 065d64d890d34884186cb6970180797a, type: 2}
-  - {fileID: 11400000, guid: bad14c245ff31ee4598a6e54c754a7ba, type: 2}
+  - {fileID: 11400000, guid: bf990b25fefdee043af5719ad56b78a0, type: 2}
+  - {fileID: 11400000, guid: a1dd42dcb03389848ae6e12fff4ba1f7, type: 2}
+  - {fileID: 11400000, guid: c83f9d174c7c8ee49965a931d16431a5, type: 2}
   killComponents:
   - {fileID: 11400000, guid: c83f9d174c7c8ee49965a931d16431a5, type: 2}
