@@ -1,4 +1,5 @@
 ﻿using Blocks;
+using Spawn.BlockSpawnLogic;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,10 +12,10 @@ namespace Spawn
 		[Header("Fruits")]
 		[SerializeField] private List<Config> fruits;
 
-		[Header("Bomb")]
-		[SerializeField] private ConfigProperties bomb;
+		[Header("Bonuses")]
+		[SerializeField] private List<ConfigProperties> bonuses;
 
-		public ConfigProperties Bomb { get => bomb; }
+		public IReadOnlyCollection<ConfigProperties> Bonuses { get => bonuses; }
 		public List<Config> Fruits { get => fruits; }
 	}
 
@@ -22,8 +23,6 @@ namespace Spawn
 	public struct ConfigProperties
 	{
 		public Config Config;
-		[Tooltip("Percentage of the main pack")]
-		[Range(0, 1)] public float MaxCount;
-		[Range(0, 1)] public float Chance;
+		public BasicSpawnLogic SpawnLogic;
 	}
 }
