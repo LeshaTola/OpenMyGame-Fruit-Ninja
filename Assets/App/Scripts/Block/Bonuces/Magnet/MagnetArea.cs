@@ -12,6 +12,8 @@ public class MagnetArea : MonoBehaviour
 	[SerializeField] private Context context;
 	[SerializeField] private List<Config> whiteList;
 
+	[SerializeField] private ParticleSystem particles;
+
 	public float Radius { get => radius; }
 	public Context Context { get => context; }
 
@@ -26,6 +28,11 @@ public class MagnetArea : MonoBehaviour
 
 	public void StartPull()
 	{
+		var particlesMain = particles.main;
+		ParticleSystem.ShapeModule shape = particles.shape;
+		shape.radius *= radius;
+		particlesMain.startLifetime = particlesMain.startLifetime.constant * radius;
+
 		StartCoroutine(PullCoroutine());
 	}
 

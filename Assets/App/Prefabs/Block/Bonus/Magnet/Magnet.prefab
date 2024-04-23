@@ -29,7 +29,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1346420830056831696}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -58,6 +59,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a021e3b051794df4aa86316f4219222c, type: 2}
   - {fileID: 11400000, guid: 82a650014570a8b42b09a37555f9a289, type: 2}
   - {fileID: 11400000, guid: 257a4f96ee8bea54cbf3ce707a24d3d3, type: 2}
+  particles: {fileID: 1346420830056831697}
 --- !u!114 &7187883746020959553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,4 +73,70 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   magnetArea: {fileID: 7187883746020959552}
-  context: {fileID: 0}
+--- !u!1001 &234002604900211546
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7187883746020959558}
+    m_Modifications:
+    - target: {fileID: 1265558488141955466, guid: 0a29f0599b7d791478c4f4013010fba1, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1265558488141955466, guid: 0a29f0599b7d791478c4f4013010fba1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1265558488141955466, guid: 0a29f0599b7d791478c4f4013010fba1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1265558488141955466, guid: 0a29f0599b7d791478c4f4013010fba1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1265558488141955466, guid: 0a29f0599b7d791478c4f4013010fba1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1265558488141955466, guid: 0a29f0599b7d791478c4f4013010fba1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1265558488141955466, guid: 0a29f0599b7d791478c4f4013010fba1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1265558488141955466, guid: 0a29f0599b7d791478c4f4013010fba1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1265558488141955466, guid: 0a29f0599b7d791478c4f4013010fba1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1265558488141955466, guid: 0a29f0599b7d791478c4f4013010fba1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1265558488141955466, guid: 0a29f0599b7d791478c4f4013010fba1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1265558488141955469, guid: 0a29f0599b7d791478c4f4013010fba1, type: 3}
+      propertyPath: m_Name
+      value: MagnetParticles
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0a29f0599b7d791478c4f4013010fba1, type: 3}
+--- !u!4 &1346420830056831696 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1265558488141955466, guid: 0a29f0599b7d791478c4f4013010fba1, type: 3}
+  m_PrefabInstance: {fileID: 234002604900211546}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1346420830056831697 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1265558488141955467, guid: 0a29f0599b7d791478c4f4013010fba1, type: 3}
+  m_PrefabInstance: {fileID: 234002604900211546}
+  m_PrefabAsset: {fileID: 0}
