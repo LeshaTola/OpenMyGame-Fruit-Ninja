@@ -9,6 +9,7 @@ namespace Health
 		[SerializeField] private HealthIconUI healthIconsTemplate;
 		[SerializeField] private Transform container;
 
+		private int lastHealthPosition;
 		private List<HealthIconUI> healthIcons;
 
 		public void Init()
@@ -22,6 +23,17 @@ namespace Health
 			controller.OnHealthChanged -= OnHealthChanged;
 		}
 
+		public Vector2 GetNextHeartPosition()
+		{
+			int position = lastHealthPosition;
+			if (position >= healthIcons.Count - 1)
+			{
+				return healthIcons[healthIcons.Count - 1].transform.position;
+			}
+			lastHealthPosition++;
+			return healthIcons[lastHealthPosition].transform.position;
+		}
+
 		private void UpdateUI(int health)
 		{
 			for (int i = health; i < controller.MaxHealth; i++)
@@ -33,6 +45,7 @@ namespace Health
 			{
 				healthIcons[i].Show();
 			}
+			lastHealthPosition = health - 1;
 		}
 
 		private void OnHealthChanged(int health)
