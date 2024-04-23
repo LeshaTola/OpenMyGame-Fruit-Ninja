@@ -17,13 +17,12 @@ public class HealthIconUI : MonoBehaviour
 	{
 		transform.DOKill();
 		gameObject.SetActive(true);
-		transform.DOScale(defaultScale, animationTime);
+		transform.DOScale(defaultScale, 0f);
 	}
 
 	public void Hide()
 	{
 		transform.DOKill();
-		transform.DOScale(targetScale, animationTime)
-			.onComplete += () => gameObject.SetActive(false);
+		transform.DOScale(targetScale, animationTime);
 	}
 }

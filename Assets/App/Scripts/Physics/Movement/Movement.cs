@@ -7,8 +7,10 @@ namespace Physics
 		private const float GRAVITY = -9.8f;
 
 		private Vector2 velocity;
+		private float speed = 1f;
 
 		public Vector2 Velocity { get => velocity; }
+		public float Speed { get => speed; set => speed = value; }
 
 		private void Update()
 		{
@@ -29,7 +31,7 @@ namespace Physics
 		public void Move()
 		{
 			Vector2 currentPosition = transform.position;
-			transform.position = Vector2.Lerp(currentPosition, currentPosition + velocity, Time.deltaTime);
+			transform.position = Vector2.Lerp(currentPosition, currentPosition + speed * velocity, Time.deltaTime);
 		}
 
 		public void Reset()

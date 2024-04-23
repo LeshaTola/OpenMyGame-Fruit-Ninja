@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: _Half
   m_EditorClassIdentifier: 
   blockSprite: {fileID: 0}
+  speed: 1
   radius: 0
   sliceComponents: []
   killComponents:

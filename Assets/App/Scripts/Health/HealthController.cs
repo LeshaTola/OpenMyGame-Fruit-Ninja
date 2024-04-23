@@ -15,6 +15,7 @@ namespace Health
 		private int currentHealth = 0;
 
 		public int MaxHealth { get => maxHealth; }
+		public int CurrentHealth { get => currentHealth; }
 
 		public void AddHealth(int health)
 		{

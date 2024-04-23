@@ -9,6 +9,7 @@ namespace Blocks
 	{
 		[Header("General")]
 		[SerializeField] private Sprite blockSprite;
+		[SerializeField] private float speed = 1f;
 		[SerializeField] private float radius;
 
 		[SerializeField] private List<BasicComponent> sliceComponents = new();
@@ -17,6 +18,7 @@ namespace Blocks
 		private List<Sprite> halfSprites;
 
 		public Sprite BlockSprite { get => blockSprite; }
+		public float Speed { get => speed; }
 		public float Radius { get => radius; }
 
 		public List<BasicComponent> SliceComponents { get => sliceComponents; }
