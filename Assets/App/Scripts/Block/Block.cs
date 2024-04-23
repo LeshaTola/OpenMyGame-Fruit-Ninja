@@ -37,6 +37,7 @@ namespace Blocks
 
 			visual.Init(sprite);
 			myCollider.Radius = radius;
+			movement.Speed = config.Speed;
 		}
 
 		public void ResetBlock()

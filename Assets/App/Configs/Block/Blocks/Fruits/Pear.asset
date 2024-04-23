@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Pear
   m_EditorClassIdentifier: 
   blockSprite: {fileID: 21300000, guid: a6170dc8d8947bc4ea84b175fecf18a0, type: 3}
+  speed: 1
   radius: 1
   sliceComponents:
   - {fileID: 11400000, guid: 1e5415d9c858cb145b78b8d1a5b5032b, type: 2}

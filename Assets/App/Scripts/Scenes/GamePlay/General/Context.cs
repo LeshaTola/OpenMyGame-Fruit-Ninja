@@ -14,11 +14,13 @@ namespace Assets.App.Scripts.General
 		[SerializeField] private ScoreController scoreController;
 		[SerializeField] private ComboController comboController;
 		[SerializeField] private Slicer slicer;
+		[SerializeField] private UIContext uiContext;
 
 		public ObjectPoolsContainer PoolsContainer { get => poolsContainer; }
 		public HealthController HealthController { get => healthController; }
 		public ScoreController ScoreController { get => scoreController; }
 		public ComboController ComboController { get => comboController; }
 		public Slicer Slicer { get => slicer; }
+		public UIContext UiContext { get => uiContext; }
 	}
 }

@@ -9,12 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 730454cc429524d4cbc82783e1c510b3, type: 3}
-  m_Name: _Half
+  m_Script: {fileID: 11500000, guid: 2fdbc94a1cf03c34da20f734bace0ae0, type: 3}
+  m_Name: BonusHealthSpawnLogic
   m_EditorClassIdentifier: 
-  blockSprite: {fileID: 0}
-  speed: 1
-  radius: 0
-  sliceComponents: []
-  killComponents:
-  - {fileID: 11400000, guid: c83f9d174c7c8ee49965a931d16431a5, type: 2}
+  minHealth: 4
+  packPercent: 0.49
+  chance: 0.05
