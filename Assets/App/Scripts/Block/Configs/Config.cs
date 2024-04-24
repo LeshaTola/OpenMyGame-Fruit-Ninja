@@ -15,7 +15,7 @@ namespace Blocks
 		[SerializeField] private List<BasicComponent> sliceComponents = new();
 		[SerializeField] private List<BasicComponent> killComponents = new();
 
-		private List<Sprite> halfSprites;
+		[SerializeField] private List<Sprite> halfSprites;
 
 		public Sprite BlockSprite { get => blockSprite; }
 		public float Speed { get => speed; }
