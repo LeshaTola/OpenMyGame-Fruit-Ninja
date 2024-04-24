@@ -26,12 +26,21 @@ namespace Blocks.Configs.Component
 				newBlock.ResetBlock();
 				newBlock.Init(blockConfig, Context);
 
-				Vector2 pushVector = new Vector2(Random.Range(-1f, 1f), 1f);
-				newBlock.Movement.Push(pushVector.normalized * pushForce);
-
-				newBlock.Collider.Radius = 0;
-				newBlock.StartCoroutine(StopInvulnerability(newBlock));
+				PushBlock(newBlock);
+				TurnOnInvulnerability(newBlock);
 			}
+		}
+
+		private void TurnOnInvulnerability(Block newBlock)
+		{
+			newBlock.Collider.Radius = 0;
+			newBlock.StartCoroutine(StopInvulnerability(newBlock));
+		}
+
+		private void PushBlock(Block newBlock)
+		{
+			Vector2 pushVector = new Vector2(Random.Range(-1f, 1f), 1f);
+			newBlock.Movement.Push(pushVector.normalized * pushForce);
 		}
 
 		private IEnumerator StopInvulnerability(Block block)
