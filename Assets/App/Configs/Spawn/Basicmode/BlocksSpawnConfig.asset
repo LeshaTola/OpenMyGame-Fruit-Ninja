@@ -32,3 +32,5 @@ MonoBehaviour:
     SpawnLogic: {fileID: 11400000, guid: fdc72becb619f7e4cbd6ecfa1c41e8b1, type: 2}
   - Config: {fileID: 11400000, guid: 794a1e79dcb92324c91cdb768fc80ac2, type: 2}
     SpawnLogic: {fileID: 11400000, guid: 736a6295de04dde4597e6e77f0000c40, type: 2}
+  - Config: {fileID: 11400000, guid: 1c509462912c68b41874966ce52918f2, type: 2}
+    SpawnLogic: {fileID: 11400000, guid: d56764cd049897f4aaaf32fba8ec697a, type: 2}

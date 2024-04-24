@@ -13,15 +13,22 @@ MonoBehaviour:
   m_Name: SpawnConfig
   m_EditorClassIdentifier: 
   timeBetweenProgressions: 1
-  startFruitCount: 2
-  minFruitCount: 0
-  maxFruitCount: 5
-  fruitCountProgression: 0.05
-  startFruitCooldown: 0.5
-  minFruitCooldown: 0.1
-  maxFruitCooldown: 1
-  fruitCooldownProgression: -0.005
-  startPackCooldown: 2
-  minPackCooldown: 1
-  maxPackCooldown: 5
-  packCooldownProgression: -0.005
+  fruits:
+    StartValue: 2
+    Range:
+      Min: 0
+      Max: 5
+    Progression: 0.05
+  fruitCooldown:
+    StartValue: 0.5
+    Range:
+      Min: 0.1
+      Max: 1
+    Progression: -0.005
+  packCooldown:
+    StartValue: 2
+    Range:
+      Min: 1
+      Max: 5
+    Progression: -0.005
+  blockSpawnConfig: {fileID: 11400000, guid: 2fbd2f2e0326c1541abf537f196f1dda, type: 2}
