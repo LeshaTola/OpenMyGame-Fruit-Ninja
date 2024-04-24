@@ -10,10 +10,10 @@ namespace Spawn
 	public class BlockSpawnConfig : ScriptableObject
 	{
 		[Header("Fruits")]
-		[SerializeField] private List<Config> fruits;
+		[SerializeField] private List<Config> fruits = new();
 
 		[Header("Bonuses")]
-		[SerializeField] private List<ConfigProperties> bonuses;
+		[SerializeField] private List<ConfigProperties> bonuses = new();
 
 		public IReadOnlyCollection<ConfigProperties> Bonuses { get => bonuses; }
 		public List<Config> Fruits { get => fruits; }

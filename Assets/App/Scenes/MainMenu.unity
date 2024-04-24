@@ -587,6 +587,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a021e3b051794df4aa86316f4219222c, type: 2}
   - {fileID: 11400000, guid: 82a650014570a8b42b09a37555f9a289, type: 2}
   - {fileID: 11400000, guid: 257a4f96ee8bea54cbf3ce707a24d3d3, type: 2}
+  - {fileID: 11400000, guid: 1c509462912c68b41874966ce52918f2, type: 2}
   sceneTransition:
     mode: 0
     unityReference: {fileID: 1729006705}

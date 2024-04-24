@@ -38,8 +38,7 @@ namespace General
 			context.PoolsContainer.Init();
 
 			IPlayerInput playerInput = new MousePlayerInput(mainCamera);
-			IBlockFactory blockFactory = new BaseBlockFactory(
-				context);
+			IBlockFactory blockFactory = new BaseBlockFactory(context);
 
 			slicer.Init(playerInput);
 			spawner.Init(new SimpleProgressor(), blockFactory);

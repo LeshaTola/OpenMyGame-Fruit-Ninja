@@ -963,6 +963,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a021e3b051794df4aa86316f4219222c, type: 2}
   - {fileID: 11400000, guid: 82a650014570a8b42b09a37555f9a289, type: 2}
   - {fileID: 11400000, guid: 257a4f96ee8bea54cbf3ce707a24d3d3, type: 2}
+  - {fileID: 11400000, guid: 1c509462912c68b41874966ce52918f2, type: 2}
   healthController: {fileID: 25185309}
   scoreController: {fileID: 2071664397}
   slicer: {fileID: 169325681}
@@ -1212,6 +1213,7 @@ MonoBehaviour:
   healthController: {fileID: 25185309}
   scoreController: {fileID: 2071664397}
   comboController: {fileID: 2138955638}
+  spawner: {fileID: 1630109067}
   slicer: {fileID: 169325681}
   uiContext: {fileID: 682450385}
 --- !u!1 &1443510054
@@ -1420,7 +1422,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   context: {fileID: 1207195825}
-  blocksSpawnConfig: {fileID: 11400000, guid: 2fbd2f2e0326c1541abf537f196f1dda, type: 2}
   regions:
   - {fileID: 11400000, guid: 33b9f98427321f948b6394c7f6498a95, type: 2}
   - {fileID: 11400000, guid: 8879ffc468e51f34aa90772a54a0d96d, type: 2}

@@ -14,7 +14,6 @@ namespace Spawn
 	public class Spawner : MonoBehaviour, IResettable
 	{
 		[SerializeField] private Context context;
-		[SerializeField] private BlockSpawnConfig blocksSpawnConfig;
 		[SerializeField] private List<Region> regions;
 		[SerializeField] private SpawnConfig config;
 		[SerializeField] private Camera mainCamera;
@@ -23,6 +22,7 @@ namespace Spawn
 		private IProgressor progressor;
 
 		public IReadOnlyCollection<Region> Regions { get => regions; }
+		public IProgressor Progressor { get => progressor; }
 
 		public void Init(IProgressor progressor, IBlockFactory blockFactory)
 		{
@@ -31,7 +31,7 @@ namespace Spawn
 
 			progressor.Init(config, this);
 
-			foreach (var bonus in blocksSpawnConfig.Bonuses)
+			foreach (var bonus in progressor.Config.BlockSpawnConfig.Bonuses)
 			{
 				bonus.SpawnLogic.Init(progressor, bonus.Config, context);
 			}
@@ -109,10 +109,15 @@ namespace Spawn
 			progressor.ResetComponent();
 		}
 
+		public void SwapProgressor(IProgressor progressor)
+		{
+			this.progressor = progressor;
+		}
+
 		private Block GetAnyBlock(List<Block> pack)
 		{
 			Block block;
-			foreach (var bonus in blocksSpawnConfig.Bonuses)
+			foreach (var bonus in progressor.Config.BlockSpawnConfig.Bonuses)
 			{
 				if (bonus.SpawnLogic.CanSpawn(pack))
 				{
@@ -120,7 +125,8 @@ namespace Spawn
 				}
 			}
 
-			block = blockFactory.GetBlock(blocksSpawnConfig.Fruits[Random.Range(0, blocksSpawnConfig.Fruits.Count)]);
+			List<Config> fruits = progressor.Config.BlockSpawnConfig.Fruits;
+			block = blockFactory.GetBlock(fruits[Random.Range(0, fruits.Count)]);
 			return block;
 		}
 	}
