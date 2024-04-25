@@ -12,6 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 519e5bac81f336a4ba2b33ffe1d3c3de, type: 3}
   m_Name: BlocksSpawnConfig
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   fruits:
   - {fileID: 11400000, guid: 8388eaba214a9d8419f5dfcc666b6b28, type: 2}
   - {fileID: 11400000, guid: 422e1fb85cc5bab44a213a8452bee112, type: 2}
@@ -21,23 +30,63 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a021e3b051794df4aa86316f4219222c, type: 2}
   - {fileID: 11400000, guid: 82a650014570a8b42b09a37555f9a289, type: 2}
   - {fileID: 11400000, guid: 257a4f96ee8bea54cbf3ce707a24d3d3, type: 2}
-  fruitsWeight: 1
+  fruitsWeight: 6
   bonuses:
-  - Config: {fileID: 11400000, guid: 35fe41ba1a56c6a4e8ab65d0eba3425d, type: 2}
-    SpawnLogic: {fileID: 11400000, guid: 2147116454530d84fa1fb2af8a3dd180, type: 2}
+  - BonusName: Bomb
+    Config: {fileID: 11400000, guid: 35fe41ba1a56c6a4e8ab65d0eba3425d, type: 2}
+    SpawnLogic:
+      rid: 5820930580441989120
+    Weight: 2
+  - BonusName: Brick
+    Config: {fileID: 11400000, guid: a3e6ff8d20f6c2f4da76a0f4b576e56f, type: 2}
+    SpawnLogic:
+      rid: 5820930580441989127
+    Weight: 2
+  - BonusName: Magnet
+    Config: {fileID: 11400000, guid: 6caf6ca2466f5c34abc96bdcb2a1c098, type: 2}
+    SpawnLogic:
+      rid: 5820930580441989121
+    Weight: 1
+  - BonusName: Health
+    Config: {fileID: 11400000, guid: ccc67cea24de9c242a4e9e64b3e4b583, type: 2}
+    SpawnLogic:
+      rid: 5820930580441989122
+    Weight: 1
+  - BonusName: Avoska
+    Config: {fileID: 11400000, guid: 794a1e79dcb92324c91cdb768fc80ac2, type: 2}
+    SpawnLogic:
+      rid: 5820930580441989125
+    Weight: 1
+  - BonusName: Samurai
+    Config: {fileID: 11400000, guid: 1c509462912c68b41874966ce52918f2, type: 2}
+    SpawnLogic:
+      rid: 5820930580441989126
     Weight: 0
-  - Config: {fileID: 11400000, guid: a3e6ff8d20f6c2f4da76a0f4b576e56f, type: 2}
-    SpawnLogic: {fileID: 11400000, guid: 996f14446f92f39418e87940daf94394, type: 2}
-    Weight: 0
-  - Config: {fileID: 11400000, guid: 6caf6ca2466f5c34abc96bdcb2a1c098, type: 2}
-    SpawnLogic: {fileID: 11400000, guid: b6817e8276678e84c999464da3814b62, type: 2}
-    Weight: 0
-  - Config: {fileID: 11400000, guid: ccc67cea24de9c242a4e9e64b3e4b583, type: 2}
-    SpawnLogic: {fileID: 11400000, guid: fdc72becb619f7e4cbd6ecfa1c41e8b1, type: 2}
-    Weight: 0
-  - Config: {fileID: 11400000, guid: 794a1e79dcb92324c91cdb768fc80ac2, type: 2}
-    SpawnLogic: {fileID: 11400000, guid: 736a6295de04dde4597e6e77f0000c40, type: 2}
-    Weight: 0
-  - Config: {fileID: 11400000, guid: 1c509462912c68b41874966ce52918f2, type: 2}
-    SpawnLogic: {fileID: 11400000, guid: d56764cd049897f4aaaf32fba8ec697a, type: 2}
-    Weight: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 5820930580441989120
+      type: {class: BombSpawnLogic, ns: Spawn.BlockSpawnLogic, asm: Assembly-CSharp}
+      data:
+        packPercent: 0.49
+    - rid: 5820930580441989121
+      type: {class: BombSpawnLogic, ns: Spawn.BlockSpawnLogic, asm: Assembly-CSharp}
+      data:
+        packPercent: 0.49
+    - rid: 5820930580441989122
+      type: {class: BonusHealthSpawnLogic, ns: Spawn.BlockSpawnLogic, asm: Assembly-CSharp}
+      data:
+        minHealth: 4
+        packPercent: 0.49
+    - rid: 5820930580441989125
+      type: {class: BombSpawnLogic, ns: Spawn.BlockSpawnLogic, asm: Assembly-CSharp}
+      data:
+        packPercent: 0.49
+    - rid: 5820930580441989126
+      type: {class: BrickSpawnLogic, ns: Spawn.BlockSpawnLogic, asm: Assembly-CSharp}
+      data:
+        maxCount: 1
+    - rid: 5820930580441989127
+      type: {class: BrickSpawnLogic, ns: Spawn.BlockSpawnLogic, asm: Assembly-CSharp}
+      data:
+        maxCount: 1

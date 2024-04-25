@@ -413,7 +413,7 @@ MonoBehaviour:
   restartButton: {fileID: 2337019742749302651}
   menuButton: {fileID: 6238402519353881399}
   scoreText: {fileID: 7567072262545135420}
-  bestScorePreText: "\u041B\u0443\u0447\u0448\u0438\u0439:"
+  bestScorePreText: "\u041B\u0443\u0447\u0448\u0438\u0439: "
   bestScoreText: {fileID: 7567072261581235996}
 --- !u!114 &7567072261549971079
 MonoBehaviour:

@@ -1,4 +1,6 @@
 ﻿using Blocks;
+using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using Spawn.BlockSpawnLogic;
 using System;
 using System.Collections.Generic;
@@ -6,27 +8,42 @@ using UnityEngine;
 
 namespace Spawn
 {
+
 	[CreateAssetMenu(fileName = "BlocksSpawnConfig", menuName = "Configs/Spawn/BlocksSpawnConfig")]
-	public class BlockSpawnConfig : ScriptableObject
+	public class BlockSpawnConfig : SerializedScriptableObject
 	{
 		[Header("Fruits")]
 		[SerializeField] private List<Config> fruits = new();
 		[Range(1, 10)][SerializeField] private int fruitsWeight;
 
-
-		[Header("Bonuses")]
 		[SerializeField] private List<ConfigProperties> bonuses = new();
+
 		public int FruitsWeight { get => fruitsWeight; }
 
 		public IReadOnlyCollection<ConfigProperties> Bonuses { get => bonuses; }
 		public List<Config> Fruits { get => fruits; }
+
 	}
 
 	[Serializable]
-	public struct ConfigProperties
+	public class ConfigProperties
 	{
-		public Config Config;
-		public BasicSpawnLogic SpawnLogic;
+		[FoldoutGroup("@BonusName")]
+		[OdinSerialize]
+		public string BonusName;
+
+		[FoldoutGroup("@BonusName")]
+		[OdinSerialize] public Config Config;
+
+		[FoldoutGroup("@BonusName")]
+		[OdinSerialize]
+		[ShowInInspector]
+		[InlineProperty]
+		[SerializeReference]
+		public IBlockSpawnLogic SpawnLogic;
+
+		[FoldoutGroup("@BonusName")]
+		[OdinSerialize]
 		[Range(0, 10)] public int Weight;
 	}
 }

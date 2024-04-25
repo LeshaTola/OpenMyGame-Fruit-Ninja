@@ -2,11 +2,10 @@
 using Blocks;
 using Spawn.Progressor;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace Spawn.BlockSpawnLogic
 {
-	public abstract class BasicSpawnLogic : ScriptableObject, IBlockSpawnLogic
+	public abstract class BasicSpawnLogic : IBlockSpawnLogic
 	{
 		protected IProgressor progressor;
 		protected Config config;

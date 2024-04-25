@@ -4,10 +4,9 @@ using UnityEngine;
 
 namespace Spawn.BlockSpawnLogic
 {
-	[CreateAssetMenu(fileName = "BrickSpawnLogic", menuName = "Configs/Blocks/SpawnLogic/BrickSpawnLogic")]
 	public class BrickSpawnLogic : BasicSpawnLogic
 	{
-		[SerializeField] private int maxCount;
+		[SerializeField, Min(0)] private int maxCount;
 		public override bool CanSpawn(List<Block> pack)
 		{
 			if (!IsEnough(pack))

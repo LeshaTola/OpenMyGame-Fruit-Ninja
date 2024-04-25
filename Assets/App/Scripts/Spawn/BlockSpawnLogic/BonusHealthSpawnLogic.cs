@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace Spawn.BlockSpawnLogic
 {
-	[CreateAssetMenu(fileName = "BonusHealthSpawnLogic", menuName = "Configs/Blocks/SpawnLogic/BonusHealthSpawnLogic")]
 	public class BonusHealthSpawnLogic : BasicSpawnLogic
 	{
 		[Tooltip("The value of health at which the bonus is spawned")]
