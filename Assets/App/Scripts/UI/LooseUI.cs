@@ -18,6 +18,7 @@ namespace UI
 		[SerializeField] private Button menuButton;
 
 		[SerializeField] private TextMeshProUGUI scoreText;
+		[SerializeField] private string bestScorePreText;
 		[SerializeField] private TextMeshProUGUI bestScoreText;
 
 		public void Init()
@@ -49,7 +50,7 @@ namespace UI
 
 		private void OnBestScoreChanged(int score)
 		{
-			bestScoreText.text = score.ToString();
+			bestScoreText.text = bestScorePreText + score.ToString();
 		}
 
 		private void OnScoreChanged(int score)

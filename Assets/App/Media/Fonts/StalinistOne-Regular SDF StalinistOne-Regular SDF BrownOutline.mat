@@ -10,7 +10,8 @@ Material:
   m_Name: StalinistOne-Regular SDF StalinistOne-Regular SDF BrownOutline
   m_Shader: {fileID: 4800000, guid: 68e6db2ebdc24f95958faec2be5558d6, type: 3}
   m_ValidKeywords: []
-  m_InvalidKeywords: []
+  m_InvalidKeywords:
+  - MASK_HARD
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -53,7 +54,7 @@ Material:
     - _ColorMask: 15
     - _CullMode: 0
     - _Diffuse: 0.5
-    - _FaceDilate: 0
+    - _FaceDilate: 0.1
     - _FaceUVSpeedX: 0
     - _FaceUVSpeedY: 0
     - _GlowInner: 0.05
@@ -67,16 +68,16 @@ Material:
     - _OutlineSoftness: 0
     - _OutlineUVSpeedX: 0
     - _OutlineUVSpeedY: 0
-    - _OutlineWidth: 0.389
-    - _PerspectiveFilter: 0.875
+    - _OutlineWidth: 0.2
+    - _PerspectiveFilter: 0
     - _Reflectivity: 10
     - _ScaleRatioA: 0.9230769
-    - _ScaleRatioB: 0.75
-    - _ScaleRatioC: 0.375
+    - _ScaleRatioB: 0.6576923
+    - _ScaleRatioC: 0.32884616
     - _ScaleX: 1
     - _ScaleY: 1
     - _ShaderFlags: 0
-    - _Sharpness: 0
+    - _Sharpness: 1
     - _SpecularPower: 2
     - _Stencil: 0
     - _StencilComp: 8
