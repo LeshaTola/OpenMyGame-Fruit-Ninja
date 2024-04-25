@@ -8,15 +8,11 @@ namespace Spawn.BlockSpawnLogic
 	public class BrickSpawnLogic : BasicSpawnLogic
 	{
 		[SerializeField] private int maxCount;
-		[Range(0, 1)][SerializeField] private float chance;
 		public override bool CanSpawn(List<Block> pack)
 		{
 			if (!IsEnough(pack))
 			{
-				if (chance > Random.value)
-				{
-					return true;
-				}
+				return true;
 			}
 
 			return false;

@@ -11,16 +11,12 @@ namespace Spawn.BlockSpawnLogic
 		[SerializeField] private int minHealth;
 		[Tooltip("Percentage of the main pack")]
 		[Range(0, 1)][SerializeField] private float packPercent;
-		[Range(0, 1)][SerializeField] private float chance;
 
 		public override bool CanSpawn(List<Block> pack)
 		{
 			if (context.HealthController.CurrentHealth <= minHealth && !IsEnough(pack))
 			{
-				if (chance > Random.value)
-				{
-					return true;
-				}
+				return true;
 			}
 
 			return false;

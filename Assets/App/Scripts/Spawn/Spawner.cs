@@ -116,18 +116,54 @@ namespace Spawn
 
 		private Block GetAnyBlock(List<Block> pack)
 		{
-			Block block;
-			foreach (var bonus in progressor.Config.BlockSpawnConfig.Bonuses)
+			return blockFactory.GetBlock(GetConfigByWeight(pack));
+		}
+
+		private Config GetConfigByWeight(List<Block> pack)
+		{
+			var blockConfig = progressor.Config.BlockSpawnConfig;
+			int totalWeight = blockConfig.FruitsWeight;
+			foreach (var bonus in blockConfig.Bonuses)
 			{
-				if (bonus.SpawnLogic.CanSpawn(pack))
-				{
-					return blockFactory.GetBlock(bonus.Config);
-				}
+				totalWeight += bonus.Weight;
 			}
 
-			List<Config> fruits = progressor.Config.BlockSpawnConfig.Fruits;
-			block = blockFactory.GetBlock(fruits[Random.Range(0, fruits.Count)]);
-			return block;
+			List<Config> fruits = blockConfig.Fruits;
+			while (true)
+			{
+				int value = Random.Range(1, totalWeight + 1);
+				int current = 0;
+
+				current += blockConfig.FruitsWeight;
+				if (current >= value)
+				{
+					Config fruit = fruits[Random.Range(0, fruits.Count)];
+					return fruit;
+				}
+
+				Config bonus = GetBonus(pack, blockConfig, value, ref current);
+				if (bonus != null)
+				{
+					return bonus;
+				}
+			}
+		}
+
+		private Config GetBonus(List<Block> pack, BlockSpawnConfig blockConfig, int value, ref int current)
+		{
+			foreach (var bonus in blockConfig.Bonuses)
+			{
+				current += bonus.Weight;
+				if (current >= value)
+				{
+					if (bonus.SpawnLogic.CanSpawn(pack))
+					{
+						return bonus.Config;
+					}
+					return null;
+				}
+			}
+			return null;
 		}
 	}
 }
