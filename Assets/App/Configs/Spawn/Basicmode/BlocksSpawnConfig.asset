@@ -51,7 +51,7 @@ MonoBehaviour:
     Config: {fileID: 11400000, guid: ccc67cea24de9c242a4e9e64b3e4b583, type: 2}
     SpawnLogic:
       rid: 5820930580441989122
-    Weight: 1
+    Weight: 10
   - BonusName: Avoska
     Config: {fileID: 11400000, guid: 794a1e79dcb92324c91cdb768fc80ac2, type: 2}
     SpawnLogic:

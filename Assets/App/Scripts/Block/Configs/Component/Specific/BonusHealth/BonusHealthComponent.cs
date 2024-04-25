@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using Health;
 using UnityEngine;
 
 namespace Blocks.Configs.Component
@@ -6,7 +7,7 @@ namespace Blocks.Configs.Component
 	[CreateAssetMenu(fileName = "BonusHealthComponent", menuName = "Configs/Blocks/Components/Specific/BonusHealth/BonusHealthComponent")]
 	public class BonusHealthComponent : BasicComponent
 	{
-		[SerializeField] private GameObject healthGameObject;
+		[SerializeField] private HealthGameObject healthGameObject;
 		[SerializeField] private float moveTime;
 		[SerializeField] private float scaleTime;
 		[SerializeField] private int health;
@@ -20,15 +21,15 @@ namespace Blocks.Configs.Component
 		{
 			var healthIcon = Instantiate(healthGameObject, block.transform.position, Quaternion.identity);
 			Sequence sequence = DOTween.Sequence();
-			sequence.Append(healthIcon.transform
+			var tween = healthIcon.transform
 				.DOMove(Context.UiContext.HealthBarUI.GetNextHeartPosition(), moveTime)
-				.SetEase(Ease.OutCirc));
+				.SetEase(Ease.OutCirc);
+			sequence.Append(tween);
 
-			//sequence.Append(healthIcon.transform.DOScale(Vector3.zero, scaleTime));
 			sequence.onComplete += () =>
 			{
 				Context.HealthController.AddHealth(health);
-				Destroy(healthIcon.gameObject);
+				healthIcon.Hide();
 			};
 		}
 	}

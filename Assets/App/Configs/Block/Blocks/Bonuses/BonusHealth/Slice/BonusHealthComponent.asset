@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 098fca10207b005409f8f9b3bfc0c4a6, type: 3}
   m_Name: BonusHealthComponent
   m_EditorClassIdentifier: 
-  healthGameObject: {fileID: 3497175492033038224, guid: 94e997d4e080ae840afcf5b9b43bb5e3, type: 3}
+  healthGameObject: {fileID: 1560121690854365472, guid: 94e997d4e080ae840afcf5b9b43bb5e3, type: 3}
   moveTime: 1
   scaleTime: 0.3
   health: 1
