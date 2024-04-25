@@ -12,6 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 519e5bac81f336a4ba2b33ffe1d3c3de, type: 3}
   m_Name: SamuraiBlocksSpawnConfig
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   fruits:
   - {fileID: 11400000, guid: 8388eaba214a9d8419f5dfcc666b6b28, type: 2}
   - {fileID: 11400000, guid: 422e1fb85cc5bab44a213a8452bee112, type: 2}
@@ -21,4 +30,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a021e3b051794df4aa86316f4219222c, type: 2}
   - {fileID: 11400000, guid: 82a650014570a8b42b09a37555f9a289, type: 2}
   - {fileID: 11400000, guid: 257a4f96ee8bea54cbf3ce707a24d3d3, type: 2}
+  fruitsWeight: 10
   bonuses: []
+  references:
+    version: 2
+    RefIds: []

@@ -1,7 +1,5 @@
-﻿using General;
+﻿using Assets.App.Scripts.General;
 using SaveLoad;
-using Score;
-using Slicing;
 using System.Collections;
 using UI;
 
@@ -10,22 +8,18 @@ namespace StateMachine.States
 	public class LooseState : State
 	{
 		private LooseUI looseUI;
-		private ScoreController scoreController;
-		private ObjectPoolsContainer poolsContainer;
-		private Slicer slicer;
+		private Context context;
 
-		public LooseState(StateMachine stateMachine, LooseUI looseUI, ScoreController scoreController, ObjectPoolsContainer poolsContainer, Slicer slicer) : base(stateMachine)
+		public LooseState(StateMachine stateMachine, LooseUI looseUI, Context context) : base(stateMachine)
 		{
 			this.looseUI = looseUI;
-			this.scoreController = scoreController;
-			this.poolsContainer = poolsContainer;
-			this.slicer = slicer;
+			this.context = context;
 		}
 
 		public override void Enter()
 		{
 			base.Enter();
-			scoreController.StartCoroutine(PreparingCoroutine());
+			context.StartCoroutine(PreparingCoroutine());
 		}
 
 		public override void Exit()
@@ -36,9 +30,10 @@ namespace StateMachine.States
 
 		private IEnumerator PreparingCoroutine()
 		{
-			SaveLoadSystem.Save(new SaveData() { BestScore = scoreController.BestScore });
-			slicer.gameObject.SetActive(false);
-			while (poolsContainer.Blocks.Active.Count > 0)
+			context.BonusController.CleanUp();
+			SaveLoadSystem.Save(new SaveData() { BestScore = context.ScoreController.BestScore });
+			context.Slicer.gameObject.SetActive(false);
+			while (context.PoolsContainer.Blocks.Active.Count > 0)
 			{
 				yield return null;
 			}

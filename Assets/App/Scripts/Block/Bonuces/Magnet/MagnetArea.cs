@@ -14,6 +14,8 @@ public class MagnetArea : MonoBehaviour
 
 	[SerializeField] private ParticleSystem particles;
 
+	private float timer;
+
 	public float Radius { get => radius; }
 	public Context Context { get => context; }
 
@@ -32,13 +34,13 @@ public class MagnetArea : MonoBehaviour
 		ParticleSystem.ShapeModule shape = particles.shape;
 		shape.radius *= radius;
 		particlesMain.startLifetime = particlesMain.startLifetime.constant * radius;
+		timer = lifeTime;
 
-		StartCoroutine(PullCoroutine());
+		StartCoroutine(UpdatePull());
 	}
 
-	private IEnumerator PullCoroutine()
+	public IEnumerator UpdatePull()
 	{
-		float timer = lifeTime;
 		while (timer > 0)
 		{
 			foreach (var block in context.PoolsContainer.Blocks.Active)
@@ -60,6 +62,11 @@ public class MagnetArea : MonoBehaviour
 			timer -= Time.deltaTime;
 			yield return null;
 		}
+		StopPull();
+	}
+
+	public void StopPull()
+	{
 		Destroy(gameObject);
 	}
 
