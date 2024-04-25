@@ -4,17 +4,15 @@ using UnityEngine;
 
 namespace StateMachine.States
 {
-	public class GlobalInitState : State
+	public class GlobalInitState<T> : State where T : State
 	{
 		public static bool IsComplete = false;
 
-		private State nextState;
 		private int targetFrameRate;
 		private List<Config> blockConfigs;
 
-		public GlobalInitState(StateMachine stateMachine, State nextState, int targetFrameRate, List<Config> blockConfigs) : base(stateMachine)
+		public GlobalInitState(StateMachine stateMachine, int targetFrameRate, List<Config> blockConfigs) : base(stateMachine)
 		{
-			this.nextState = nextState;
 			this.targetFrameRate = targetFrameRate;
 			this.blockConfigs = blockConfigs;
 		}
@@ -30,7 +28,7 @@ namespace StateMachine.States
 					config.GenerateHalves();
 				}
 			}
-			stateMachine.SetState(nextState.GetType());
+			stateMachine.SetState<T>();
 		}
 
 		public override void Exit()

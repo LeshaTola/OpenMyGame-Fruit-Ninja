@@ -28,14 +28,12 @@ namespace MainMenu.StateMachine
 		{
 			core = new();
 
-			var localInitState = new InitState(core, sceneTransition.Value);
-
-			core.AddState(new GlobalInitState(core, localInitState, targetFrameRate, blockConfigs));
-			core.AddState(localInitState);
+			core.AddState(new GlobalInitState<InitState>(core, targetFrameRate, blockConfigs));
+			core.AddState(new InitState(core, sceneTransition.Value));
 			core.AddState(new MainState(core));
 			core.AddState(new LoadSceneState(core, sceneTransition.Value, SceneEnum.Gameplay));
 
-			core.SetState<GlobalInitState>();
+			core.SetState<GlobalInitState<InitState>>();
 		}
 	}
 }

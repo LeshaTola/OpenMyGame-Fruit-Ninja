@@ -23,11 +23,27 @@ public class PauseUI : MonoBehaviour
 
 	public void Show()
 	{
+		Activate();
 		panelAnimation.PlayShowAnimation();
 	}
 
 	public void Hide()
 	{
+		Deactivate();
 		panelAnimation.PlayHideAnimation();
+	}
+
+	private void Activate()
+	{
+		pauseButton.enabled = false;
+		resumeButton.enabled = true;
+		menuButton.enabled = true;
+	}
+
+	private void Deactivate()
+	{
+		pauseButton.enabled = true;
+		resumeButton.enabled = false;
+		menuButton.enabled = false;
 	}
 }

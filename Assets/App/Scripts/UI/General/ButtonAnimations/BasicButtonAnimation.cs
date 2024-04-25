@@ -18,10 +18,14 @@ namespace UI.General.ButtonAnimations
 		[SerializeField] private Color basicColor = Color.white;
 		[SerializeField] private Color targetColor = Color.white;
 
+		private Tween scaleTween;
+		private Tween colorTween;
+
 		public override void OnPointerDown(PointerEventData eventData)
 		{
 			base.OnPointerDown(eventData);
 
+			CleanUp();
 			transform.DOScale(targetScale, AnimationDuration).SetUpdate(true);
 			buttonImage.DOColor(targetColor, AnimationDuration).SetUpdate(true);
 		}
@@ -30,8 +34,15 @@ namespace UI.General.ButtonAnimations
 		{
 			base.OnPointerUp(eventData);
 
+			CleanUp();
 			transform.DOScale(basicScale, AnimationDuration).SetUpdate(true);
 			buttonImage.DOColor(basicColor, AnimationDuration).SetUpdate(true);
+		}
+
+		private void CleanUp()
+		{
+			scaleTween.Kill();
+			colorTween.Kill();
 		}
 
 	}

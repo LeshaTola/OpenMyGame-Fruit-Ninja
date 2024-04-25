@@ -40,11 +40,13 @@ namespace UI
 
 		public void Show()
 		{
+			Activate();
 			panelAnimation.PlayShowAnimation();
 		}
 
 		public void Hide()
 		{
+			Deactivate();
 			panelAnimation.PlayHideAnimation();
 		}
 
@@ -56,6 +58,20 @@ namespace UI
 		private void OnScoreChanged(int score)
 		{
 			scoreText.text = score.ToString();
+		}
+
+
+
+		private void Activate()
+		{
+			restartButton.enabled = true;
+			menuButton.enabled = true;
+		}
+
+		private void Deactivate()
+		{
+			restartButton.enabled = false;
+			menuButton.enabled = false;
 		}
 	}
 }

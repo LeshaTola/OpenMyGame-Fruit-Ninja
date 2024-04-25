@@ -1079,7 +1079,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: -1468648975
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!1 &1134370535
 GameObject:
@@ -1386,7 +1386,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5619185634496248773, guid: 360e96502a98e5542a7985075d08d225, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5619185634496248773, guid: 360e96502a98e5542a7985075d08d225, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1414,15 +1414,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5619185634496248773, guid: 360e96502a98e5542a7985075d08d225, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.88932306
+      value: 0.889323
       objectReference: {fileID: 0}
     - target: {fileID: 5619185634496248773, guid: 360e96502a98e5542a7985075d08d225, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.88932306
+      value: 0.889323
       objectReference: {fileID: 0}
     - target: {fileID: 5619185634496248773, guid: 360e96502a98e5542a7985075d08d225, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.88932306
+      value: 0.889323
       objectReference: {fileID: 0}
     - target: {fileID: 5619185634496248773, guid: 360e96502a98e5542a7985075d08d225, type: 3}
       propertyPath: m_LocalPosition.x

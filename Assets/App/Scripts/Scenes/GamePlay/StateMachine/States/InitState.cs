@@ -16,7 +16,7 @@ namespace Scenes.GamePlay.StateMachine.States
 		public override void Enter()
 		{
 			base.Enter();
-			sceneTransition.PlayOff(() => stateMachine.SetState<ResetState>());
+			sceneTransition.PlayOff(() => stateMachine.SetState<GameState>());
 		}
 
 	}

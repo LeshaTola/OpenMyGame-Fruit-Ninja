@@ -40,16 +40,15 @@ namespace Scenes.GamePlay.StateMachine
 		{
 			core = new();
 
-			var localInitState = new States.InitState(core, sceneTransition.Value);
-			core.AddState(new GlobalInitState(core, localInitState, targetFrameRate, blockConfigs));
-			core.AddState(localInitState);
+			core.AddState(new GlobalInitState<ResetState>(core, targetFrameRate, blockConfigs));
+			core.AddState(new States.InitState(core, sceneTransition.Value));
 			core.AddState(new ResetState(core, resettables));
 			core.AddState(new GameState(core, healthController, spawner));
 			core.AddState(new LooseState(core, looseUI, scoreController, poolsContainer, slicer));
 			core.AddState(new PauseState(core, pauseUI, slicer));
 			core.AddState(new LoadSceneState(core, sceneTransition.Value));
 
-			core.SetState<GlobalInitState>();
+			core.SetState<GlobalInitState<ResetState>>();
 		}
 	}
 }
