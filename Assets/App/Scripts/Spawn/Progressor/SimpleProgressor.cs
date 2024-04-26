@@ -9,10 +9,10 @@ namespace Spawn.Progressor
 		private Spawner spawner;
 		private float fruitCount;
 
+		private Coroutine progressionCoroutine;
+
 		public int FruitCount { get => (int)fruitCount; }
-
 		public float FruitCooldown { get; private set; }
-
 		public float PackCooldown { get; private set; }
 		public SpawnConfig Config { get => config; }
 
@@ -41,14 +41,28 @@ namespace Spawn.Progressor
 			}
 		}
 
+		public void StopProgression()
+		{
+			if (progressionCoroutine != null)
+			{
+				spawner.StopCoroutine(progressionCoroutine);
+			}
+		}
+
+		public void ContinueProgression()
+		{
+			progressionCoroutine = spawner.StartCoroutine(ProgressCoroutine());
+		}
+
 		public void ResetComponent()
 		{
-			spawner.StopAllCoroutines();
+			StopProgression();
+
 			fruitCount = config.FruitsCount.StartValue;
 			FruitCooldown = config.FruitCooldown.StartValue;
 			PackCooldown = config.PackCooldown.StartValue;
 
-			spawner.StartCoroutine(ProgressCoroutine());
+			ContinueProgression();
 		}
 	}
 }

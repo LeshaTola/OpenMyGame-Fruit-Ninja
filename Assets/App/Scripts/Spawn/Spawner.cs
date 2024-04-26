@@ -20,6 +20,7 @@ namespace Spawn
 
 		private IBlockFactory blockFactory;
 		private IProgressor progressor;
+		private Coroutine spawnCoroutine;
 
 		public IReadOnlyCollection<Region> Regions { get => regions; }
 		public IProgressor Progressor { get => progressor; }
@@ -28,13 +29,9 @@ namespace Spawn
 		{
 			this.progressor = progressor;
 			this.blockFactory = blockFactory;
-
 			progressor.Init(config, this);
 
-			foreach (var bonus in progressor.Config.BlockSpawnConfig.Bonuses)
-			{
-				bonus.SpawnLogic.Init(progressor, bonus.Config, context);
-			}
+			SwapProgressor(progressor);
 		}
 
 		public IEnumerator SpawnPack()
@@ -106,12 +103,22 @@ namespace Spawn
 
 		public void ResetComponent()
 		{
+			if (spawnCoroutine != null)
+			{
+				StopCoroutine(spawnCoroutine);
+			}
 			progressor.ResetComponent();
+			spawnCoroutine = StartCoroutine(SpawnCoroutine());
 		}
 
 		public void SwapProgressor(IProgressor progressor)
 		{
 			this.progressor = progressor;
+
+			foreach (var bonus in progressor.Config.BlockSpawnConfig.Bonuses)
+			{
+				bonus.SpawnLogic.Init(progressor, bonus.Config, context);
+			}
 		}
 
 		private Block GetAnyBlock(List<Block> pack)

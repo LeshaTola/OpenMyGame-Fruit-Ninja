@@ -10,6 +10,8 @@ namespace Spawn.Progressor
 		public SpawnConfig Config { get; }
 
 		public void Init(SpawnConfig config, Spawner spawner);
+		public void StopProgression();
+		public void ContinueProgression();
 
 	}
 }

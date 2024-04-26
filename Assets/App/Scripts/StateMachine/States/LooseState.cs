@@ -19,6 +19,7 @@ namespace StateMachine.States
 		public override void Enter()
 		{
 			base.Enter();
+			context.Spawner.StopAllCoroutines();
 			context.StartCoroutine(PreparingCoroutine());
 		}
 
