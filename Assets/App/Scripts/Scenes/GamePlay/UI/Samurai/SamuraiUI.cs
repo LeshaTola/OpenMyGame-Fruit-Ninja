@@ -6,8 +6,8 @@ using UnityEngine;
 public class SamuraiUI : MonoBehaviour, IInitable
 {
 	[SerializeField] private TextMeshProUGUI timerText;
-	[SerializeField] private SamuraAnimation samuraiTextAnimation;
-	[SerializeField] private SamuraAnimation samuraiImageAnimation;
+	[SerializeField] private SamuraiAnimation samuraiTextAnimation;
+	[SerializeField] private SamuraiAnimation samuraiImageAnimation;
 
 	public void Init()
 	{

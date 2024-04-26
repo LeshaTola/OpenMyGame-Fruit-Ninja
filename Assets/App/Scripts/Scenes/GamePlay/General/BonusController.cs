@@ -20,6 +20,7 @@ namespace Scenes.GamePlay.General
 				bonuses[i].UpdateBonus();
 			}
 		}
+
 		public void AddBonus(IBonusComponent bonus)
 		{
 			bonuses.Add(bonus);

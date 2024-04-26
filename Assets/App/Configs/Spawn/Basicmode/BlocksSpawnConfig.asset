@@ -62,6 +62,11 @@ MonoBehaviour:
     SpawnLogic:
       rid: 5820930580441989126
     Weight: 1
+  - BonusName: Ice
+    Config: {fileID: 11400000, guid: eeba4cf5fc954ec47ace81ffb7406e72, type: 2}
+    SpawnLogic:
+      rid: 5820930606414168066
+    Weight: 4
   references:
     version: 2
     RefIds:
@@ -87,6 +92,10 @@ MonoBehaviour:
       data:
         maxCount: 1
     - rid: 5820930580441989127
+      type: {class: BrickSpawnLogic, ns: Spawn.BlockSpawnLogic, asm: Assembly-CSharp}
+      data:
+        maxCount: 1
+    - rid: 5820930606414168066
       type: {class: BrickSpawnLogic, ns: Spawn.BlockSpawnLogic, asm: Assembly-CSharp}
       data:
         maxCount: 1

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Scenes.GamePlay.UI.Samurai
 {
-	public class SamuraAnimation : MonoBehaviour
+	public class SamuraiAnimation : MonoBehaviour
 	{
 		[SerializeField] private Vector2 hideScale = Vector2.zero;
 		[SerializeField] private Vector2 ShowScale = Vector2.one;
