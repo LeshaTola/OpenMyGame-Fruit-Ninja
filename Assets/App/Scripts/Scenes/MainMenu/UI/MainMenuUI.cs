@@ -18,8 +18,18 @@ namespace MainMenu.UI
 
 		public void Init()
 		{
-			playButton.onClick.AddListener(() => stateMachine.Core.SetState<LoadSceneState>());
-			exitButton.onClick.AddListener(() => Application.Quit());
+			Activate();
+
+			playButton.onClick.AddListener(() =>
+			{
+				Deactivate();
+				stateMachine.Core.SetState<LoadSceneState>();
+			});
+			exitButton.onClick.AddListener(() =>
+			{
+				Deactivate();
+				Application.Quit();
+			});
 
 			UpdateBestScore(SaveLoadSystem.Load().BestScore);
 		}
@@ -27,6 +37,18 @@ namespace MainMenu.UI
 		private void UpdateBestScore(float score)
 		{
 			bestScoreText.text = score.ToString();
+		}
+
+		private void Activate()
+		{
+			playButton.enabled = true;
+			exitButton.enabled = true;
+		}
+
+		private void Deactivate()
+		{
+			playButton.enabled = false;
+			exitButton.enabled = false;
 		}
 
 	}

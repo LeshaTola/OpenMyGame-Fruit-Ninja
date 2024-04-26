@@ -4,19 +4,14 @@ using UnityEngine;
 
 namespace Spawn.BlockSpawnLogic
 {
-	[CreateAssetMenu(fileName = "BrickSpawnLogic", menuName = "Configs/Blocks/SpawnLogic/BrickSpawnLogic")]
 	public class BrickSpawnLogic : BasicSpawnLogic
 	{
-		[SerializeField] private int maxCount;
-		[Range(0, 1)][SerializeField] private float chance;
+		[SerializeField, Min(0)] private int maxCount;
 		public override bool CanSpawn(List<Block> pack)
 		{
 			if (!IsEnough(pack))
 			{
-				if (chance > Random.value)
-				{
-					return true;
-				}
+				return true;
 			}
 
 			return false;

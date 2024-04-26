@@ -14,27 +14,24 @@ namespace Spawn
 	public class Spawner : MonoBehaviour, IResettable
 	{
 		[SerializeField] private Context context;
-		[SerializeField] private BlockSpawnConfig blocksSpawnConfig;
 		[SerializeField] private List<Region> regions;
 		[SerializeField] private SpawnConfig config;
 		[SerializeField] private Camera mainCamera;
 
 		private IBlockFactory blockFactory;
 		private IProgressor progressor;
+		private Coroutine spawnCoroutine;
 
 		public IReadOnlyCollection<Region> Regions { get => regions; }
+		public IProgressor Progressor { get => progressor; }
 
 		public void Init(IProgressor progressor, IBlockFactory blockFactory)
 		{
 			this.progressor = progressor;
 			this.blockFactory = blockFactory;
-
 			progressor.Init(config, this);
 
-			foreach (var bonus in blocksSpawnConfig.Bonuses)
-			{
-				bonus.SpawnLogic.Init(progressor, bonus.Config, context);
-			}
+			SwapProgressor(progressor);
 		}
 
 		public IEnumerator SpawnPack()
@@ -106,22 +103,74 @@ namespace Spawn
 
 		public void ResetComponent()
 		{
+			if (spawnCoroutine != null)
+			{
+				StopCoroutine(spawnCoroutine);
+			}
 			progressor.ResetComponent();
+			spawnCoroutine = StartCoroutine(SpawnCoroutine());
+		}
+
+		public void SwapProgressor(IProgressor progressor)
+		{
+			this.progressor = progressor;
+
+			foreach (var bonus in progressor.Config.BlockSpawnConfig.Bonuses)
+			{
+				bonus.SpawnLogic.Init(progressor, bonus.Config, context);
+			}
 		}
 
 		private Block GetAnyBlock(List<Block> pack)
 		{
-			Block block;
-			foreach (var bonus in blocksSpawnConfig.Bonuses)
+			return blockFactory.GetBlock(GetConfigByWeight(pack));
+		}
+
+		private Config GetConfigByWeight(List<Block> pack)
+		{
+			var blockConfig = progressor.Config.BlockSpawnConfig;
+			int totalWeight = blockConfig.FruitsWeight;
+			foreach (var bonus in blockConfig.Bonuses)
 			{
-				if (bonus.SpawnLogic.CanSpawn(pack))
-				{
-					return blockFactory.GetBlock(bonus.Config);
-				}
+				totalWeight += bonus.Weight;
 			}
 
-			block = blockFactory.GetBlock(blocksSpawnConfig.Fruits[Random.Range(0, blocksSpawnConfig.Fruits.Count)]);
-			return block;
+			List<Config> fruits = blockConfig.Fruits;
+			while (true)
+			{
+				int value = Random.Range(1, totalWeight + 1);
+				int current = 0;
+
+				current += blockConfig.FruitsWeight;
+				if (current >= value)
+				{
+					Config fruit = fruits[Random.Range(0, fruits.Count)];
+					return fruit;
+				}
+
+				Config bonus = GetBonus(pack, blockConfig, value, ref current);
+				if (bonus != null)
+				{
+					return bonus;
+				}
+			}
+		}
+
+		private Config GetBonus(List<Block> pack, BlockSpawnConfig blockConfig, int value, ref int current)
+		{
+			foreach (var bonus in blockConfig.Bonuses)
+			{
+				current += bonus.Weight;
+				if (current >= value)
+				{
+					if (bonus.SpawnLogic.CanSpawn(pack))
+					{
+						return bonus.Config;
+					}
+					return null;
+				}
+			}
+			return null;
 		}
 	}
 }

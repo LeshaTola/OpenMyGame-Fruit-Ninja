@@ -1,3 +1,4 @@
+using General;
 using Scenes.GamePlay.StateMachine;
 using Score;
 using StateMachine.States;
@@ -8,7 +9,7 @@ using UnityEngine.UI;
 namespace UI
 {
 
-	public class LooseUI : MonoBehaviour
+	public class LooseUI : MonoBehaviour, IInitable
 	{
 		[SerializeField] private ScoreController scoreController;
 		[SerializeField] private GamePlayStateMachine stateMachine;
@@ -18,6 +19,7 @@ namespace UI
 		[SerializeField] private Button menuButton;
 
 		[SerializeField] private TextMeshProUGUI scoreText;
+		[SerializeField] private string bestScorePreText;
 		[SerializeField] private TextMeshProUGUI bestScoreText;
 
 		public void Init()
@@ -39,22 +41,38 @@ namespace UI
 
 		public void Show()
 		{
+			Activate();
 			panelAnimation.PlayShowAnimation();
 		}
 
 		public void Hide()
 		{
+			Deactivate();
 			panelAnimation.PlayHideAnimation();
 		}
 
 		private void OnBestScoreChanged(int score)
 		{
-			bestScoreText.text = score.ToString();
+			bestScoreText.text = bestScorePreText + score.ToString();
 		}
 
 		private void OnScoreChanged(int score)
 		{
 			scoreText.text = score.ToString();
+		}
+
+
+
+		private void Activate()
+		{
+			restartButton.enabled = true;
+			menuButton.enabled = true;
+		}
+
+		private void Deactivate()
+		{
+			restartButton.enabled = false;
+			menuButton.enabled = false;
 		}
 	}
 }

@@ -1,24 +1,20 @@
 ﻿using Blocks;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Spawn.BlockSpawnLogic
 {
-	[CreateAssetMenu(fileName = "BombSpawnLogic", menuName = "Configs/Blocks/SpawnLogic/BombSpawnLogic")]
 	public class BombSpawnLogic : BasicSpawnLogic
 	{
 		[Tooltip("Percentage of the main pack")]
 		[Range(0, 1)][SerializeField] private float packPercent;
-		[Range(0, 1)][SerializeField] private float chance;
 
 		public override bool CanSpawn(List<Block> pack)
 		{
 			if (!IsEnough(pack))
 			{
-				if (chance > Random.value)
-				{
-					return true;
-				}
+				return true;
 			}
 
 			return false;

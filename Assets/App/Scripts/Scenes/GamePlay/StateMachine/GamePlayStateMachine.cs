@@ -1,8 +1,6 @@
-﻿using Blocks;
+﻿using Assets.App.Scripts.General;
+using Blocks;
 using General;
-using Health;
-using Score;
-using Slicing;
 using Spawn;
 using StateMachine.States;
 using System.Collections.Generic;
@@ -13,17 +11,14 @@ using UnityEngine;
 
 namespace Scenes.GamePlay.StateMachine
 {
-	public class GamePlayStateMachine : MonoBehaviour
+	public class GamePlayStateMachine : MonoBehaviour, IInitable
 	{
 		[Header("Global")]
 		[SerializeField] private int targetFrameRate;
 		[SerializeField] private List<Config> blockConfigs;
 
 		[Header("Local")]
-		[SerializeField] private HealthController healthController;
-		[SerializeField] private ScoreController scoreController;
-		[SerializeField] private Slicer slicer;
-		[SerializeField] private ObjectPoolsContainer poolsContainer;
+		[SerializeField] private Context context;
 		[SerializeField] private Spawner spawner;
 
 		[SerializeField] private SerializableInterface<ISceneTransition> sceneTransition;
@@ -40,16 +35,15 @@ namespace Scenes.GamePlay.StateMachine
 		{
 			core = new();
 
-			var localInitState = new States.InitState(core, sceneTransition.Value);
-			core.AddState(new GlobalInitState(core, localInitState, targetFrameRate, blockConfigs));
-			core.AddState(localInitState);
+			core.AddState(new GlobalInitState<ResetState>(core, targetFrameRate, blockConfigs));
+			core.AddState(new States.InitState(core, sceneTransition.Value));
 			core.AddState(new ResetState(core, resettables));
-			core.AddState(new GameState(core, healthController, spawner));
-			core.AddState(new LooseState(core, looseUI, scoreController, poolsContainer, slicer));
-			core.AddState(new PauseState(core, pauseUI, slicer));
+			core.AddState(new GameState(core, context.HealthController, spawner));
+			core.AddState(new LooseState(core, looseUI, context));
+			core.AddState(new PauseState(core, pauseUI, context.Slicer));
 			core.AddState(new LoadSceneState(core, sceneTransition.Value));
 
-			core.SetState<GlobalInitState>();
+			core.SetState<GlobalInitState<ResetState>>();
 		}
 	}
 }

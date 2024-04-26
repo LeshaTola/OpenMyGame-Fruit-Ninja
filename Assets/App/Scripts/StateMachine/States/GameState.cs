@@ -17,7 +17,6 @@ namespace StateMachine.States
 		public override void Enter()
 		{
 			base.Enter();
-			spawner.StartCoroutine(spawner.SpawnCoroutine());
 			healthController.OnDeath += OnDeath;
 
 		}
@@ -25,7 +24,6 @@ namespace StateMachine.States
 		public override void Exit()
 		{
 			base.Exit();
-			spawner.StopAllCoroutines();
 			healthController.OnDeath -= OnDeath;
 		}
 

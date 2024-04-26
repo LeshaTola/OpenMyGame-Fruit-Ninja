@@ -1,9 +1,10 @@
+using General;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Health
 {
-	public class HealthBarUI : MonoBehaviour
+	public class HealthBarUI : MonoBehaviour, IInitable
 	{
 		[SerializeField] private HealthController controller;
 		[SerializeField] private HealthIconUI healthIconsTemplate;

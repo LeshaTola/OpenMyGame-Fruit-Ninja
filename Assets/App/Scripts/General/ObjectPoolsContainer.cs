@@ -5,7 +5,7 @@ using Utility;
 
 namespace General
 {
-	public class ObjectPoolsContainer : MonoBehaviour
+	public class ObjectPoolsContainer : MonoBehaviour, IInitable
 	{
 		[Header("Templates")]
 		[SerializeField] private Block blockTemplate;

@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73a5f0f83a93bd54eb7668d29bff4c9d, type: 3}
+  m_Name: SamuraiSpawnConfig
+  m_EditorClassIdentifier: 
+  timeBetweenProgressions: 100000000
+  fruits:
+    StartValue: 10
+    Range:
+      Min: 0
+      Max: 0
+    Progression: 0
+  fruitCooldown:
+    StartValue: 0.1
+    Range:
+      Min: 0
+      Max: 0
+    Progression: 0
+  packCooldown:
+    StartValue: 0.5
+    Range:
+      Min: 0
+      Max: 0
+    Progression: 0
+  blockSpawnConfig: {fileID: 11400000, guid: ca2f966941548064dab2abbb1de6a7c2, type: 2}

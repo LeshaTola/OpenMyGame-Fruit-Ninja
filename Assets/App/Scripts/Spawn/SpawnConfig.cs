@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using General;
+using System;
+using UnityEngine;
 
 namespace Spawn
 {
@@ -9,37 +11,44 @@ namespace Spawn
 		[SerializeField] private float timeBetweenProgressions;
 
 		[Header("Fruit Count")]
-		[SerializeField] private float startFruitCount;
-		[SerializeField, Min(0)] private int minFruitCount;
-		[SerializeField] private int maxFruitCount;
-		[SerializeField] private float fruitCountProgression;
+		[SerializeField] private ProgressionStruct fruits;
 
 		[Header("Fruit Cooldown")]
-		[SerializeField] private float startFruitCooldown;
-		[SerializeField, Min(0)] private float minFruitCooldown;
-		[SerializeField] private float maxFruitCooldown;
-		[SerializeField] private float fruitCooldownProgression;
+		[SerializeField] private ProgressionStruct fruitCooldown;
 
 		[Header("Pack Cooldown")]
-		[SerializeField] private float startPackCooldown;
-		[SerializeField, Min(0)] private float minPackCooldown;
-		[SerializeField] private float maxPackCooldown;
-		[SerializeField] private float packCooldownProgression;
+		[SerializeField] private ProgressionStruct packCooldown;
 
-		public float StartFruitCount { get => startFruitCount; }
-		public int MinFruitCount { get => minFruitCount; }
-		public float MaxFruitCount { get => maxFruitCount; }
-		public float FruitCountProgression { get => fruitCountProgression; }
+		[SerializeField] private BlockSpawnConfig blockSpawnConfig;
 
-		public float StartFruitCooldown { get => startFruitCooldown; }
-		public float MinFruitCooldown { get => minFruitCooldown; }
-		public float MaxFruitCooldown { get => maxFruitCooldown; }
-		public float FruitCooldownProgression { get => fruitCooldownProgression; }
-
-		public float StartPackCooldown { get => startPackCooldown; }
-		public float MinPackCooldown { get => minPackCooldown; }
-		public float PackCooldownProgression { get => packCooldownProgression; }
-		public float MaxPackCooldown { get => maxPackCooldown; }
 		public float TimeBetweenProgressions { get => timeBetweenProgressions; }
+		public ProgressionStruct FruitsCount { get => fruits; }
+		public ProgressionStruct FruitCooldown { get => fruitCooldown; }
+		public ProgressionStruct PackCooldown { get => packCooldown; }
+		public BlockSpawnConfig BlockSpawnConfig { get => blockSpawnConfig; }
+
+		public SpawnConfig Copy(
+			SpawnConfig spawnConfig,
+			BlockSpawnConfig blockSpawnConfig,
+			float countMultiplier = 1,
+			float blockCooldownMultiplier = 1,
+			float packCooldownMultiplier = 1)
+		{
+			var newProgressor = CreateInstance<SpawnConfig>();
+			newProgressor.fruits.StartValue = spawnConfig.fruits.StartValue * countMultiplier;
+			newProgressor.fruitCooldown.StartValue = spawnConfig.fruitCooldown.StartValue * blockCooldownMultiplier;
+			newProgressor.packCooldown.StartValue = spawnConfig.packCooldown.StartValue * packCooldownMultiplier;
+			newProgressor.blockSpawnConfig = blockSpawnConfig;
+			return newProgressor;
+		}
+
+	}
+
+	[Serializable]
+	public struct ProgressionStruct
+	{
+		public float StartValue;
+		public MinMaxValue<float> Range;
+		public float Progression;
 	}
 }

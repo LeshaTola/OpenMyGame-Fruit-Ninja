@@ -14,7 +14,7 @@ namespace StateMachine
 			states.Add(state.GetType(), state);
 		}
 
-		public void SetState(Type type)
+		private void SetState(Type type)
 		{
 			if (currentState != null && currentState.GetType() == type)
 			{

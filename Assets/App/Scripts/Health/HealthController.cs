@@ -19,7 +19,7 @@ namespace Health
 
 		public void AddHealth(int health)
 		{
-			if (health <= 0)
+			if (health <= 0 || enabled == false)
 			{
 				return;
 			}
@@ -36,7 +36,7 @@ namespace Health
 
 		public void ReduceHealth(int health)
 		{
-			if (health <= 0)
+			if (health <= 0 || enabled == false)
 			{
 				return;
 			}
@@ -52,6 +52,7 @@ namespace Health
 
 		public void ResetComponent()
 		{
+			enabled = true;
 			AddHealth(defaultHealth);
 		}
 	}
