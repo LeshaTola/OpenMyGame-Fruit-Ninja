@@ -1,10 +1,11 @@
+using General;
 using Scenes.GamePlay.StateMachine;
 using StateMachine.States;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PauseUI : MonoBehaviour
+public class PauseUI : MonoBehaviour, IInitable
 {
 	[SerializeField] private PanelAnimation panelAnimation;
 	[SerializeField] private GamePlayStateMachine stateMachine;

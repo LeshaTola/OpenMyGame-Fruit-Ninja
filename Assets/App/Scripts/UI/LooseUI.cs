@@ -1,3 +1,4 @@
+using General;
 using Scenes.GamePlay.StateMachine;
 using Score;
 using StateMachine.States;
@@ -8,7 +9,7 @@ using UnityEngine.UI;
 namespace UI
 {
 
-	public class LooseUI : MonoBehaviour
+	public class LooseUI : MonoBehaviour, IInitable
 	{
 		[SerializeField] private ScoreController scoreController;
 		[SerializeField] private GamePlayStateMachine stateMachine;

@@ -11,7 +11,7 @@ using UnityEngine;
 
 namespace Scenes.GamePlay.StateMachine
 {
-	public class GamePlayStateMachine : MonoBehaviour
+	public class GamePlayStateMachine : MonoBehaviour, IInitable
 	{
 		[Header("Global")]
 		[SerializeField] private int targetFrameRate;

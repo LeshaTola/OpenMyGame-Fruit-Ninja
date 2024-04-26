@@ -1,10 +1,11 @@
-﻿using System.Collections;
+﻿using General;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
 namespace Score
 {
-	public class ScoreUI : MonoBehaviour
+	public class ScoreUI : MonoBehaviour, IInitable
 	{
 		[SerializeField] private ScoreController scoreController;
 		[SerializeField] private TextMeshProUGUI currentScoreText;

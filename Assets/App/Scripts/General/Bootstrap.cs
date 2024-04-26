@@ -1,13 +1,12 @@
 ﻿using Assets.App.Scripts.General;
 using Blocks.Factory;
-using Health;
 using Input;
 using Scenes.GamePlay.StateMachine;
-using Score;
 using Slicing;
 using Spawn;
 using Spawn.Progressor;
-using UI;
+using System.Collections.Generic;
+using TNRD;
 using UnityEngine;
 
 namespace General
@@ -23,19 +22,11 @@ namespace General
 		[SerializeField] private Slicer slicer;
 		[SerializeField] private Spawner spawner;
 
-		[Header("Health")]
-		[SerializeField] private HealthBarUI healthUI;
+		[SerializeField] private List<SerializableInterface<IInitable>> initables;
 
-		[Header("Score")]
-		[SerializeField] private ScoreUI scoreUI;
-
-		[Header("UI")]
-		[SerializeField] private LooseUI looseUI;
-		[SerializeField] private PauseUI pauseUI;
 
 		private void Awake()
 		{
-			context.PoolsContainer.Init();
 
 			IPlayerInput playerInput = new MousePlayerInput(mainCamera);
 			IBlockFactory blockFactory = new BaseBlockFactory(context);
@@ -43,13 +34,10 @@ namespace General
 			slicer.Init(playerInput);
 			spawner.Init(new SimpleProgressor(), blockFactory);
 
-			scoreUI.Init();
-			healthUI.Init();
-
-			looseUI.Init();
-			pauseUI.Init();
-
-			stateMachine.Init();
+			foreach (var initable in initables)
+			{
+				initable.Value.Init();
+			}
 		}
 	}
 }
