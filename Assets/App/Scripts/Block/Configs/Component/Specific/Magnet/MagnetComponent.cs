@@ -19,13 +19,8 @@ namespace Blocks.Configs.Component
 		{
 			MagnetArea newMagnetArea = Instantiate(area, block.transform.position, Quaternion.identity);
 			newMagnetArea.Init(strength, radius, lifeTime, Context, whiteList);
-			newMagnetArea.StartPull();
-			/*Context.BonusController.Actions.Add(() =>
-			{
-				newMagnetArea.StopAllCoroutines();
-				Destroy(newMagnetArea.gameObject);
-			});*/
-		}
 
+			Context.BonusController.AddBonus(newMagnetArea);
+		}
 	}
 }
