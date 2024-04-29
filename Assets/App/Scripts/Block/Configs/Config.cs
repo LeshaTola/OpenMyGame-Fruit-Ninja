@@ -1,17 +1,21 @@
 ﻿using Blocks.Configs.Component;
+using Blocks.Configs.SpawnComponent;
+using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Blocks
 {
 	[CreateAssetMenu(fileName = "BlockConfig", menuName = "Configs/Blocks/Block")]
-	public class Config : ScriptableObject
+	public class Config : SerializedScriptableObject
 	{
 		[Header("General")]
 		[SerializeField] private Sprite blockSprite;
 		[SerializeField] private float speed = 1f;
 		[SerializeField] private float radius;
 
+		[OdinSerialize] private List<ISpawnComponent> spawnComponents = new();
 		[SerializeField] private List<BasicComponent> sliceComponents = new();
 		[SerializeField] private List<BasicComponent> killComponents = new();
 
@@ -21,6 +25,7 @@ namespace Blocks
 		public float Speed { get => speed; }
 		public float Radius { get => radius; }
 
+		public List<ISpawnComponent> SpawnComponents { get => spawnComponents; }
 		public List<BasicComponent> SliceComponents { get => sliceComponents; }
 		public List<BasicComponent> KillComponents { get => killComponents; }
 

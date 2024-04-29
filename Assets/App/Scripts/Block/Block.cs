@@ -26,18 +26,11 @@ namespace Blocks
 		{
 			this.config = config;
 
-			foreach (var component in Config.SliceComponents)
-			{
-				component.Init(context);
-			}
-			foreach (var component in Config.KillComponents)
-			{
-				component.Init(context);
-			}
-
 			visual.Init(sprite);
 			myCollider.Radius = radius;
 			movement.Speed = config.Speed;
+
+			InitComponents(context);
 		}
 
 		public void ResetBlock()
@@ -60,6 +53,23 @@ namespace Blocks
 			foreach (var component in Config.KillComponents)
 			{
 				component.Execute(this);
+			}
+		}
+
+		private void InitComponents(Context context)
+		{
+			foreach (var component in Config.SpawnComponents)
+			{
+				component.Init(context, this);
+				component.Start();
+			}
+			foreach (var component in Config.SliceComponents)
+			{
+				component.Init(context);
+			}
+			foreach (var component in Config.KillComponents)
+			{
+				component.Init(context);
 			}
 		}
 	}
