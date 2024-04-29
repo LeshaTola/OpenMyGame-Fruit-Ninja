@@ -18,6 +18,11 @@ namespace Blocks.Configs.Component
 
 		private void PlayHealthAnimation(Block block)
 		{
+			if (Context.HealthController.CurrentHealth == Context.HealthController.MaxHealth)
+			{
+				return;
+			}
+
 			var healthIcon = GameObject.Instantiate(healthGameObject, block.transform.position, Quaternion.identity);
 			Sequence sequence = DOTween.Sequence();
 			var tween = healthIcon.transform

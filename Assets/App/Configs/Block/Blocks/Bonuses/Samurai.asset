@@ -69,7 +69,7 @@ MonoBehaviour:
       Data: 0.25
     - Name: packCooldownMultiplier
       Entry: 4
-      Data: 0.25
+      Data: 0
     - Name: blockSpawnConfig
       Entry: 10
       Data: 1
