@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 730454cc429524d4cbc82783e1c510b3, type: 3}
-  m_Name: _Half
+  m_Name: Brick
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -40,7 +40,37 @@ MonoBehaviour:
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 2|Blocks.Configs.Component.StopSlicingComponent, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 3|Blocks.Configs.Component.ParticlesComponent, Assembly-CSharp
+    - Name: color
+      Entry: 7
+      Data: UnityEngine.Color, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 0.5464047
+    - Name: 
+      Entry: 4
       Data: 0
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 13
       Data: 
@@ -49,14 +79,14 @@ MonoBehaviour:
       Data: 
     - Name: killComponents
       Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Blocks.Configs.Component.IComponent,
+      Data: 4|System.Collections.Generic.List`1[[Blocks.Configs.Component.IComponent,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 3|Blocks.Configs.Component.ReleaseComponent, Assembly-CSharp
+      Data: 5|Blocks.Configs.Component.ReleaseComponent, Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 
@@ -66,7 +96,7 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  blockSprite: {fileID: 0}
+  blockSprite: {fileID: 21300000, guid: 9138ec5ff0e7eb148a1c650bb32baf6c, type: 3}
   speed: 1
-  radius: 0
+  radius: 0.8
   halfSprites: []
