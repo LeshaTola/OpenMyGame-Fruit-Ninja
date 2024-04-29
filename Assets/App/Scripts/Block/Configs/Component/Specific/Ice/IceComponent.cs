@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace Blocks.Configs.Component
 {
-	[CreateAssetMenu(fileName = "IceComponent", menuName = "Configs/Blocks/Components/Specific/Ice/IceComponent")]
 	public class IceComponent : BasicComponent, IBonusComponent
 	{
 		[SerializeField, Min(0)] private int bonusTimer;

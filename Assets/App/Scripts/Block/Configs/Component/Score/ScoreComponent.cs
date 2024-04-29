@@ -2,7 +2,6 @@
 
 namespace Blocks.Configs.Component
 {
-	[CreateAssetMenu(fileName = "ScoreComponent", menuName = "Configs/Blocks/Components/ScoreComponent")]
 	public class ScoreComponent : BasicComponent
 	{
 		[SerializeField] private int score;

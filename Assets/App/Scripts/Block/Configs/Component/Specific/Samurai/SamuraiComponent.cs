@@ -6,7 +6,6 @@ using UnityEngine;
 
 namespace Blocks.Configs.Component
 {
-	[CreateAssetMenu(fileName = "SamuraiComponent", menuName = "Configs/Blocks/Components/Specific/Samurai/SamuraiComponent")]
 	public class SamuraiComponent : BasicComponent, IBonusComponent
 	{
 		[SerializeField, Min(0)] private int bonusTimer;

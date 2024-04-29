@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace Blocks.Configs.Component
 {
-	[CreateAssetMenu(fileName = "HalvesComponent", menuName = "Configs/Blocks/Components/HalvesComponent")]
 	public class HalvesComponent : BasicComponent
 	{
 		[SerializeField] private Config halfConfig;

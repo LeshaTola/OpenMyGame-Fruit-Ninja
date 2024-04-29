@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace Blocks.Configs.Component
 {
-	[CreateAssetMenu(fileName = "MagnetComponent", menuName = "Configs/Blocks/Components/Specific/Magnet/MagnetComponent")]
 	public class MagnetComponent : BasicComponent
 	{
 		[Header("Prefab")]
@@ -17,7 +16,7 @@ namespace Blocks.Configs.Component
 
 		public override void Execute(Block block)
 		{
-			MagnetArea newMagnetArea = Instantiate(area, block.transform.position, Quaternion.identity);
+			MagnetArea newMagnetArea = GameObject.Instantiate(area, block.transform.position, Quaternion.identity);
 			newMagnetArea.Init(strength, radius, lifeTime, Context, whiteList);
 
 			Context.BonusController.AddBonus(newMagnetArea);

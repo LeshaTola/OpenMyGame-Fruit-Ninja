@@ -1,12 +1,15 @@
 ﻿using Assets.App.Scripts.General;
+using Blocks.Configs.Bonuses;
+using Blocks.Configs.Component;
 using Blocks.Configs.Component.Specific;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
 
-namespace Blocks.Configs.Bonuses.Mimic
+namespace Blocks.Bonuses.Mimic
 {
 	public class MimicController : MonoBehaviour, IBonusComponent
 	{
@@ -39,7 +42,6 @@ namespace Blocks.Configs.Bonuses.Mimic
 			this.context = context;
 		}
 
-
 		public void StartBonus()
 		{
 			Swap(block);
@@ -49,11 +51,6 @@ namespace Blocks.Configs.Bonuses.Mimic
 
 		public void UpdateBonus()
 		{
-			if (!gameObject.activeSelf)
-			{
-				IsValid = false;
-			}
-
 			timer -= Time.deltaTime;
 			if (timer <= timeBeforeParticles && !particles.isPlaying)
 			{
@@ -64,6 +61,7 @@ namespace Blocks.Configs.Bonuses.Mimic
 			{
 				timer = swapCooldown;
 				Swap(block);
+				swapParticles.Play();
 				particles.Stop();
 			}
 		}
@@ -76,8 +74,44 @@ namespace Blocks.Configs.Bonuses.Mimic
 		private void Swap(Block block)
 		{
 			Config newConfig = GetConfig();
+			SwapSubscriptions(block, newConfig);
+			block.Visual.RestartAnimation();
 			block.Init(newConfig, context);
-			swapParticles.Play();
+
+			SetupParticles(newConfig);
+		}
+
+		private void SetupParticles(Config newConfig)
+		{
+			ShapeModule preSwapParticleShape = particles.shape;
+			ShapeModule swapParticleShape = swapParticles.shape;
+
+			preSwapParticleShape.radius = newConfig.Radius;
+			swapParticleShape.radius = newConfig.Radius;
+		}
+
+		private void SwapSubscriptions(Block block, Config newConfig)
+		{
+			ReleaseComponent sliceReleaseComponent = block.Config.GetSlicingComponent<ReleaseComponent>();
+			ReleaseComponent killReleaseComponent = block.Config.GetKillingComponent<ReleaseComponent>();
+
+			if (sliceReleaseComponent != null)
+				sliceReleaseComponent.OnRelease -= SetInvalid;
+			if (killReleaseComponent != null)
+				killReleaseComponent.OnRelease -= SetInvalid;
+
+			sliceReleaseComponent = newConfig.GetSlicingComponent<ReleaseComponent>();
+			killReleaseComponent = newConfig.GetKillingComponent<ReleaseComponent>();
+
+			if (sliceReleaseComponent != null)
+				sliceReleaseComponent.OnRelease += SetInvalid;
+			if (killReleaseComponent != null)
+				killReleaseComponent.OnRelease += SetInvalid;
+		}
+
+		private void SetInvalid()
+		{
+			IsValid = false;
 		}
 
 		private Config GetConfig()

@@ -27,7 +27,15 @@ namespace Blocks
 			List<Block> blocksToDestroy = new List<Block>();
 			foreach (var block in poolsContainer.Blocks.Active)
 			{
-				if (block.transform.position.y + block.Collider.Radius < -mainCamera.orthographicSize)
+				float yEdgePosition = block.transform.position.y + block.Collider.Radius;
+				float leftXEdgePosition = block.transform.position.x + block.Collider.Radius;
+				float rightXEdgePosition = block.transform.position.x - block.Collider.Radius;
+
+				if (yEdgePosition < -mainCamera.orthographicSize)
+				{
+					blocksToDestroy.Add(block);
+				}
+				if (leftXEdgePosition < -mainCamera.orthographicSize * mainCamera.aspect || rightXEdgePosition > mainCamera.orthographicSize * mainCamera.aspect)
 				{
 					blocksToDestroy.Add(block);
 				}

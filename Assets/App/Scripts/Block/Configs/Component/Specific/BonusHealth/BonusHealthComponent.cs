@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace Blocks.Configs.Component
 {
-	[CreateAssetMenu(fileName = "BonusHealthComponent", menuName = "Configs/Blocks/Components/Specific/BonusHealth/BonusHealthComponent")]
 	public class BonusHealthComponent : BasicComponent
 	{
 		[SerializeField] private HealthGameObject healthGameObject;
@@ -19,7 +18,7 @@ namespace Blocks.Configs.Component
 
 		private void PlayHealthAnimation(Block block)
 		{
-			var healthIcon = Instantiate(healthGameObject, block.transform.position, Quaternion.identity);
+			var healthIcon = GameObject.Instantiate(healthGameObject, block.transform.position, Quaternion.identity);
 			Sequence sequence = DOTween.Sequence();
 			var tween = healthIcon.transform
 				.DOMove(Context.UiContext.HealthBarUI.GetNextHeartPosition(), moveTime)

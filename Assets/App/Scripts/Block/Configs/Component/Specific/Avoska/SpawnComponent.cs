@@ -5,7 +5,6 @@ using UnityEngine;
 
 namespace Blocks.Configs.Component
 {
-	[CreateAssetMenu(fileName = "SpawnComponent", menuName = "Configs/Blocks/Components/Specific/Avoska/SpawnComponent")]
 	public class SpawnComponent : BasicComponent
 	{
 		[SerializeField] private List<Config> toSpawn;

@@ -1,9 +1,8 @@
 ﻿using Assets.App.Scripts.General;
-using UnityEngine;
 
 namespace Blocks.Configs.Component
 {
-	public abstract class BasicComponent : ScriptableObject, IComponent
+	public abstract class BasicComponent : IComponent
 	{
 		protected Context Context;
 

@@ -2,7 +2,6 @@
 
 namespace Blocks.Configs.Component
 {
-	[CreateAssetMenu(fileName = "PushComponent", menuName = "Configs/Blocks/Components/PushComponent")]
 	public class PushComponent : BasicComponent
 	{
 		[SerializeField] private float influenceRadius;

@@ -2,7 +2,6 @@
 
 namespace Blocks.Configs.Component
 {
-	[CreateAssetMenu(fileName = "ParticlesComponent", menuName = "Configs/Blocks/Components/ParticlesComponent")]
 	public class ParticlesComponent : BasicComponent
 	{
 		[SerializeField] private Color color;

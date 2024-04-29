@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace Blocks.Configs.Component
 {
-	[CreateAssetMenu(fileName = "FlyingTextComponent", menuName = "Configs/Blocks/Components/FlyingTextComponent")]
 	public class FlyingTextComponent : BasicComponent
 	{
 		[SerializeField] private string text;

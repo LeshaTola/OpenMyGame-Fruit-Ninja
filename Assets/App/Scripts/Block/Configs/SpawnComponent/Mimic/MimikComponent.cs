@@ -1,5 +1,5 @@
-﻿using Blocks.Configs.Bonuses;
-using Blocks.Configs.Bonuses.Mimic;
+﻿using Blocks.Bonuses.Mimic;
+using Blocks.Configs.Bonuses;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using System.Collections.Generic;

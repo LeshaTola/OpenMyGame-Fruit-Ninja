@@ -2,7 +2,6 @@
 
 namespace Blocks.Configs.Component
 {
-	[CreateAssetMenu(fileName = "EffectComponent", menuName = "Configs/Blocks/Components/EffectComponent")]
 	public class EffectComponent : BasicComponent
 	{
 		[SerializeField] private Sprite effectSprite;
