@@ -17,7 +17,7 @@ MonoBehaviour:
   start: {x: 0, y: 3}
   end: {x: 0, y: -1}
   xOffset: 1
-  yOffset: -0.28
+  yOffset: 0.11
   minAngle: 45
   maxAngle: 45
   minVerticalSpeed: 7
