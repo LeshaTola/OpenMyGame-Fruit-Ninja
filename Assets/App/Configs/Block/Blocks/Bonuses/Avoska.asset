@@ -1,0 +1,162 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730454cc429524d4cbc82783e1c510b3, type: 3}
+  m_Name: Avoska
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: 8388eaba214a9d8419f5dfcc666b6b28, type: 2}
+    - {fileID: 11400000, guid: 422e1fb85cc5bab44a213a8452bee112, type: 2}
+    - {fileID: 11400000, guid: dede252390d145a41a61e441ff24c7d9, type: 2}
+    - {fileID: 11400000, guid: a0aa49c975a663a4183acce468afe6f5, type: 2}
+    - {fileID: 11400000, guid: 71c33271ff1d13f47bdc8d610e2d383b, type: 2}
+    - {fileID: 11400000, guid: a021e3b051794df4aa86316f4219222c, type: 2}
+    - {fileID: 11400000, guid: 82a650014570a8b42b09a37555f9a289, type: 2}
+    - {fileID: 11400000, guid: 257a4f96ee8bea54cbf3ce707a24d3d3, type: 2}
+    - {fileID: 11400000, guid: bd3925c379e1bbf4ab89d9ecb3275b21, type: 2}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: spawnComponents
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[Blocks.Configs.SpawnComponent.ISpawnComponent,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: sliceComponents
+      Entry: 7
+      Data: 1|System.Collections.Generic.List`1[[Blocks.Configs.Component.IComponent,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 7
+      Data: 2|Blocks.Configs.Component.SpawnComponent, Assembly-CSharp
+    - Name: toSpawn
+      Entry: 7
+      Data: 3|System.Collections.Generic.List`1[[Blocks.Config, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 8
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 10
+      Data: 4
+    - Name: 
+      Entry: 10
+      Data: 5
+    - Name: 
+      Entry: 10
+      Data: 6
+    - Name: 
+      Entry: 10
+      Data: 7
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: countRange
+      Entry: 7
+      Data: General.MinMaxValue`1[[System.Int32, mscorlib]], Assembly-CSharp
+    - Name: Min
+      Entry: 3
+      Data: 2
+    - Name: Max
+      Entry: 3
+      Data: 5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: pushForce
+      Entry: 4
+      Data: 7
+    - Name: invulnerabilityTime
+      Entry: 4
+      Data: 0.1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 4|Blocks.Configs.Component.HalvesComponent, Assembly-CSharp
+    - Name: halfConfig
+      Entry: 10
+      Data: 8
+    - Name: explosionForce
+      Entry: 4
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 5|Blocks.Configs.Component.ReleaseComponent, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: killComponents
+      Entry: 7
+      Data: 6|System.Collections.Generic.List`1[[Blocks.Configs.Component.IComponent,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 7|Blocks.Configs.Component.ReleaseComponent, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  blockSprite: {fileID: 21300000, guid: 6c4c659435b526a44ad93fa71f443995, type: 3}
+  speed: 1
+  radius: 1.3
+  halfSprites:
+  - {fileID: 961198479, guid: ac2ec4a6542c85f4ba420c62c1c7fc30, type: 3}
+  - {fileID: -1785751589, guid: ac2ec4a6542c85f4ba420c62c1c7fc30, type: 3}

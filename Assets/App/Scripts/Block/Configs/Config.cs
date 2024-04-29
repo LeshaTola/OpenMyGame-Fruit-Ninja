@@ -1,19 +1,24 @@
 ﻿using Blocks.Configs.Component;
+using Blocks.Configs.SpawnComponent;
+using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Blocks
 {
 	[CreateAssetMenu(fileName = "BlockConfig", menuName = "Configs/Blocks/Block")]
-	public class Config : ScriptableObject
+	public class Config : SerializedScriptableObject
 	{
 		[Header("General")]
 		[SerializeField] private Sprite blockSprite;
 		[SerializeField] private float speed = 1f;
 		[SerializeField] private float radius;
 
-		[SerializeField] private List<BasicComponent> sliceComponents = new();
-		[SerializeField] private List<BasicComponent> killComponents = new();
+		[OdinSerialize] private List<ISpawnComponent> spawnComponents = new();
+		[SerializeField] private List<IComponent> sliceComponents = new();
+		[SerializeField] private List<IComponent> killComponents = new();
 
 		[SerializeField] private List<Sprite> halfSprites;
 
@@ -21,8 +26,9 @@ namespace Blocks
 		public float Speed { get => speed; }
 		public float Radius { get => radius; }
 
-		public List<BasicComponent> SliceComponents { get => sliceComponents; }
-		public List<BasicComponent> KillComponents { get => killComponents; }
+		public List<ISpawnComponent> SpawnComponents { get => spawnComponents; }
+		public List<IComponent> SliceComponents { get => sliceComponents; }
+		public List<IComponent> KillComponents { get => killComponents; }
 
 		public List<Sprite> HalfSprites { get => halfSprites; }
 
@@ -39,6 +45,16 @@ namespace Blocks
 				var halfSprite = Sprite.Create(blockSprite.texture, halfRect, new Vector2(0.5f, 0.5f));
 				HalfSprites.Add(halfSprite);
 			}
+		}
+
+		public T GetSlicingComponent<T>() where T : IComponent
+		{
+			return (T)sliceComponents.FirstOrDefault(x => x is T);
+		}
+
+		public T GetKillingComponent<T>() where T : IComponent
+		{
+			return (T)killComponents.FirstOrDefault(x => x is T);
 		}
 	}
 }

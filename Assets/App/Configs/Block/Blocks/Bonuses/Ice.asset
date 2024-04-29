@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730454cc429524d4cbc82783e1c510b3, type: 3}
+  m_Name: Ice
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 21300000, guid: e0ecc24243c46b742a4ec1670c294614, type: 3}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: spawnComponents
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[Blocks.Configs.SpawnComponent.ISpawnComponent,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: sliceComponents
+      Entry: 7
+      Data: 1|System.Collections.Generic.List`1[[Blocks.Configs.Component.IComponent,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 7
+      Data: 2|Blocks.Configs.Component.IceComponent, Assembly-CSharp
+    - Name: bonusTimer
+      Entry: 3
+      Data: 5
+    - Name: timeScale
+      Entry: 4
+      Data: 0.75
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 3|Blocks.Configs.Component.EffectComponent, Assembly-CSharp
+    - Name: effectSprite
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 4|Blocks.Configs.Component.ReleaseComponent, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: killComponents
+      Entry: 7
+      Data: 5|System.Collections.Generic.List`1[[Blocks.Configs.Component.IComponent,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 6|Blocks.Configs.Component.ReleaseComponent, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  blockSprite: {fileID: 21300000, guid: 009bfc56eb9911b4eb1aa6ec3419064e, type: 3}
+  speed: 1
+  radius: 1
+  halfSprites: []

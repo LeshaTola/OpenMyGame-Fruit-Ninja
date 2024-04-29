@@ -12,17 +12,158 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 730454cc429524d4cbc82783e1c510b3, type: 3}
   m_Name: Pear
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: bd3925c379e1bbf4ab89d9ecb3275b21, type: 2}
+    - {fileID: -1292497027, guid: d77cc852af0fdce4e8bef9915a633dfb, type: 3}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: spawnComponents
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[Blocks.Configs.SpawnComponent.ISpawnComponent,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: sliceComponents
+      Entry: 7
+      Data: 1|System.Collections.Generic.List`1[[Blocks.Configs.Component.IComponent,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 7
+    - Name: 
+      Entry: 7
+      Data: 2|Blocks.Configs.Component.HalvesComponent, Assembly-CSharp
+    - Name: halfConfig
+      Entry: 10
+      Data: 0
+    - Name: explosionForce
+      Entry: 4
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 3|Blocks.Configs.Component.EffectComponent, Assembly-CSharp
+    - Name: effectSprite
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 4|Blocks.Configs.Component.FlyingTextComponent, Assembly-CSharp
+    - Name: text
+      Entry: 1
+      Data: 50
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 5|Blocks.Configs.Component.ScoreComponent, Assembly-CSharp
+    - Name: score
+      Entry: 3
+      Data: 50
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 6|Blocks.Configs.Component.ComboComponent, Assembly-CSharp
+    - Name: scoreComponent
+      Entry: 7
+      Data: 7|Blocks.Configs.Component.ScoreComponent, Assembly-CSharp
+    - Name: score
+      Entry: 3
+      Data: 50
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 8|Blocks.Configs.Component.ParticlesComponent, Assembly-CSharp
+    - Name: color
+      Entry: 7
+      Data: UnityEngine.Color, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 0.8745098
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 9|Blocks.Configs.Component.ReleaseComponent, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: killComponents
+      Entry: 7
+      Data: 10|System.Collections.Generic.List`1[[Blocks.Configs.Component.IComponent,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 11|Blocks.Configs.Component.HealthComponent, Assembly-CSharp
+    - Name: health
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 12|Blocks.Configs.Component.ReleaseComponent, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
   blockSprite: {fileID: 21300000, guid: a6170dc8d8947bc4ea84b175fecf18a0, type: 3}
   speed: 1
   radius: 1
-  sliceComponents:
-  - {fileID: 11400000, guid: 1e5415d9c858cb145b78b8d1a5b5032b, type: 2}
-  - {fileID: 11400000, guid: bc54a27f36f14b84ebd0e3af89941394, type: 2}
-  - {fileID: 11400000, guid: 42a0ad4e8ffa00949900f8aa8caf4dc0, type: 2}
-  - {fileID: 11400000, guid: 3d0eea6bce3867c44bb5a6f33360392d, type: 2}
-  - {fileID: 11400000, guid: e999461ef756fee44bed76598a7732e8, type: 2}
-  - {fileID: 11400000, guid: 323089ec55a5da042afb103167f6d0b9, type: 2}
-  - {fileID: 11400000, guid: c451cb1db5c3ce84fb1ff9c9703d2555, type: 2}
-  killComponents:
-  - {fileID: 11400000, guid: 64990ac5bef4ed146907e6c16d864e5f, type: 2}
-  - {fileID: 11400000, guid: e317b9c3c915aa840b9b1dd3b4b59e30, type: 2}
+  halfSprites:
+  - {fileID: 0}
+  - {fileID: 0}

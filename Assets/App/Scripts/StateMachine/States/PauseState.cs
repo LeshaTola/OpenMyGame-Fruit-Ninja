@@ -8,6 +8,7 @@ namespace StateMachine.States
 		private PauseUI pauseUI;
 		private Slicer slicer;
 
+		private float startTimeScale = 1f;
 		public PauseState(StateMachine stateMachine, PauseUI pauseUI, Slicer slicer) : base(stateMachine)
 		{
 			this.pauseUI = pauseUI;
@@ -19,6 +20,7 @@ namespace StateMachine.States
 			base.Enter();
 			pauseUI.Show();
 			slicer.gameObject.SetActive(false);
+			startTimeScale = Time.timeScale;
 			Time.timeScale = 0.0f;
 		}
 
@@ -27,7 +29,7 @@ namespace StateMachine.States
 			base.Exit();
 			pauseUI.Hide();
 			slicer.gameObject.SetActive(true);
-			Time.timeScale = 1.0f;
+			Time.timeScale = startTimeScale;
 		}
 	}
 }

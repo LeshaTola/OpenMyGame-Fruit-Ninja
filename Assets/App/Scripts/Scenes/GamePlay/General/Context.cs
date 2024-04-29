@@ -12,17 +12,23 @@ namespace Assets.App.Scripts.General
 {
 	public class Context : MonoBehaviour
 	{
+		[Header("Controllers")]
 		[SerializeField] private ObjectPoolsContainer poolsContainer;
 		[SerializeField] private HealthController healthController;
 		[SerializeField] private ScoreController scoreController;
 		[SerializeField] private ComboController comboController;
+		[SerializeField] private BonusController bonusController;
+
+		[Header("Other")]
+		[SerializeField] private Camera mainCamera;
 		[SerializeField] private Spawner spawner;
 		[SerializeField] private Slicer slicer;
 		[SerializeField] private UIContext uiContext;
-		[SerializeField] private BonusController bonusController;
 
 		public ITimeProvider TimeProvider { get; private set; } = new GameTimeProvider();
 
+
+		public Camera MainCamera { get => mainCamera; }
 		public ObjectPoolsContainer PoolsContainer { get => poolsContainer; }
 		public HealthController HealthController { get => healthController; }
 		public ScoreController ScoreController { get => scoreController; }

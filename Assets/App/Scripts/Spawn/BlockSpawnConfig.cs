@@ -14,7 +14,7 @@ namespace Spawn
 	{
 		[Header("Fruits")]
 		[SerializeField] private List<Config> fruits = new();
-		[Range(1, 10)][SerializeField] private int fruitsWeight;
+		[Range(1, 100)][SerializeField] private int fruitsWeight;
 
 		[SerializeField] private List<ConfigProperties> bonuses = new();
 
@@ -44,6 +44,6 @@ namespace Spawn
 
 		[FoldoutGroup("@BonusName")]
 		[OdinSerialize]
-		[Range(0, 10)] public int Weight;
+		[Range(0, 100)] public int Weight;
 	}
 }

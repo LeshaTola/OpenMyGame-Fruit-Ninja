@@ -1,12 +1,14 @@
-﻿using UnityEngine;
+﻿using System;
 
 namespace Blocks.Configs.Component
 {
-	[CreateAssetMenu(fileName = "ReleaseComponent", menuName = "Configs/Blocks/Components/ReleaseComponent")]
 	public class ReleaseComponent : BasicComponent
 	{
+		public event Action OnRelease;
+
 		public override void Execute(Block block)
 		{
+			OnRelease?.Invoke();
 			Context.PoolsContainer.Blocks.Release(block);
 		}
 	}

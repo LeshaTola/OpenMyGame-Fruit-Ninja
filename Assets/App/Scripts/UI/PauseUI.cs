@@ -18,7 +18,11 @@ public class PauseUI : MonoBehaviour, IInitable
 	{
 		pauseButton.onClick.AddListener(() => stateMachine.Core.SetState<PauseState>());
 		resumeButton.onClick.AddListener(() => stateMachine.Core.SetState<GameState>());
-		menuButton.onClick.AddListener(() => stateMachine.Core.SetState<LoadSceneState>());
+		menuButton.onClick.AddListener(() =>
+		{
+			stateMachine.Core.SetState<LoadSceneState>();
+			Time.timeScale = 1;
+		});
 		Hide();
 	}
 

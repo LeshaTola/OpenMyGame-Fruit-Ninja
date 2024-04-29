@@ -1,13 +1,12 @@
 ﻿using Assets.App.Scripts.General;
+using Blocks.Configs.Component.Specific;
 using Spawn;
 using Spawn.Progressor;
-using System.Collections;
 using UnityEngine;
 
 namespace Blocks.Configs.Component
 {
-	[CreateAssetMenu(fileName = "SamuraiComponent", menuName = "Configs/Blocks/Components/Specific/Samurai/SamuraiComponent")]
-	public class SamuraiComponent : BasicComponent
+	public class SamuraiComponent : BasicComponent, IBonusComponent
 	{
 		[SerializeField, Min(0)] private int bonusTimer;
 		[SerializeField, Min(0)] private float blockCountMultiplier;
@@ -15,26 +14,28 @@ namespace Blocks.Configs.Component
 		[SerializeField, Min(0)] private float packCooldownMultiplier;
 		[SerializeField] private BlockSpawnConfig blockSpawnConfig;
 
-		public bool IsActive { get; private set; } = false;
-		private int timer;
+		public bool IsValid { get; private set; }
+
+		private float timer;
 		private IProgressor currentProgressor;
 
 		public override void Execute(Block block)
 		{
-			IsActive = false;
-
-			if (IsActive)
+			if (Context.BonusController.IsContains(this))
 			{
 				timer = bonusTimer;
 				return;
 			}
 
-			StartBonus();
+			Context.BonusController.AddBonus(this);
 		}
 
 		public void StartBonus()
 		{
-			IsActive = true;
+			IsValid = true;
+
+			timer = bonusTimer;
+			Context.UiContext.SamuraiUI.UpdateTimer((int)timer);
 			Context.UiContext.SamuraiUI.Show();
 
 			Context.HealthController.enabled = false;
@@ -46,25 +47,21 @@ namespace Blocks.Configs.Component
 			Context.Spawner.SwapProgressor(newProgressor);
 			Context.Spawner.ResetComponent();
 
-			Context.BonusController.StartCoroutine(BonusCoroutine());
 		}
 
-		private IEnumerator BonusCoroutine()
+		public void UpdateBonus()
 		{
-			timer = bonusTimer;
-			var timerStep = new WaitForSeconds(1);
-			while (timer > 0)
+			if (timer <= 0)
 			{
-				yield return timerStep;
-				timer--;
-				Context.UiContext.SamuraiUI.UpdateTimer(timer);
+				IsValid = false;
 			}
-			StopBonus();
+
+			timer -= Time.deltaTime;
+			Context.UiContext.SamuraiUI.UpdateTimer((int)timer);
 		}
 
 		public void StopBonus()
 		{
-			IsActive = false;
 			Context.UiContext.SamuraiUI.Hide();
 
 			Context.HealthController.enabled = true;
@@ -89,6 +86,5 @@ namespace Blocks.Configs.Component
 			newProgressor.Init(newConfig, Context.Spawner);
 			return newProgressor;
 		}
-
 	}
 }
