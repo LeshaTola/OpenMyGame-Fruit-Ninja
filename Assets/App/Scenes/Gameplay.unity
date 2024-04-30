@@ -154,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 5
   defaultHealth: 3
+  healthBarUI: {fileID: 695072272}
 --- !u!4 &25185310
 Transform:
   m_ObjectHideFlags: 0
@@ -1965,11 +1966,11 @@ MonoBehaviour:
     rawReference:
       rid: -2
   - mode: 0
-    unityReference: {fileID: 689850413}
+    unityReference: {fileID: 25185309}
     rawReference:
       rid: -2
   - mode: 0
-    unityReference: {fileID: 695072272}
+    unityReference: {fileID: 689850413}
     rawReference:
       rid: -2
   - mode: 0

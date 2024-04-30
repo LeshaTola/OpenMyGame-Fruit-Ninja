@@ -1,68 +1,50 @@
-using General;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Health
 {
-	public class HealthBarUI : MonoBehaviour, IInitable
+	public class HealthBarUI : MonoBehaviour
 	{
-		[SerializeField] private HealthController controller;
 		[SerializeField] private HealthIconUI healthIconsTemplate;
 		[SerializeField] private Transform container;
 
-		private int lastHealthPosition;
 		private List<HealthIconUI> healthIcons;
 
-		public void Init()
+		public Transform Container { get => container; }
+
+		public HealthIconUI GetHeartIcon(int healthPosition)
 		{
-			CreateUI();
-			controller.OnHealthChanged += OnHealthChanged;
+			return healthIcons[healthPosition];
 		}
 
-		private void OnDestroy()
+		public void DeactivateAmount(int currentHealth, int prevHealth)
 		{
-			controller.OnHealthChanged -= OnHealthChanged;
-		}
-
-		public Vector2 GetNextHeartPosition()
-		{
-			int position = lastHealthPosition;
-			if (position >= healthIcons.Count - 1)
-			{
-				return healthIcons[healthIcons.Count - 1].transform.position;
-			}
-			lastHealthPosition++;
-			return healthIcons[lastHealthPosition].transform.position;
-		}
-
-		private void UpdateUI(int health)
-		{
-			for (int i = health; i < controller.MaxHealth; i++)
+			for (int i = currentHealth; i < prevHealth; i++)
 			{
 				healthIcons[i].Hide();
 			}
+		}
 
-			for (int i = 0; i < health; i++)
+		public void ActivateAmount(int currentHealth, int prevHealth)
+		{
+			for (int i = prevHealth; i < currentHealth; i++)
 			{
 				healthIcons[i].Show();
 			}
-			lastHealthPosition = health - 1;
 		}
 
-		private void OnHealthChanged(int health)
+		public void CreateUI(int maxHealth)
 		{
-			UpdateUI(health);
-		}
-
-		private void CreateUI()
-		{
-			healthIcons = new();
-			for (int i = 0; i < controller.MaxHealth; i++)
+			healthIcons = new(maxHealth);
+			for (int i = 0; i < maxHealth; i++)
 			{
 				var healthIcon = Instantiate(healthIconsTemplate, container);
 				healthIcon.Init();
 				healthIcons.Add(healthIcon);
 			}
+
+			DeactivateAmount(0, maxHealth);
+
 			healthIcons.Reverse();
 		}
 	}
