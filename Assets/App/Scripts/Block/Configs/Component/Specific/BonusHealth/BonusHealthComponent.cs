@@ -27,9 +27,6 @@ namespace Blocks.Configs.Component
 			HealthBarUI healthBar = Context.UiContext.HealthBarUI;
 			HealthIconUI healthIcon = healthBar.GetHeartIcon(Context.HealthController.CurrentHealth - 1);
 			Vector2 healthPosition = healthIcon.transform.position;
-			int healthSiblingsPosition = healthIcon.transform.GetSiblingIndex();
-
-			healthIcon.transform.SetParent(healthBar.transform);
 			healthIcon.transform.position = block.transform.position;
 
 			Sequence sequence = DOTween.Sequence();
@@ -37,11 +34,6 @@ namespace Blocks.Configs.Component
 				.DOMove(healthPosition, moveTime)
 				.SetEase(Ease.OutCirc);
 			sequence.Append(tween);
-			sequence.onComplete += () =>
-			{
-				healthIcon.transform.SetParent(healthBar.Container);
-				healthIcon.transform.SetSiblingIndex(healthSiblingsPosition);
-			};
 		}
 	}
 }
