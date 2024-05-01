@@ -14,19 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeBetweenProgressions: 1
   fruits:
-    StartValue: 2
+    StartValue: 10
     Range:
       Min: 0
       Max: 5
     Progression: 0.05
   fruitCooldown:
-    StartValue: 0.5
+    StartValue: 0.1
     Range:
       Min: 0.1
       Max: 1
     Progression: -0.005
   packCooldown:
-    StartValue: 2
+    StartValue: 1
     Range:
       Min: 1
       Max: 5
