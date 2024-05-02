@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Unlit_BlurShader
-  m_Shader: {fileID: 4800000, guid: 88d55c7b39bb54e4fb346328dd46cdf8, type: 3}
+  m_Name: GamePlayBlur
+  m_Shader: {fileID: 4800000, guid: 1e22c9739e2554240a3393337a03ad24, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -24,11 +24,8 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    m_Ints:
-    - _GridSize: 46
+    m_Ints: []
     m_Floats:
-    - _Spread: 8.96
-    - _Transparency: 0.5
-    m_Colors:
-    - _Tint: {r: 1, g: 0.15695004, b: 0, a: 0.85882354}
+    - _Blur: 18
+    m_Colors: []
   m_BuildTextureStacks: []
