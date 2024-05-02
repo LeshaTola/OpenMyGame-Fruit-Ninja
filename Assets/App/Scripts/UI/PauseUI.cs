@@ -9,7 +9,6 @@ public class PauseUI : MonoBehaviour, IInitable
 {
 	[SerializeField] private PanelAnimation panelAnimation;
 	[SerializeField] private GamePlayStateMachine stateMachine;
-	[SerializeField] private GameObject pauseBlur;
 
 	[SerializeField] private Button pauseButton;
 	[SerializeField] private Button resumeButton;
@@ -30,14 +29,12 @@ public class PauseUI : MonoBehaviour, IInitable
 	public void Show()
 	{
 		Activate();
-		pauseBlur.gameObject.SetActive(true);
 		panelAnimation.PlayShowAnimation();
 	}
 
 	public void Hide()
 	{
 		Deactivate();
-		pauseBlur.gameObject.SetActive(false);
 		panelAnimation.PlayHideAnimation();
 	}
 
