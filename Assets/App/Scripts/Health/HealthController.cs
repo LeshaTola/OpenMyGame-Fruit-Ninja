@@ -4,18 +4,23 @@ using UnityEngine;
 
 namespace Health
 {
-	public class HealthController : MonoBehaviour, IResettable
+	public class HealthController : MonoBehaviour, IInitable, IResettable
 	{
-		public event Action<int> OnHealthChanged;
 		public event Action OnDeath;
 
 		[SerializeField] private int maxHealth;
 		[SerializeField] private int defaultHealth;
+		[SerializeField] private HealthBarUI healthBarUI;
 
 		private int currentHealth = 0;
 
 		public int MaxHealth { get => maxHealth; }
 		public int CurrentHealth { get => currentHealth; }
+
+		public void Init()
+		{
+			healthBarUI.CreateUI(maxHealth);
+		}
 
 		public void AddHealth(int health)
 		{
@@ -23,7 +28,7 @@ namespace Health
 			{
 				return;
 			}
-
+			int prevHealth = currentHealth;
 			currentHealth += health;
 
 			if (currentHealth > maxHealth)
@@ -31,7 +36,7 @@ namespace Health
 				currentHealth = maxHealth;
 			}
 
-			OnHealthChanged?.Invoke(currentHealth);
+			healthBarUI.ActivateAmount(currentHealth, prevHealth);
 		}
 
 		public void ReduceHealth(int health)
@@ -40,6 +45,8 @@ namespace Health
 			{
 				return;
 			}
+
+			int prevHealth = currentHealth;
 			currentHealth -= health;
 
 			if (currentHealth <= 0)
@@ -47,7 +54,7 @@ namespace Health
 				currentHealth = 0;
 				OnDeath?.Invoke();
 			}
-			OnHealthChanged?.Invoke(currentHealth);
+			healthBarUI.DeactivateAmount(currentHealth, prevHealth);
 		}
 
 		public void ResetComponent()

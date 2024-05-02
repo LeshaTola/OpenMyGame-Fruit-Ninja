@@ -74,11 +74,32 @@ namespace Blocks.Bonuses.Mimic
 		private void Swap(Block block)
 		{
 			Config newConfig = GetConfig();
-			SwapSubscriptions(block, newConfig);
+
+			SwapReleaseComponents(block, newConfig);
+			SwapVisual(block, newConfig);
+
+			SetupParticles(newConfig);
+		}
+
+		private void SwapReleaseComponents(Block block, Config newConfig)
+		{
+			block.Config.GetSlicingComponent<ReleaseComponent>()?.ClearAdditionalAction();
+			block.Config.GetKillingComponent<ReleaseComponent>()?.ClearAdditionalAction();
+
+			newConfig.GetSlicingComponent<ReleaseComponent>()?.SetAdditionalAction(SetInvalid);
+			newConfig.GetKillingComponent<ReleaseComponent>()?.SetAdditionalAction(SetInvalid);
+		}
+
+		private void SwapVisual(Block block, Config newConfig)
+		{
+			var prevRotation = block.Visual.transform.rotation;
+			var prevScale = block.Visual.transform.localScale;
+
 			block.Visual.RestartAnimation();
 			block.Init(newConfig, context);
 
-			SetupParticles(newConfig);
+			block.Visual.transform.rotation = prevRotation;
+			block.Visual.transform.localScale = prevScale;
 		}
 
 		private void SetupParticles(Config newConfig)
@@ -88,25 +109,6 @@ namespace Blocks.Bonuses.Mimic
 
 			preSwapParticleShape.radius = newConfig.Radius;
 			swapParticleShape.radius = newConfig.Radius;
-		}
-
-		private void SwapSubscriptions(Block block, Config newConfig)
-		{
-			ReleaseComponent sliceReleaseComponent = block.Config.GetSlicingComponent<ReleaseComponent>();
-			ReleaseComponent killReleaseComponent = block.Config.GetKillingComponent<ReleaseComponent>();
-
-			if (sliceReleaseComponent != null)
-				sliceReleaseComponent.OnRelease -= SetInvalid;
-			if (killReleaseComponent != null)
-				killReleaseComponent.OnRelease -= SetInvalid;
-
-			sliceReleaseComponent = newConfig.GetSlicingComponent<ReleaseComponent>();
-			killReleaseComponent = newConfig.GetKillingComponent<ReleaseComponent>();
-
-			if (sliceReleaseComponent != null)
-				sliceReleaseComponent.OnRelease += SetInvalid;
-			if (killReleaseComponent != null)
-				killReleaseComponent.OnRelease += SetInvalid;
 		}
 
 		private void SetInvalid()

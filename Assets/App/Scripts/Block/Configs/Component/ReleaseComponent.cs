@@ -4,12 +4,23 @@ namespace Blocks.Configs.Component
 {
 	public class ReleaseComponent : BasicComponent
 	{
-		public event Action OnRelease;
+
+		private Action additionalAction;
 
 		public override void Execute(Block block)
 		{
-			OnRelease?.Invoke();
+			additionalAction?.Invoke();
 			Context.PoolsContainer.Blocks.Release(block);
+		}
+
+		public void SetAdditionalAction(Action action)
+		{
+			additionalAction = action;
+		}
+
+		public void ClearAdditionalAction()
+		{
+			additionalAction = null;
 		}
 	}
 }

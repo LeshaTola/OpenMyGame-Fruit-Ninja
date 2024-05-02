@@ -2,6 +2,7 @@
 using Blocks.Configs.Component.Specific;
 using Spawn;
 using Spawn.Progressor;
+using System.Collections;
 using UnityEngine;
 
 namespace Blocks.Configs.Component
@@ -62,11 +63,23 @@ namespace Blocks.Configs.Component
 
 		public void StopBonus()
 		{
+			Context.BonusController.StartCoroutine(PreparingCoroutine());
+		}
+
+		private IEnumerator PreparingCoroutine()
+		{
 			Context.UiContext.SamuraiUI.Hide();
+			Context.Spawner.StopSpawner();
+
+			while (Context.PoolsContainer.Blocks.Active.Count > 0)
+			{
+				yield return null;
+			}
 
 			Context.HealthController.enabled = true;
 
 			Context.Spawner.SwapProgressor(currentProgressor);
+			Context.Spawner.StartSpawner();
 			currentProgressor.ContinueProgression();
 		}
 

@@ -15,14 +15,15 @@ public class HealthIconUI : MonoBehaviour
 
 	public void Show()
 	{
+		//gameObject.SetActive(true);
 		transform.DOKill();
 		gameObject.SetActive(true);
-		transform.DOScale(defaultScale, 0f);
+		transform.DOScale(defaultScale, animationTime);
 	}
 
 	public void Hide()
 	{
 		transform.DOKill();
-		transform.DOScale(targetScale, animationTime);
+		transform.DOScale(targetScale, animationTime);//.onComplete += () => gameObject.SetActive(false);
 	}
 }

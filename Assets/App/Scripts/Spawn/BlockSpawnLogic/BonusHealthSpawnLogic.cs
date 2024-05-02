@@ -6,13 +6,12 @@ namespace Spawn.BlockSpawnLogic
 {
 	public class BonusHealthSpawnLogic : BasicSpawnLogic
 	{
-		[Tooltip("The value of health at which the bonus is spawned")]
-		[SerializeField] private int minHealth;
 		[Tooltip("Percentage of the main pack")]
 		[Range(0, 1)][SerializeField] private float packPercent;
 
 		public override bool CanSpawn(List<Block> pack)
 		{
+			int minHealth = context.HealthController.MaxHealth - 1;
 			if (context.HealthController.CurrentHealth <= minHealth && !IsEnough(pack))
 			{
 				return true;

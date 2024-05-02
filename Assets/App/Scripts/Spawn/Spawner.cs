@@ -34,31 +34,33 @@ namespace Spawn
 			SwapProgressor(progressor);
 		}
 
-		public IEnumerator SpawnPack()
+		public void ResetComponent()
 		{
-			Region region = GetRegion();
+			StopSpawner();
+			progressor.ResetComponent();
+			StartSpawner();
+		}
 
-			var fruitTimer = new WaitForSeconds(progressor.FruitCooldown);
-			List<Block> pack = new();
-			for (int i = 0; i < progressor.FruitCount; i++)
+		public void SwapProgressor(IProgressor progressor)
+		{
+			this.progressor = progressor;
+
+			foreach (var bonus in progressor.Config.BlockSpawnConfig.Bonuses)
 			{
-				yield return fruitTimer;
+				bonus.SpawnLogic.Init(progressor, bonus.Config, context);
+			}
+		}
 
-				var block = GetAnyBlock(pack);
-				pack.Add(block);
+		public void StartSpawner()
+		{
+			spawnCoroutine = StartCoroutine(SpawnCoroutine());
+		}
 
-				block.transform.position = GetSpawnPosition(region);
-
-				float randomAngle = Random.Range(region.MinAngle, region.MaxAngle);
-				Vector2 pushDirection = Quaternion.Euler(0, 0, randomAngle) * Vector2.up;
-
-				Vector2 speed =
-					new Vector2(
-						Random.Range(region.MinHorizontalSpeed, region.MaxHorizontalSpeed),
-						Random.Range(region.MinVerticalSpeed, region.MaxVerticalSpeed)
-						);
-
-				block.Movement.Push(pushDirection * speed);
+		public void StopSpawner()
+		{
+			if (spawnCoroutine != null)
+			{
+				StopCoroutine(spawnCoroutine);
 			}
 		}
 
@@ -92,7 +94,7 @@ namespace Spawn
 			return Vector2.Lerp(start, end, Random.value);
 		}
 
-		public IEnumerator SpawnCoroutine()
+		private IEnumerator SpawnCoroutine()
 		{
 			while (true)
 			{
@@ -101,23 +103,31 @@ namespace Spawn
 			}
 		}
 
-		public void ResetComponent()
+		private IEnumerator SpawnPack()
 		{
-			if (spawnCoroutine != null)
-			{
-				StopCoroutine(spawnCoroutine);
-			}
-			progressor.ResetComponent();
-			spawnCoroutine = StartCoroutine(SpawnCoroutine());
-		}
+			Region region = GetRegion();
 
-		public void SwapProgressor(IProgressor progressor)
-		{
-			this.progressor = progressor;
-
-			foreach (var bonus in progressor.Config.BlockSpawnConfig.Bonuses)
+			var fruitTimer = new WaitForSeconds(progressor.FruitCooldown);
+			List<Block> pack = new();
+			for (int i = 0; i < progressor.FruitCount; i++)
 			{
-				bonus.SpawnLogic.Init(progressor, bonus.Config, context);
+				yield return fruitTimer;
+
+				var block = GetAnyBlock(pack);
+				pack.Add(block);
+
+				block.transform.position = GetSpawnPosition(region);
+
+				float randomAngle = Random.Range(region.MinAngle, region.MaxAngle);
+				Vector2 pushDirection = Quaternion.Euler(0, 0, randomAngle) * Vector2.up;
+
+				Vector2 speed =
+					new Vector2(
+						Random.Range(region.MinHorizontalSpeed, region.MaxHorizontalSpeed),
+						Random.Range(region.MinVerticalSpeed, region.MaxVerticalSpeed)
+						);
+
+				block.Movement.Push(pushDirection * speed);
 			}
 		}
 

@@ -6,7 +6,6 @@ namespace Blocks.Configs.Component
 {
 	public class BonusHealthComponent : BasicComponent
 	{
-		[SerializeField] private HealthGameObject healthGameObject;
 		[SerializeField] private float moveTime;
 		[SerializeField] private float scaleTime;
 		[SerializeField] private int health;
@@ -23,18 +22,18 @@ namespace Blocks.Configs.Component
 				return;
 			}
 
-			var healthIcon = GameObject.Instantiate(healthGameObject, block.transform.position, Quaternion.identity);
+			Context.HealthController.AddHealth(health);
+
+			HealthBarUI healthBar = Context.UiContext.HealthBarUI;
+			HealthIconUI healthIcon = healthBar.GetHeartIcon(Context.HealthController.CurrentHealth - 1);
+			Vector2 healthPosition = healthIcon.transform.position;
+			healthIcon.transform.position = block.transform.position;
+
 			Sequence sequence = DOTween.Sequence();
 			var tween = healthIcon.transform
-				.DOMove(Context.UiContext.HealthBarUI.GetNextHeartPosition(), moveTime)
+				.DOMove(healthPosition, moveTime)
 				.SetEase(Ease.OutCirc);
 			sequence.Append(tween);
-
-			sequence.onComplete += () =>
-			{
-				Context.HealthController.AddHealth(health);
-				healthIcon.Hide();
-			};
 		}
 	}
 }
