@@ -181,7 +181,7 @@ MonoBehaviour:
   background: {fileID: 2975739027873146178}
   backgroundFade: 0.15
   vignette: {fileID: 2975739028962665688}
-  vignetteFade: 0.11
+  vignetteFade: 0.15
   animationTime: 0.5
 --- !u!1 &2975739028962665694
 GameObject:

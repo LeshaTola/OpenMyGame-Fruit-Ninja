@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GamePlayBlur
-  m_Shader: {fileID: 4800000, guid: 1e22c9739e2554240a3393337a03ad24, type: 3}
+  m_Name: BlurImage
+  m_Shader: {fileID: 4800000, guid: d130c1306b69b7f44bbe28603221017d, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -26,6 +26,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Blur: 18
-    m_Colors: []
+    - _Blur: 10
+    - _Step: 20
+    m_Colors:
+    - _TintColor: {r: 1, g: 0.9079533, b: 0.759434, a: 1}
   m_BuildTextureStacks: []
