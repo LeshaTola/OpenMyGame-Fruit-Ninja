@@ -8,6 +8,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3366466497292653496, guid: e476baa79cb7aa7418aba322196b2ca2, type: 3}
+      propertyPath: m_fontStyle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3366466497292653496, guid: e476baa79cb7aa7418aba322196b2ca2, type: 3}
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 2100000, guid: 15816c283b43f6242806f0d7951c690f, type: 2}
@@ -107,5 +111,9 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 35d8f7e73cf866c41b7f96d6463c8083, type: 3}
+    - target: {fileID: 8072582298609755279, guid: e476baa79cb7aa7418aba322196b2ca2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e476baa79cb7aa7418aba322196b2ca2, type: 3}
