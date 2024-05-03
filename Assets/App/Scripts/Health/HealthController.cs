@@ -8,18 +8,17 @@ namespace Health
 	{
 		public event Action OnDeath;
 
-		[SerializeField] private int maxHealth;
-		[SerializeField] private int defaultHealth;
+		[SerializeField] private HealthConfig healthConfig;
 		[SerializeField] private HealthBarUI healthBarUI;
 
 		private int currentHealth = 0;
 
-		public int MaxHealth { get => maxHealth; }
+		public int MaxHealth { get => healthConfig.MaxHealth; }
 		public int CurrentHealth { get => currentHealth; }
 
 		public void Init()
 		{
-			healthBarUI.CreateUI(maxHealth);
+			healthBarUI.CreateUI(healthConfig.MaxHealth);
 		}
 
 		public void AddHealth(int health)
@@ -31,9 +30,9 @@ namespace Health
 			int prevHealth = currentHealth;
 			currentHealth += health;
 
-			if (currentHealth > maxHealth)
+			if (currentHealth > healthConfig.MaxHealth)
 			{
-				currentHealth = maxHealth;
+				currentHealth = healthConfig.MaxHealth;
 			}
 
 			healthBarUI.ActivateAmount(currentHealth, prevHealth);
@@ -60,7 +59,7 @@ namespace Health
 		public void ResetComponent()
 		{
 			enabled = true;
-			AddHealth(defaultHealth);
+			AddHealth(healthConfig.DefaultHealth);
 		}
 	}
 }

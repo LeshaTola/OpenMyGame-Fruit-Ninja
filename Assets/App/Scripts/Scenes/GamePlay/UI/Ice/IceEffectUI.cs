@@ -14,13 +14,11 @@ namespace Scenes.GamePlay.UI.Ice
 
 		public void Show()
 		{
-			gameObject.SetActive(true);
 			effectAnimation.PlayShowAnimation();
 		}
 
 		public void Hide()
 		{
-			gameObject.SetActive(false);
 			effectAnimation.PlayHideAnimation();
 		}
 	}

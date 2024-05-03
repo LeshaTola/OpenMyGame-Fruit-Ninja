@@ -152,8 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71a9a3486fc31274986957c66ee4e00a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 5
-  defaultHealth: 3
+  healthConfig: {fileID: 11400000, guid: ca46c87e022f5b649a9065ab1e7c06a5, type: 2}
   healthBarUI: {fileID: 695072272}
 --- !u!4 &25185310
 Transform:
@@ -803,7 +802,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &529552268
 RectTransform:
   m_ObjectHideFlags: 0
@@ -905,7 +904,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 529552268}
   m_RootOrder: 0
@@ -1279,7 +1278,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 529552268}
   m_RootOrder: 1
@@ -3101,7 +3100,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2975739028936392302, guid: 3c3720ffa5244194aa206f36a2828797, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2975739028962665694, guid: 3c3720ffa5244194aa206f36a2828797, type: 3}
       propertyPath: m_Layer

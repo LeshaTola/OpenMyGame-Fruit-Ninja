@@ -37,7 +37,7 @@ public class MagnetArea : MonoBehaviour, IBonusComponent
 
 		ParticleSystem.ShapeModule shape = particles.shape;
 		shape.radius *= radius;
-		area.transform.localScale = new Vector3(radius, radius, radius);
+		area.transform.localScale = new Vector2(radius, radius);
 
 		particlesMain.startLifetime = particlesMain.startLifetime.constant * radius;
 		timer = lifeTime;

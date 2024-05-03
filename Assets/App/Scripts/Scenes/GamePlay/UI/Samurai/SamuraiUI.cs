@@ -21,14 +21,12 @@ public class SamuraiUI : MonoBehaviour, IInitable
 
 	public void Show()
 	{
-		gameObject.SetActive(true);
 		samuraiImageAnimation.Show();
 		samuraiTextAnimation.Show();
 	}
 
 	public void Hide()
 	{
-		gameObject.SetActive(false);
 		samuraiTextAnimation.Hide();
 		samuraiImageAnimation.Hide();
 	}
