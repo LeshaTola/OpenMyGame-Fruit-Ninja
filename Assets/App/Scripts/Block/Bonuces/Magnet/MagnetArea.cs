@@ -13,6 +13,7 @@ public class MagnetArea : MonoBehaviour, IBonusComponent
 	[SerializeField] private List<Config> whiteList;
 
 	[SerializeField] private ParticleSystem particles;
+	[SerializeField] private SpriteRenderer area;
 
 	private float timer;
 
@@ -33,8 +34,11 @@ public class MagnetArea : MonoBehaviour, IBonusComponent
 	public void StartBonus()
 	{
 		var particlesMain = particles.main;
+
 		ParticleSystem.ShapeModule shape = particles.shape;
 		shape.radius *= radius;
+		area.transform.localScale = new Vector3(radius, radius, radius);
+
 		particlesMain.startLifetime = particlesMain.startLifetime.constant * radius;
 		timer = lifeTime;
 		IsValid = true;
