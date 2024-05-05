@@ -12,14 +12,14 @@ namespace UI.SceneTransitions
 		{
 			gameObject.SetActive(true);
 			transform.localScale = Vector3.zero;
-			transform.DOScale(1f, fadeTime).onComplete += () => action?.Invoke();
+			transform.DOScale(1f, fadeTime).SetUpdate(true).onComplete += () => action?.Invoke();
 		}
 
 		public void PlayOff(Action action = null)
 		{
 			gameObject.SetActive(true);
 			transform.localScale = Vector3.one;
-			transform.DOScale(0f, fadeTime).onComplete += () =>
+			transform.DOScale(0f, fadeTime).SetUpdate(true).onComplete += () =>
 			{
 				action?.Invoke();
 				gameObject.SetActive(false);
