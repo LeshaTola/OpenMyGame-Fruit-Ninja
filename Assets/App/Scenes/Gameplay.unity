@@ -730,7 +730,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 519420031}
+  m_Camera: {fileID: 1423415886}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -808,6 +808,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -854,7 +855,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 23
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 0bdeb367790613e4fa93833aede57cb5, type: 2}
   m_TargetDisplay: 0
@@ -877,10 +878,24 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1423415883}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfa8061a6f5230546bd9c646c2e9a8be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mat: {fileID: 2100000, guid: 51cd6e054ad50564d8dda1f78e99cfdb, type: 2}
 --- !u!224 &529552268 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 506030726316184729, guid: 701fbafcead98e846ae22da65acdaa70, type: 3}
@@ -1285,7 +1300,7 @@ Canvas:
   m_GameObject: {fileID: 1104729551}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 519420031}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -1518,6 +1533,81 @@ MonoBehaviour:
   spawner: {fileID: 1630109067}
   slicer: {fileID: 169325681}
   uiContext: {fileID: 682450385}
+--- !u!1 &1423415882
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1423415883}
+  - component: {fileID: 1423415886}
+  m_Layer: 0
+  m_Name: UI Camera
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1423415883
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423415882}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 519420032}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &1423415886
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423415882}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 3
+  m_BackGroundColor: {r: 0, g: 0.31132078, b: 0.28325868, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 1
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 32
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 8400000, guid: 0bdeb367790613e4fa93833aede57cb5, type: 2}
+  m_TargetDisplay: 0
+  m_TargetEye: 0
+  m_HDR: 1
+  m_AllowMSAA: 0
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 0
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
 --- !u!1 &1443510054
 GameObject:
   m_ObjectHideFlags: 0
@@ -2921,6 +3011,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1239220961741617540, guid: b5eec326957ad7d438fb871a23c8d545, type: 3}
+      propertyPath: cameraController
+      value: 
+      objectReference: {fileID: 519420033}
     - target: {fileID: 1239220961741617551, guid: b5eec326957ad7d438fb871a23c8d545, type: 3}
       propertyPath: m_Name
       value: PausePanel
@@ -2928,6 +3022,10 @@ PrefabInstance:
     - target: {fileID: 1239220961741617551, guid: b5eec326957ad7d438fb871a23c8d545, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1239220962112774075, guid: b5eec326957ad7d438fb871a23c8d545, type: 3}
+      propertyPath: m_Name
+      value: Background
       objectReference: {fileID: 0}
     - target: {fileID: 1239220962112774075, guid: b5eec326957ad7d438fb871a23c8d545, type: 3}
       propertyPath: m_IsActive
@@ -3056,6 +3154,10 @@ PrefabInstance:
       propertyPath: vignetteFade
       value: 0.25
       objectReference: {fileID: 0}
+    - target: {fileID: 2975739028936392296, guid: 3c3720ffa5244194aa206f36a2828797, type: 3}
+      propertyPath: cameraController
+      value: 
+      objectReference: {fileID: 519420033}
     - target: {fileID: 2975739028936392297, guid: 3c3720ffa5244194aa206f36a2828797, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3442,6 +3544,10 @@ PrefabInstance:
       propertyPath: scoreController
       value: 
       objectReference: {fileID: 2071664397}
+    - target: {fileID: 7567072261549971079, guid: b5ef08b798aa46c458c6085a7b7f98d2, type: 3}
+      propertyPath: cameraController
+      value: 
+      objectReference: {fileID: 519420033}
     - target: {fileID: 7567072262114383947, guid: b5ef08b798aa46c458c6085a7b7f98d2, type: 3}
       propertyPath: m_text
       value: 

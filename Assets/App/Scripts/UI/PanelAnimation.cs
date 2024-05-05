@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Shaders;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +8,7 @@ namespace UI
 	public class PanelAnimation : MonoBehaviour
 	{
 
+		[SerializeField] private CameraController cameraController;
 		[Header("Animation")]
 		[SerializeField] private Image background;
 		[SerializeField] private RectTransform content;
@@ -19,6 +21,7 @@ namespace UI
 		public void PlayShowAnimation()
 		{
 			gameObject.SetActive(true);
+			cameraController.AddBlur();
 			var sequence = DOTween.Sequence();
 			sequence.Append(background.DOFade(maxFade, animationTime));
 			sequence.Append(content.transform.DOScale(ShowScale, animationTime));
@@ -28,6 +31,7 @@ namespace UI
 		public void PlayHideAnimation()
 		{
 			var sequence = DOTween.Sequence();
+			cameraController.ReduceBlur();
 			sequence.Append(content.DOScale(HideScale, animationTime));
 			sequence.Append(background.DOFade(0f, animationTime));
 			sequence.SetUpdate(true);

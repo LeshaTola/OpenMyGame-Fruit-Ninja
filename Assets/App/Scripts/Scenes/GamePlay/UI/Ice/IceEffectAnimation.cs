@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using Shaders;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,7 +7,7 @@ namespace Scenes.GamePlay.UI.Ice
 {
 	public class IceEffectAnimation : MonoBehaviour
 	{
-		[SerializeField] private Image blur;
+		[SerializeField] private CameraController cameraController;
 		[SerializeField] private Image background;
 		[SerializeField] private float backgroundFade;
 		[SerializeField] private Image vignette;
@@ -15,14 +16,14 @@ namespace Scenes.GamePlay.UI.Ice
 
 		public void PlayShowAnimation()
 		{
-			blur.DOFade(backgroundFade, animationTime).SetEase(Ease.InOutCirc).SetUpdate(true);
+			cameraController.AddBlur();
 			background.DOFade(backgroundFade, animationTime).SetEase(Ease.InOutCirc).SetUpdate(true);
 			vignette.DOFade(vignetteFade, animationTime).SetEase(Ease.InOutCirc).SetUpdate(true);
 		}
 
 		public void PlayHideAnimation()
 		{
-			blur.DOFade(0f, animationTime).SetEase(Ease.InOutCirc).SetUpdate(true);
+			cameraController.ReduceBlur();
 			background.DOFade(0f, animationTime).SetEase(Ease.InOutCirc).SetUpdate(true);
 			vignette.DOFade(0f, animationTime).SetEase(Ease.InOutCirc).SetUpdate(true);
 		}
